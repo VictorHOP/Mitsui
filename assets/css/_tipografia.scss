@@ -11,6 +11,11 @@
 .fs-40{
     font-size: 40px;
 }
+.fs-sm-35{
+    @media (max-width:576px) {
+        font-size: 35px !important;
+    }
+}
 .fs-33{
     font-size: 33px;
 }
@@ -34,6 +39,11 @@
 }
 .fs-16{
     font-size: 16px;
+}
+.fs-sm-16{
+    @media (max-width:576px) {
+        font-size: 16px !important;
+    }
 }
 .fs-15{
     font-size: 15px;
@@ -75,8 +85,8 @@ fw900{
     font-weight: 900;
 }
 h1{
-    font-weight: 300;
-    font-size: 55px;
+    font-weight: 800;
+    font-size: 64px;
     line-height: 70px;
 }
 h2{

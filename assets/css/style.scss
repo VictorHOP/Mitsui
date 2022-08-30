@@ -12,16 +12,35 @@ a{
     text-decoration: none;
 }
 // VVVVVVVVVV HEADER VVVVVVVVVVV
+.margin-top-header{
+    margin-top: 110px;
+}
 header{
     box-shadow: 0px 10px 30px rgba(22, 22, 22, 0.2);
+    background-color: #fff;
+    z-index: 2000;
     .offcanvas.offcanvas-top {
         height: auto;
+        @media (max-width:1199px) {
+            z-index: -1;
+            margin-top: 100px;
+        }
+    }
+    .offcanvas-backdrop {
+        z-index: -3;
+        display: none;
     }
     .offcanvas-body{
         @media (max-width:1199px) {
             
             background-color: rgba(250, 250, 250, 0.329) !important;
         }
+    }
+    svg:hover path {
+        fill:#FF7C1E;
+    }
+    .redes-header a{
+        padding: 18px 15px;
     }
 }
 .menu-item a{
@@ -63,9 +82,13 @@ header{
 }
 .navbar-toggler {
     border: none;
+    width: 150px !important;
     &:focus{
         box-shadow: none;
     }
+}
+.aberto{
+    display: none;
 }
 // VVVVVVVVVV Fim do HEADER VVVVVVVVVV
 .botao{
@@ -82,16 +105,74 @@ header{
 .w-fit{
     width: fit-content;
 }
-
+.borda-azul{
+    border-top: 2px solid rgba(255, 255, 255, 0.07);
+}
+.position-h1{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+}
+.banner-pagina img{
+    background: rgb(2,0,36);
+    background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 13%, rgba(0,212,255,0) 34%);
+}
 // VVVVVVVVVV FOOTER VVVVVVVVVV
 
 .section-fale-conosco{
     background-color: $azul-roxo;
 }
-.menu-item-has-children a{
-    padding: 15px !important;
+.accordion .menu-item-has-children{
+    @media (max-width:990px) {
+        
+        &::before{
+            content: "";
+            width: 8px;
+            height: 8px;
+            border: none;
+            border-top: #fff 2px solid;
+            border-right: #fff 2px solid;
+            position: relative;
+            bottom: -31px;
+            z-index: 3;
+            transform: rotate(140deg);
+            transition: all 0.5s ease-in-out;
+
+        }
+        &::after{
+            content: "";
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            border: 1px solid #fff;
+            top: 20px;
+            z-index: 16;
+            left: 4px;
+            position: absolute;
+        }
+
+        &.active::before{
+            transition: all 0.5s ease-in-out;
+            transform: rotate(-45deg);
+        }
+        &.active::after{
+            transition: all 0.5s ease-in-out;
+            top:18px;
+        }
+    }
 }
 footer {
+
+    .menu{
+        @media (max-width:990px) {
+            
+            border-bottom: 2px solid rgba(255, 255, 255, 0.07);
+            width: 100%;
+        }
+    }
+    .menu-item-has-children a{
+        padding: 15px !important;
+    }
     .menu-item a{
         font-size: 18px;
         font-weight: 700;
@@ -99,6 +180,9 @@ footer {
         white-space: nowrap;
         @media (max-width:1199px) {
             padding: 15px !important;
+        }
+        @media (max-width:990px) {
+            padding-left: 30px !important;
         }
 
     }
@@ -110,9 +194,13 @@ footer {
     }
     .sub-menu{
         padding: 0;
+        @media (max-width:990px) {
+            display: none;
+        }
         li{
             flex-direction: row !important;
             align-items: center !important;
+            padding-left: 13px;
             &:hover a{
                 color: $laranja !important;
             }
@@ -135,9 +223,12 @@ footer {
         a{
             font-size: 17px;
             font-weight: 400;
-            padding: 7px !important;
+            padding: 5px !important;
 
         }
 
+    }
+    .redes-footer img{
+        // padding: 0 15px;
     }
 }
