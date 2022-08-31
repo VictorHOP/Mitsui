@@ -102,6 +102,10 @@ header{
     padding-top: 80px;
     padding-bottom: 80px;
 }
+.py-10{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
 .w-fit{
     width: fit-content;
 }
@@ -114,8 +118,73 @@ header{
     left: 10%;
 }
 .banner-pagina img{
-    background: rgb(2,0,36);
-    background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 13%, rgba(0,212,255,0) 34%);
+    background: linear-gradient(90deg, #4848C6 0%, rgba(72, 72, 198, 0) 100%);
+    max-width: 100%;
+    min-height: 425px;
+    object-fit: cover;
+}
+.rad-100{
+    border-radius: 110px;
+}
+.w-47{
+    width: 47%;
+}
+.section-sobre-mrcla{
+    img{
+        width: 100%;
+        min-height: 650px;
+        object-fit: cover;
+    }
+}
+.sobre-mrcla{
+    max-width: 526px;
+    min-width: 400px;
+    height: auto;
+    min-height: 420px;
+    background-color: rgba(255, 255, 255, 0.719);
+    filter: drop-shadow(0px 25px 40px rgba(0, 0, 0, 0.3));
+    backdrop-filter: blur(10px);
+    position: absolute;
+    top: 110px;
+    right: 70px;
+    margin-left: 50px;
+    &img{
+        width: 1306px;
+        height: 661px;
+    }
+}
+.section-grupo-mitsui .img-grupo-mitsui{
+    width: 100%;
+    min-height: fit-content;
+    object-fit: cover;
+    height: 871px;
+    object-position: center;
+
+}
+.grupo-mitsui{
+    position: absolute;
+    top: 110px;
+    right: 70px;
+    width: 460px;
+
+}
+.redes-fixed{
+    position: fixed;
+    top:50%;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+    z-index: 5;
+    a{
+        padding: 18px 12px;
+        display: flex;
+        justify-content: center;
+    }
+    a:hover{
+        svg path {
+            fill:#FF7C1E;
+        }
+    }
 }
 // VVVVVVVVVV FOOTER VVVVVVVVVV
 

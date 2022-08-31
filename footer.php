@@ -14,7 +14,7 @@
 
 
 	<!-- VVV SECTION MENU FOOTER VVV -->
-	<section class="bg-azul-escuro py-5 pb-4 container-fluid">
+	<section class="bg-azul-escuro py-5 pb-4 container-fluid position-relative" style="z-index: 8;">
 		<div class="row container-fluid d-flex flex-column flex-lg-row justify-content-center">
 			<?php
 			if (has_nav_menu('footer institucional')) {

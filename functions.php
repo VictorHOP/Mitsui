@@ -1,6 +1,8 @@
 <?php
 //Include
 require get_template_directory(). '/include/setup.php';
+require get_template_directory(). '/app/cpt-page.php';
+
 
 //Hoocks
 add_action( 'wp_enqueue_scripts', 'va_theme_styles' );
