@@ -132,8 +132,15 @@ header{
 .section-sobre-mrcla{
     img{
         width: 100%;
-        min-height: 650px;
+        height: 650px;
         object-fit: cover;
+    }
+    @media (max-width:575px) {
+        background-color: $azul-escuro;
+        img{
+            padding-top: 25px;
+            height: 271px;
+        }
     }
 }
 .sobre-mrcla{
@@ -152,6 +159,19 @@ header{
         width: 1306px;
         height: 661px;
     }
+}
+.section-nossa-equipe{
+    @media (max-width:575px) {
+        .bg-azul-escuro{
+            width: 158px !important;
+        }
+    }
+    @media (min-width:576px) {
+        img{
+            padding-left: 10px;
+        }
+    }
+
 }
 .section-grupo-mitsui .img-grupo-mitsui{
     width: 100%;

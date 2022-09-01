@@ -1,7 +1,8 @@
 <?php
 
 // Change dashboard Posts to Blog
-function cp_change_post_object() {
+function cp_change_post_object()
+{
     $get_post_type = get_post_type_object('post');
     $get_post_type->labels->menu_name = 'Blog';
 }
@@ -9,7 +10,8 @@ function cp_change_post_object() {
 add_action('init', 'cp_change_post_object');
 
 
-function cp_change_page() {
+function cp_change_page()
+{
     $get_post_type = get_post_type_object('page');
     $get_post_type->exclude_from_search = true;
 }
@@ -17,7 +19,8 @@ function cp_change_page() {
 add_action('init', 'cp_change_page');
 
 
-function detalhes_pagina($post) {
+function detalhes_pagina($post)
+{
     $page_imagem = get_post_meta($post->ID, 'page_imagem', true);
 ?>
     <table class="form-table">
@@ -68,11 +71,15 @@ function detalhes_pagina($post) {
 <?php
 }
 
-function page_quemsomos($post) {
-    $historico_texto = get_post_meta($post->ID, 'quemsomos_historico_texto', true);
-    $historico = get_post_meta($post->ID, 'quemsomos_historico', true);
+function page_quemsomos($post)
+{
+    $sobre_mrcla = get_post_meta($post->ID, 'quemsomos_sobre_mrcla', true);
+    $missao = get_post_meta($post->ID, 'quemsomos_missao', true);
+    $visao = get_post_meta($post->ID, 'quemsomos_visao', true);
+    $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
+    $equipe = get_post_meta($post->ID, 'quemsomos_equipe', true);
     $downloads = get_post_meta($post->ID, 'quemsomos_downloads', true);
-    ?>
+?>
     <script>
         jQuery(function() {
             var file_frame;
@@ -80,13 +87,13 @@ function page_quemsomos($post) {
             var id;
 
             jQuery('.clear_button').on('click', function() {
-                jQuery(this).siblings('.downloads').val('');
-                jQuery(this).siblings('.downloads_texto').val('');
+                jQuery(this).siblings('.equipe').val('');
+                jQuery(this).siblings('.equipe_texto').val('');
             });
 
             jQuery('.upload_button').on('click', function() {
-                id = jQuery(this).parent().find('.downloads');
-                text = jQuery(this).parent().find('.downloads_texto');
+                id = jQuery(this).parent().find('.equipe');
+                text = jQuery(this).parent().find('.equipe_texto');
 
                 event.preventDefault();
 
@@ -137,26 +144,51 @@ function page_quemsomos($post) {
     </script>
     <table style="width:100%;">
         <tr>
-            <th>Texto Histórico</th>
+            <th>Sobre MRCLA</th>
             <td>
-                <textarea name="quemsomos_historico_texto" class="translate" rows="3" style="width:100%;"><?php echo $historico_texto; ?></textarea>
+                <textarea name="quemsomos_sobre_mrcla" class="translate" rows="3" style="width:100%;"><?php echo $sobre_mrcla; ?></textarea>
             </td>
         </tr>
         <tr>
-            <th>Histórico</th>
+            <th>Missão</th>
+            <td>
+                <textarea name="quemsomos_missao" class="translate" rows="3" style="width:100%;"><?php echo $missao; ?></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>Visão</th>
+            <td>
+                <textarea name="quemsomos_visao" class="translate" rows="3" style="width:100%;"><?php echo $visao; ?></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>Valores</th>
+            <td>
+                <textarea name="quemsomos_valores" class="translate" rows="3" style="width:100%;"><?php echo $valores; ?></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>Nossa Equipe</th>
             <td>
                 <a class="repeatable-add button" href="#">Adicionar</a>
                 <ul class="custom_repeatable">
                     <?php
                     $i = 0;
-                    if ($historico) {
-                        foreach ($historico as $row) {
+                    if ($equipe) {
+                        foreach ($equipe as $row) {
                     ?>
                             <li>
                                 <span class="sort hndle">|||</span><br>
-                                <input type="text" name="quemsomos_historico[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Ano" />
+                                <input type="text" name="quemsomos_equipe[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome do colaborador" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br><br>
-                                <textarea name="quemsomos_historico[<?php echo $i; ?>][1]" class="translate" rows="3" style="width:100%;"><?php echo $row[1]; ?></textarea>
+                                <input type="text" name="quemsomos_equipe[<?php echo $i; ?>][1]" value="<?php echo $row[1]; ?>" placeholder="Cargo" />
+
+                                <br><br>
+                                <input type="hidden" name="quemsomos_equipe[<?php echo $i; ?>][2]" class="equipe" value="<?php echo $row[2]; ?>" />
+                                <input type="text" name="quemsomos_equipe_texto" class="equipe_texto" value="<?php echo wp_get_attachment_url($row[2]); ?>" readonly="readonly" />
+                                <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                                <input type="button" class="clear_button button" value="Remove Arquivo" />
+
                             </li>
                         <?php
                             $i++;
@@ -164,10 +196,17 @@ function page_quemsomos($post) {
                     } else {
                         ?>
                         <li>
+
                             <span class="sort hndle">|||</span><br>
-                            <input type="text" name="quemsomos_historico[<?php echo $i; ?>][0]" placeholder="Ano" />
+                            <input type="text" name="quemsomos_equipe[<?php echo $i; ?>][0]" placeholder="Nome do colaborador" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br><br>
-                            <textarea name="quemsomos_historico[<?php echo $i; ?>][1]" class="translate" rows="3" style="width:100%;"></textarea>
+                            <input type="text" name="quemsomos_equipe[<?php echo $i; ?>][1]" placeholder="Cargo" />
+
+                            <br><br>
+                            <input type="hidden" name="quemsomos_equipe[<?php echo $i; ?>][2]" class="equipe" value="" />
+                            <input type="text" name="quemsomos_equipe_texto" class="equipe_texto" value="" readonly="readonly" />
+                            <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                            <input type="button" class="clear_button button" value="Remove Arquivo" />
                         </li>
                     <?php
                     }
@@ -189,8 +228,8 @@ function page_quemsomos($post) {
                     ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="hidden" name="quemsomos_downloads[<?php echo $i; ?>]" class="downloads" value="<?php echo $row; ?>"/>
-                                <input type="text" name="quemsomos_downloads_texto" class="downloads_texto" value="<?php echo wp_get_attachment_url($row); ?>" readonly="readonly"/>
+                                <input type="hidden" name="quemsomos_downloads[<?php echo $i; ?>]" class="downloads" value="<?php echo $row; ?>" />
+                                <input type="text" name="quemsomos_downloads_texto" class="downloads_texto" value="<?php echo wp_get_attachment_url($row); ?>" readonly="readonly" />
                                 <input type="button" class="upload_button button" value="Adicionar Arquivo" />
                                 <input type="button" class="clear_button button" value="Remove Arquivo" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
@@ -203,8 +242,8 @@ function page_quemsomos($post) {
                         ?>
                         <li>
                             <span class="sort hndle">|||</span>
-                            <input type="hidden" name="quemsomos_downloads[<?php echo $i; ?>]" class="downloads" value=""/>
-                            <input type="text" name="quemsomos_downloads_texto" class="downloads_texto" value="" readonly="readonly"/>
+                            <input type="hidden" name="quemsomos_downloads[<?php echo $i; ?>]" class="downloads" value="" />
+                            <input type="text" name="quemsomos_downloads_texto" class="downloads_texto" value="" readonly="readonly" />
                             <input type="button" class="upload_button button" value="Adicionar Arquivo" />
                             <input type="button" class="clear_button button" value="Remove Arquivo" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
@@ -218,12 +257,13 @@ function page_quemsomos($post) {
             </td>
         </tr>
     </table>
-    <?php
+<?php
 }
 
-function page_missaovalores($post) {
+function page_missaovalores($post)
+{
     $missaovalores = get_post_meta($post->ID, 'missaovalores', true);
-    ?>
+?>
     <script type="text/javascript">
         jQuery(document).ready(function() {
             var file_frame;
@@ -306,12 +346,13 @@ function page_missaovalores($post) {
             </td>
         </tr>
     </table>
-    <?php
+<?php
 }
 
-function page_parcerias($post) {
+function page_parcerias($post)
+{
     $parcerias = get_post_meta($post->ID, 'parcerias', true);
-    ?>
+?>
     <script>
         jQuery(function() {
             var file_frame;
@@ -392,7 +433,7 @@ function page_parcerias($post) {
                                 <input type="button" class="clear_parcerias_button button" value="Remove Imagem" />
                                 <hr>
                             </li>
-                            <?php
+                        <?php
                             $i++;
                         }
                     } else {
@@ -416,12 +457,13 @@ function page_parcerias($post) {
             </td>
         </tr>
     </table>
-    <?php
+<?php
 }
 
-function page_imprensa($post) {
+function page_imprensa($post)
+{
     $imprensa_downloads = get_post_meta($post->ID, 'imprensa_downloads', true);
-    ?>
+?>
     <script>
         jQuery(function() {
             var file_frame;
@@ -497,8 +539,8 @@ function page_imprensa($post) {
                     ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="hidden" name="imprensa_downloads[<?php echo $i; ?>]" class="imprensa_downloads" value="<?php echo $row; ?>"/>
-                                <input type="text" name="imprensa_downloads_texto" class="imprensa_downloads_texto" value="<?php echo wp_get_attachment_url($row); ?>" readonly="readonly"/>
+                                <input type="hidden" name="imprensa_downloads[<?php echo $i; ?>]" class="imprensa_downloads" value="<?php echo $row; ?>" />
+                                <input type="text" name="imprensa_downloads_texto" class="imprensa_downloads_texto" value="<?php echo wp_get_attachment_url($row); ?>" readonly="readonly" />
                                 <input type="button" class="upload_arquivo_button button" value="Adicionar Arquivo" />
                                 <input type="button" class="clear_arquivo_button button" value="Remove Arquivo" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
@@ -511,8 +553,8 @@ function page_imprensa($post) {
                         ?>
                         <li>
                             <span class="sort hndle">|||</span>
-                            <input type="hidden" name="imprensa_downloads[<?php echo $i; ?>]" class="imprensa_downloads" value=""/>
-                            <input type="text" name="imprensa_downloads_texto" class="imprensa_downloads_texto" value="" readonly="readonly"/>
+                            <input type="hidden" name="imprensa_downloads[<?php echo $i; ?>]" class="imprensa_downloads" value="" />
+                            <input type="text" name="imprensa_downloads_texto" class="imprensa_downloads_texto" value="" readonly="readonly" />
                             <input type="button" class="upload_arquivo_button button" value="Adicionar Arquivo" />
                             <input type="button" class="clear_arquivo_button button" value="Remove Arquivo" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
@@ -526,10 +568,11 @@ function page_imprensa($post) {
             </td>
         </tr>
     </table>
-    <?php
+<?php
 }
 
-function nossa_atuacao($svg = false) {
+function nossa_atuacao($svg = false)
+{
     $atuacoes = array(
         'publicacoes-tecnicas' => __('Publicações técnicas', 'iqa'),
         'treinamentos' => __('Treinamentos', 'iqa'),
@@ -559,7 +602,8 @@ function nossa_atuacao($svg = false) {
     return $atuacoes;
 }
 
-function page_atuacao($post) {
+function page_atuacao($post)
+{
     $atuacao_agilidade = get_post_meta($post->ID, 'atuacao_agilidade', true);
     $atuacao_avancados = get_post_meta($post->ID, 'atuacao_avancados', true);
     $atuacao_avancados_atuacao = get_post_meta($post->ID, 'atuacao_avancados_atuacao', true);
@@ -581,11 +625,11 @@ function page_atuacao($post) {
                 <h4>Nossa atuação</h4>
                 <?php
                 foreach (nossa_atuacao() as $key => $atuacao) {
-                    ?>
+                ?>
                     <label for="a_<?php echo $key; ?>" style="margin-right:20px;">
-                        <input type="checkbox" id="a_<?php echo $key; ?>" name="atuacao_avancados_atuacao[]"<?php echo is_array($atuacao_avancados_atuacao) && in_array($key, $atuacao_avancados_atuacao) ? ' checked="checked"' : ''; ?> value="<?php echo $key; ?>"> <?php echo $atuacao; ?>
+                        <input type="checkbox" id="a_<?php echo $key; ?>" name="atuacao_avancados_atuacao[]" <?php echo is_array($atuacao_avancados_atuacao) && in_array($key, $atuacao_avancados_atuacao) ? ' checked="checked"' : ''; ?> value="<?php echo $key; ?>"> <?php echo $atuacao; ?>
                     </label>
-                    <?php
+                <?php
                 }
                 ?>
             </td>
@@ -599,11 +643,11 @@ function page_atuacao($post) {
                 <h4>Nossa atuação</h4>
                 <?php
                 foreach (nossa_atuacao() as $key => $atuacao) {
-                    ?>
+                ?>
                     <label for="g_<?php echo $key; ?>" style="margin-right:20px;">
-                        <input type="checkbox" id="g_<?php echo $key; ?>" name="atuacao_global_atuacao[]"<?php echo is_array($atuacao_global_atuacao) && in_array($key, $atuacao_global_atuacao) ? ' checked="checked"' : ''; ?> value="<?php echo $key; ?>"> <?php echo $atuacao; ?>
+                        <input type="checkbox" id="g_<?php echo $key; ?>" name="atuacao_global_atuacao[]" <?php echo is_array($atuacao_global_atuacao) && in_array($key, $atuacao_global_atuacao) ? ' checked="checked"' : ''; ?> value="<?php echo $key; ?>"> <?php echo $atuacao; ?>
                     </label>
-                    <?php
+                <?php
                 }
                 ?>
             </td>
@@ -612,7 +656,8 @@ function page_atuacao($post) {
 <?php
 }
 
-function page_diretoria($post) {
+function page_diretoria($post)
+{
     $diretoria_executiva_texto = get_post_meta($post->ID, 'diretoria_executiva_texto', true);
     $diretoria_executiva_entidades = get_post_meta($post->ID, 'diretoria_executiva_entidades', true);
     $diretoria_executiva_diretores = get_post_meta($post->ID, 'diretoria_executiva_diretores', true);
@@ -621,7 +666,7 @@ function page_diretoria($post) {
     $conselho_diretores = get_post_meta($post->ID, 'conselho_diretores', true);
     $conselho_fiscal = get_post_meta($post->ID, 'conselho_fiscal', true);
     $conselho_fiscal_suplentes = get_post_meta($post->ID, 'conselho_fiscal_suplentes', true);
-    ?>
+?>
     <script>
         jQuery(function() {
             var file_frame;
@@ -701,13 +746,13 @@ function page_diretoria($post) {
                     $i = 0;
                     if ($diretoria_executiva_entidades) {
                         foreach ($diretoria_executiva_entidades as $row) {
-                            ?>
+                    ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="text" name="diretoria_executiva_entidades[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>"/>
+                                <input type="text" name="diretoria_executiva_entidades[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
                                 <div style="margin-top: 5px">
-                                    <input type="text" name="diretoria_executiva_entidades[<?php echo $i; ?>][1]" class="imagem" value="<?php echo $row[1]; ?>" readonly="readonly"/>
+                                    <input type="text" name="diretoria_executiva_entidades[<?php echo $i; ?>][1]" class="imagem" value="<?php echo $row[1]; ?>" readonly="readonly" />
                                     <input type="button" class="upload_button button" value="Adicionar Imagem" />
                                     <input type="button" class="clear_button button" value="Remove Imagem" />
                                 </div>
@@ -719,11 +764,11 @@ function page_diretoria($post) {
                     } else {
                         ?>
                         <li>
-                        <span class="sort hndle">|||</span>
-                            <input type="text" name="diretoria_executiva_entidades[<?php echo $i; ?>][0]" value="0"/>
+                            <span class="sort hndle">|||</span>
+                            <input type="text" name="diretoria_executiva_entidades[<?php echo $i; ?>][0]" value="0" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
                             <div style="margin-top: 5px">
-                                <input type="text" name="diretoria_executiva_entidades[<?php echo $i; ?>][1]" class="imagem" value="" readonly="readonly"/>
+                                <input type="text" name="diretoria_executiva_entidades[<?php echo $i; ?>][1]" class="imagem" value="" readonly="readonly" />
                                 <input type="button" class="upload_button button" value="Adicionar Imagem" />
                                 <input type="button" class="clear_button button" value="Remove Imagem" />
                             </div>
@@ -746,20 +791,20 @@ function page_diretoria($post) {
                     $i = 0;
                     if ($diretoria_executiva_diretores) {
                         foreach ($diretoria_executiva_diretores as $row) {
-                            ?>
+                    ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome"/>
+                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
                                 <div style="margin-top: 5px">
-                                    <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][1]" value="<?php echo $row[1]; ?>" placeholder="Cargo"/><br>
+                                    <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][1]" value="<?php echo $row[1]; ?>" placeholder="Cargo" /><br>
                                 </div>
                                 <div style="margin-top: 5px">
-                                    <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][2]" value="<?php echo $row[2]; ?>" placeholder="Entidade"/> |
-                                    <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][3]" value="<?php echo $row[3]; ?>" placeholder="Empresa"/><br>
+                                    <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][2]" value="<?php echo $row[2]; ?>" placeholder="Entidade" /> |
+                                    <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][3]" value="<?php echo $row[3]; ?>" placeholder="Empresa" /><br>
                                 </div>
                                 <div style="margin-top: 5px">
-                                    <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][4]" class="imagem" value="<?php echo $row[4]; ?>" readonly="readonly"/>
+                                    <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][4]" class="imagem" value="<?php echo $row[4]; ?>" readonly="readonly" />
                                     <input type="button" class="upload_button button" value="Adicionar Foto" />
                                     <input type="button" class="clear_button button" value="Remove Foto" />
                                 </div>
@@ -772,17 +817,17 @@ function page_diretoria($post) {
                         ?>
                         <li>
                             <span class="sort hndle">|||</span>
-                            <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][0]" value="" placeholder="Nome"/>
+                            <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][0]" value="" placeholder="Nome" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
                             <div style="margin-top: 5px">
-                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][1]" value="" placeholder="Cargo"/><br>
+                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][1]" value="" placeholder="Cargo" /><br>
                             </div>
                             <div style="margin-top: 5px">
-                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][2]" value="" placeholder="Entidade"/> |
-                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][3]" value="" placeholder="Empresa"/><br>
+                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][2]" value="" placeholder="Entidade" /> |
+                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][3]" value="" placeholder="Empresa" /><br>
                             </div>
                             <div style="margin-top: 5px">
-                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][4]" class="imagem" value="" readonly="readonly"/>
+                                <input type="text" name="diretoria_executiva_diretores[<?php echo $i; ?>][4]" class="imagem" value="" readonly="readonly" />
                                 <input type="button" class="upload_button button" value="Adicionar Foto" />
                                 <input type="button" class="clear_button button" value="Remove Foto" />
                             </div>
@@ -815,13 +860,13 @@ function page_diretoria($post) {
                     $i = 0;
                     if ($conselho_entidades) {
                         foreach ($conselho_entidades as $row) {
-                            ?>
+                    ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="text" name="conselho_entidades[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>"/>
+                                <input type="text" name="conselho_entidades[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
                                 <div style="margin-top: 5px">
-                                    <input type="text" name="conselho_entidades[<?php echo $i; ?>][1]" class="imagem" value="<?php echo $row[1]; ?>" readonly="readonly"/>
+                                    <input type="text" name="conselho_entidades[<?php echo $i; ?>][1]" class="imagem" value="<?php echo $row[1]; ?>" readonly="readonly" />
                                     <input type="button" class="upload_button button" value="Adicionar Imagem" />
                                     <input type="button" class="clear_button button" value="Remove Imagem" />
                                 </div>
@@ -833,11 +878,11 @@ function page_diretoria($post) {
                     } else {
                         ?>
                         <li>
-                        <span class="sort hndle">|||</span>
-                            <input type="text" name="conselho_entidades[<?php echo $i; ?>][0]" value="0"/>
+                            <span class="sort hndle">|||</span>
+                            <input type="text" name="conselho_entidades[<?php echo $i; ?>][0]" value="0" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
                             <div style="margin-top: 5px">
-                                <input type="text" name="conselho_entidades[<?php echo $i; ?>][1]" class="imagem" value="" readonly="readonly"/>
+                                <input type="text" name="conselho_entidades[<?php echo $i; ?>][1]" class="imagem" value="" readonly="readonly" />
                                 <input type="button" class="upload_button button" value="Adicionar Imagem" />
                                 <input type="button" class="clear_button button" value="Remove Imagem" />
                             </div>
@@ -860,13 +905,13 @@ function page_diretoria($post) {
                     $i = 0;
                     if ($conselho_diretores) {
                         foreach ($conselho_diretores as $row) {
-                            ?>
+                    ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="text" name="conselho_diretores[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome"/>
+                                <input type="text" name="conselho_diretores[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
                                 <div style="margin-top: 5px">
-                                    <input type="text" name="conselho_diretores[<?php echo $i; ?>][1]" value="<?php echo $row[1]; ?>" placeholder="Entidade"/><br>
+                                    <input type="text" name="conselho_diretores[<?php echo $i; ?>][1]" value="<?php echo $row[1]; ?>" placeholder="Entidade" /><br>
                                 </div>
                                 <hr>
                             </li>
@@ -877,10 +922,10 @@ function page_diretoria($post) {
                         ?>
                         <li>
                             <span class="sort hndle">|||</span>
-                            <input type="text" name="conselho_diretores[<?php echo $i; ?>][0]" value="" placeholder="Nome"/>
+                            <input type="text" name="conselho_diretores[<?php echo $i; ?>][0]" value="" placeholder="Nome" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
                             <div style="margin-top: 5px">
-                                <input type="text" name="conselho_diretores[<?php echo $i; ?>][1]" value="" placeholder="Entidade"/><br>
+                                <input type="text" name="conselho_diretores[<?php echo $i; ?>][1]" value="" placeholder="Entidade" /><br>
                             </div>
                             <hr>
                         </li>
@@ -905,13 +950,13 @@ function page_diretoria($post) {
                     $i = 0;
                     if ($conselho_fiscal) {
                         foreach ($conselho_fiscal as $row) {
-                            ?>
+                    ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="text" name="conselho_fiscal[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome"/>
+                                <input type="text" name="conselho_fiscal[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
                                 <div style="margin-top: 5px">
-                                    <input type="text" name="conselho_fiscal[<?php echo $i; ?>][1]" value="<?php echo $row[1]; ?>" placeholder="Entidade"/><br>
+                                    <input type="text" name="conselho_fiscal[<?php echo $i; ?>][1]" value="<?php echo $row[1]; ?>" placeholder="Entidade" /><br>
                                 </div>
                                 <hr>
                             </li>
@@ -922,10 +967,10 @@ function page_diretoria($post) {
                         ?>
                         <li>
                             <span class="sort hndle">|||</span>
-                            <input type="text" name="conselho_fiscal[<?php echo $i; ?>][0]" value="" placeholder="Nome"/>
+                            <input type="text" name="conselho_fiscal[<?php echo $i; ?>][0]" value="" placeholder="Nome" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
                             <div style="margin-top: 5px">
-                                <input type="text" name="conselho_fiscal[<?php echo $i; ?>][1]" value="" placeholder="Entidade"/><br>
+                                <input type="text" name="conselho_fiscal[<?php echo $i; ?>][1]" value="" placeholder="Entidade" /><br>
                             </div>
                             <hr>
                         </li>
@@ -950,13 +995,13 @@ function page_diretoria($post) {
                     $i = 0;
                     if ($conselho_fiscal_suplentes) {
                         foreach ($conselho_fiscal_suplentes as $row) {
-                            ?>
+                    ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="text" name="conselho_fiscal_suplentes[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome"/>
+                                <input type="text" name="conselho_fiscal_suplentes[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
                                 <div style="margin-top: 5px">
-                                    <input type="text" name="conselho_fiscal_suplentes[<?php echo $i; ?>][1]" value="<?php echo $row[1]; ?>" placeholder="Entidade"/><br>
+                                    <input type="text" name="conselho_fiscal_suplentes[<?php echo $i; ?>][1]" value="<?php echo $row[1]; ?>" placeholder="Entidade" /><br>
                                 </div>
                                 <hr>
                             </li>
@@ -967,10 +1012,10 @@ function page_diretoria($post) {
                         ?>
                         <li>
                             <span class="sort hndle">|||</span>
-                            <input type="text" name="conselho_fiscal_suplentes[<?php echo $i; ?>][0]" value="" placeholder="Nome"/>
+                            <input type="text" name="conselho_fiscal_suplentes[<?php echo $i; ?>][0]" value="" placeholder="Nome" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
                             <div style="margin-top: 5px">
-                                <input type="text" name="conselho_fiscal_suplentes[<?php echo $i; ?>][1]" value="" placeholder="Entidade"/><br>
+                                <input type="text" name="conselho_fiscal_suplentes[<?php echo $i; ?>][1]" value="" placeholder="Entidade" /><br>
                             </div>
                             <hr>
                         </li>
@@ -982,12 +1027,13 @@ function page_diretoria($post) {
             </td>
         </tr>
     </table>
-    <?php
+<?php
 }
 
-function page_compliance($post) {
+function page_compliance($post)
+{
     $compliance_downloads = get_post_meta($post->ID, 'compliance_downloads', true);
-    ?>
+?>
     <script>
         jQuery(function() {
             var file_frame;
@@ -1063,8 +1109,8 @@ function page_compliance($post) {
                     ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="hidden" name="compliance_downloads[<?php echo $i; ?>]" class="compliance_downloads" value="<?php echo $row; ?>"/>
-                                <input type="text" name="downloads_compliance_texto" class="downloads_compliance_texto" value="<?php echo wp_get_attachment_url($row); ?>" readonly="readonly"/>
+                                <input type="hidden" name="compliance_downloads[<?php echo $i; ?>]" class="compliance_downloads" value="<?php echo $row; ?>" />
+                                <input type="text" name="downloads_compliance_texto" class="downloads_compliance_texto" value="<?php echo wp_get_attachment_url($row); ?>" readonly="readonly" />
                                 <input type="button" class="upload_arquivo_button button" value="Adicionar Arquivo" />
                                 <input type="button" class="clear_arquivo_button button" value="Remove Arquivo" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
@@ -1077,8 +1123,8 @@ function page_compliance($post) {
                         ?>
                         <li>
                             <span class="sort hndle">|||</span>
-                            <input type="hidden" name="compliance_downloads[<?php echo $i; ?>]" class="compliance_downloads" value=""/>
-                            <input type="text" name="downloads_compliance_texto" class="downloads_compliance_texto" value="" readonly="readonly"/>
+                            <input type="hidden" name="compliance_downloads[<?php echo $i; ?>]" class="compliance_downloads" value="" />
+                            <input type="text" name="downloads_compliance_texto" class="downloads_compliance_texto" value="" readonly="readonly" />
                             <input type="button" class="upload_arquivo_button button" value="Adicionar Arquivo" />
                             <input type="button" class="clear_arquivo_button button" value="Remove Arquivo" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
@@ -1092,17 +1138,18 @@ function page_compliance($post) {
             </td>
         </tr>
     </table>
-    <?php
+<?php
 }
 
-function page_comissao_tecnica($post) {
+function page_comissao_tecnica($post)
+{
     $comissao_titulo = get_post_meta($post->ID, 'comissao_titulo', true);
     $comissao_texto = get_post_meta($post->ID, 'comissao_texto', true);
     $comissao_imagem_azul = get_post_meta($post->ID, 'comissao_imagem_azul', true);
     $comissao_titulo_azul = get_post_meta($post->ID, 'comissao_titulo_azul', true);
     $comissao_texto_azul = get_post_meta($post->ID, 'comissao_texto_azul', true);
     $comissao_opcoes = get_post_meta($post->ID, 'comissao_opcoes', true);
-    ?>
+?>
     <script>
         jQuery(function() {
             var file_frame;
@@ -1186,8 +1233,8 @@ function page_comissao_tecnica($post) {
         <tr>
             <th>Imagem</th>
             <td>
-                <input type="hidden" name="comissao_imagem_azul" class="comissao_imagem_azul" value="<?php echo $comissao_imagem_azul; ?>"/>
-                <input type="text" name="comissao_imagem_azul_url" class="comissao_imagem_azul_url" value="<?php echo wp_get_attachment_url($comissao_imagem_azul); ?>" readonly="readonly"/>
+                <input type="hidden" name="comissao_imagem_azul" class="comissao_imagem_azul" value="<?php echo $comissao_imagem_azul; ?>" />
+                <input type="text" name="comissao_imagem_azul_url" class="comissao_imagem_azul_url" value="<?php echo wp_get_attachment_url($comissao_imagem_azul); ?>" readonly="readonly" />
                 <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                 <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
             </td>
@@ -1239,13 +1286,14 @@ function page_comissao_tecnica($post) {
                 </ul>
                 <a class="repeatable-add button" href="#">Adicionar</a>
                 <hr>
-            </td>           
+            </td>
         </tr>
     </table>
-    <?php
+<?php
 }
 
-function page_treinamentos($post) {
+function page_treinamentos($post)
+{
     $treinamentos_topo_imagem = get_post_meta($post->ID, 'treinamentos_topo_imagem', true);
     $treinamentos_topo_titulo = get_post_meta($post->ID, 'treinamentos_topo_titulo', true);
     $treinamentos_topo_texto = get_post_meta($post->ID, 'treinamentos_topo_texto', true);
@@ -1256,7 +1304,7 @@ function page_treinamentos($post) {
     $treinamentos_promocao_de = get_post_meta($post->ID, 'treinamentos_promocao_de', true);
     $treinamentos_promocao_por = get_post_meta($post->ID, 'treinamentos_promocao_por', true);
 
-    ?>
+?>
     <script>
         jQuery(function() {
             var file_frame;
@@ -1298,8 +1346,8 @@ function page_treinamentos($post) {
         <tr>
             <th>Imagem Topo</th>
             <td>
-                <input type="hidden" name="treinamentos_topo_imagem" class="treinamentos_topo_imagem" value="<?php echo $treinamentos_topo_imagem; ?>"/>
-                <input type="text" name="treinamentos_topo_imagem_url" class="treinamentos_topo_imagem_url" value="<?php echo wp_get_attachment_url($treinamentos_topo_imagem); ?>" readonly="readonly"/>
+                <input type="hidden" name="treinamentos_topo_imagem" class="treinamentos_topo_imagem" value="<?php echo $treinamentos_topo_imagem; ?>" />
+                <input type="text" name="treinamentos_topo_imagem_url" class="treinamentos_topo_imagem_url" value="<?php echo wp_get_attachment_url($treinamentos_topo_imagem); ?>" readonly="readonly" />
                 <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                 <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
             </td>
@@ -1346,11 +1394,11 @@ function page_treinamentos($post) {
                         'orderby' => 'title',
                         'order' => 'asc'
                     ));
-                    
+
                     foreach ($treinamentos as $t) {
-                        ?>
-                        <option value="<?php echo $t->ID; ?>"<?php echo $treinamentos_promocao == $t->ID ? ' selected="selected"' : ''; ?>><?php echo apply_filters('the_title', $t->post_title); ?></option>
-                        <?php
+                    ?>
+                        <option value="<?php echo $t->ID; ?>" <?php echo $treinamentos_promocao == $t->ID ? ' selected="selected"' : ''; ?>><?php echo apply_filters('the_title', $t->post_title); ?></option>
+                    <?php
                     }
                     ?>
                 </select>
@@ -1365,10 +1413,11 @@ function page_treinamentos($post) {
             <td><input type="text" name="treinamentos_promocao_por" class="translate" value="<?php echo $treinamentos_promocao_por; ?>"></td>
         </tr>
     </table>
-    <?php
+<?php
 }
 
-function page_cb005($post) {
+function page_cb005($post)
+{
     $cb005_superintendente = get_post_meta($post->ID, 'cb005_superintendente', true);
     $cb005_secretaria_tecnica = get_post_meta($post->ID, 'cb005_secretaria_tecnica', true);
     $cb005_chefe_secretaria = get_post_meta($post->ID, 'cb005_chefe_secretaria', true);
@@ -1441,7 +1490,7 @@ function page_cb005($post) {
         <tr>
             <th>Telefone/Ramal</th>
             <td>
-                <input type="text" name="cb005_fone" class="translate" value="<?php echo $cb005_fone; ?>"> / 
+                <input type="text" name="cb005_fone" class="translate" value="<?php echo $cb005_fone; ?>"> /
                 <input type="text" name="cb005_fone_ramal" class="translate" value="<?php echo $cb005_fone_ramal; ?>">
             </td>
         </tr>
@@ -1468,7 +1517,7 @@ function page_cb005($post) {
                                 <a class="repeatable-remove button" href="#">Excluir</a>
                                 <hr>
                             </li>
-                            <?php
+                        <?php
                             $i++;
                         }
                     } else {
@@ -1486,16 +1535,17 @@ function page_cb005($post) {
                 </ul>
                 <a class="repeatable-add button" href="#">Adicionar</a>
                 <hr>
-            </td>           
+            </td>
         </tr>
     </table>
 <?php
 }
 
-function page_vencedores_premio($post) {
+function page_vencedores_premio($post)
+{
     $premio_ranking = get_post_meta($post->ID, 'premio_ranking', true);
-    ?>
-        <script>
+?>
+    <script>
         jQuery(function() {
             var file_frame;
             var text;
@@ -1574,8 +1624,8 @@ function page_vencedores_premio($post) {
                                 <input type="text" name="premio_ranking[<?php echo $i; ?>][1]" class="translate" value="<?php echo $row[1]; ?>" placeholder="Objetivo">
                                 <input type="text" name="premio_ranking[<?php echo $i; ?>][2]" class="translate" value="<?php echo $row[2]; ?>" placeholder="Categoria">
                                 <div>
-                                    <input type="hidden" name="premio_ranking[<?php echo $i; ?>][3]" class="premio_imagem" value="<?php echo $row[3]; ?>"/>
-                                    <input type="text" name="premio_imagem_url" class="premio_imagem_url" value="<?php echo wp_get_attachment_url($row[3]); ?>" readonly="readonly"/>
+                                    <input type="hidden" name="premio_ranking[<?php echo $i; ?>][3]" class="premio_imagem" value="<?php echo $row[3]; ?>" />
+                                    <input type="text" name="premio_imagem_url" class="premio_imagem_url" value="<?php echo wp_get_attachment_url($row[3]); ?>" readonly="readonly" />
                                     <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                                     <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
                                 </div>
@@ -1586,7 +1636,7 @@ function page_vencedores_premio($post) {
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
                                 <hr>
                             </li>
-                            <?php
+                        <?php
                             $i++;
                         }
                     } else {
@@ -1597,8 +1647,8 @@ function page_vencedores_premio($post) {
                             <input type="text" name="premio_ranking[<?php echo $i; ?>][1]" class="translate" value="" placeholder="Objetivo">
                             <input type="text" name="premio_ranking[<?php echo $i; ?>][2]" class="translate" value="" placeholder="Categoria">
                             <div>
-                                <input type="hidden" name="premio_ranking[<?php echo $i; ?>][3]" class="premio_imagem" value=""/>
-                                <input type="text" name="premio_imagem_url" class="premio_imagem_url" value="" readonly="readonly"/>
+                                <input type="hidden" name="premio_ranking[<?php echo $i; ?>][3]" class="premio_imagem" value="" />
+                                <input type="text" name="premio_imagem_url" class="premio_imagem_url" value="" readonly="readonly" />
                                 <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                                 <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
                             </div>
@@ -1615,18 +1665,19 @@ function page_vencedores_premio($post) {
                 </ul>
                 <a class="repeatable-add button" href="#">Adicionar</a>
                 <hr>
-            </td>           
+            </td>
         </tr>
     </table>
-    <?php
+<?php
 }
-function page_certificacao_profissionais($post) {
+function page_certificacao_profissionais($post)
+{
     $certificacao_videos = get_post_meta($post->ID, 'certificacao_videos', true);
     $certificacao_apoiadores = get_post_meta($post->ID, 'certificacao_apoiadores', true);
     $certificacao_azul_titulo = get_post_meta($post->ID, 'certificacao_azul_titulo', true);
     $certificacao_azul_texto = get_post_meta($post->ID, 'certificacao_azul_texto', true);
     $certificacao_azul_link = get_post_meta($post->ID, 'certificacao_azul_link', true);
-    ?>
+?>
     <script>
         jQuery(function() {
             var file_frame;
@@ -1703,8 +1754,8 @@ function page_certificacao_profissionais($post) {
                             <li>
                                 <span class="sort hndle">|||</span><br>
                                 <div>
-                                    <input type="hidden" name="certificacao_videos[<?php echo $i; ?>][0]" class="certificacao_imagem" value="<?php echo $row[0]; ?>"/>
-                                    <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="<?php echo wp_get_attachment_url($row[0]); ?>" readonly="readonly"/>
+                                    <input type="hidden" name="certificacao_videos[<?php echo $i; ?>][0]" class="certificacao_imagem" value="<?php echo $row[0]; ?>" />
+                                    <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="<?php echo wp_get_attachment_url($row[0]); ?>" readonly="readonly" />
                                     <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                                     <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
                                 </div>
@@ -1713,7 +1764,7 @@ function page_certificacao_profissionais($post) {
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
                                 <hr>
                             </li>
-                            <?php
+                        <?php
                             $i++;
                         }
                     } else {
@@ -1721,8 +1772,8 @@ function page_certificacao_profissionais($post) {
                         <li>
                             <span class="sort hndle">|||</span><br>
                             <div>
-                                <input type="hidden" name="certificacao_videos[<?php echo $i; ?>][0]" class="certificacao_imagem" value=""/>
-                                <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="" readonly="readonly"/>
+                                <input type="hidden" name="certificacao_videos[<?php echo $i; ?>][0]" class="certificacao_imagem" value="" />
+                                <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="" readonly="readonly" />
                                 <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                                 <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
                             </div>
@@ -1737,7 +1788,7 @@ function page_certificacao_profissionais($post) {
                 </ul>
                 <a class="repeatable-add button" href="#">Adicionar</a>
                 <hr>
-            </td>       
+            </td>
         </tr>
         <tr>
             <td colspan="2">
@@ -1752,16 +1803,16 @@ function page_certificacao_profissionais($post) {
                             <li>
                                 <span class="sort hndle">|||</span><br>
                                 <div>
-                                    Logo: <input type="hidden" name="certificacao_apoiadores[<?php echo $i; ?>][0]" class="certificacao_imagem" value="<?php echo $row[0]; ?>"/>
-                                    <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="<?php echo wp_get_attachment_url($row[0]); ?>" readonly="readonly"/>
+                                    Logo: <input type="hidden" name="certificacao_apoiadores[<?php echo $i; ?>][0]" class="certificacao_imagem" value="<?php echo $row[0]; ?>" />
+                                    <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="<?php echo wp_get_attachment_url($row[0]); ?>" readonly="readonly" />
                                     <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                                     <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
                                 </div>
                                 <input type="text" name="certificacao_apoiadores[<?php echo $i; ?>][1]" class="translate" value="<?php echo $row[1]; ?>" placeholder="Empresa">
                                 <input type="text" name="certificacao_apoiadores[<?php echo $i; ?>][2]" class="translate" value="<?php echo $row[2]; ?>" placeholder="Cidade - Estado">
                                 <div>
-                                    Foto: <input type="hidden" name="certificacao_apoiadores[<?php echo $i; ?>][3]" class="certificacao_imagem" value="<?php echo $row[3]; ?>"/>
-                                    <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="<?php echo wp_get_attachment_url($row[3]); ?>" readonly="readonly"/>
+                                    Foto: <input type="hidden" name="certificacao_apoiadores[<?php echo $i; ?>][3]" class="certificacao_imagem" value="<?php echo $row[3]; ?>" />
+                                    <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="<?php echo wp_get_attachment_url($row[3]); ?>" readonly="readonly" />
                                     <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                                     <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
                                 </div>
@@ -1770,7 +1821,7 @@ function page_certificacao_profissionais($post) {
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
                                 <hr>
                             </li>
-                            <?php
+                        <?php
                             $i++;
                         }
                     } else {
@@ -1778,16 +1829,16 @@ function page_certificacao_profissionais($post) {
                         <li>
                             <span class="sort hndle">|||</span><br>
                             <div>
-                                Logo: <input type="hidden" name="certificacao_apoiadores[<?php echo $i; ?>][0]" class="certificacao_imagem" value=""/>
-                                <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="" readonly="readonly"/>
+                                Logo: <input type="hidden" name="certificacao_apoiadores[<?php echo $i; ?>][0]" class="certificacao_imagem" value="" />
+                                <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="" readonly="readonly" />
                                 <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                                 <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
                             </div>
                             <input type="text" name="certificacao_apoiadores[<?php echo $i; ?>][1]" class="translate" value="" placeholder="Empresa">
                             <input type="text" name="certificacao_apoiadores[<?php echo $i; ?>][2]" class="translate" value="" placeholder="Cidade - Estado">
                             <div>
-                                Foto: <input type="hidden" name="certificacao_apoiadores[<?php echo $i; ?>][3]" class="certificacao_imagem" value=""/>
-                                <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="" readonly="readonly"/>
+                                Foto: <input type="hidden" name="certificacao_apoiadores[<?php echo $i; ?>][3]" class="certificacao_imagem" value="" />
+                                <input type="text" name="certificacao_imagem_url" class="certificacao_imagem_url" value="" readonly="readonly" />
                                 <input type="button" class="upload_arquivo_button button" value="Adicionar imagem" />
                                 <input type="button" class="clear_arquivo_button button" value="Remove imagem" />
                             </div>
@@ -1802,39 +1853,40 @@ function page_certificacao_profissionais($post) {
                 </ul>
                 <a class="repeatable-add button" href="#">Adicionar</a>
                 <hr>
-            </td>       
+            </td>
         </tr>
         <tr>
             <td colspan="2">
                 <h3>Bloco azul</h3>
-            </td>       
+            </td>
         </tr>
-            <th>Título</th>
-            <td>
-                <input type="text" name="certificacao_azul_titulo" class="translate" value="<?php echo $certificacao_azul_titulo; ?>">
-            </td>       
+        <th>Título</th>
+        <td>
+            <input type="text" name="certificacao_azul_titulo" class="translate" value="<?php echo $certificacao_azul_titulo; ?>">
+        </td>
         </tr>
         <tr>
             <th>Texto</th>
             <td>
                 <textarea name="certificacao_azul_texto" style="width:100%" rows="5" class="translate"><?php echo $certificacao_azul_texto; ?></textarea>
-            </td>       
+            </td>
         </tr>
         <tr>
             <th>Link</th>
             <td>
                 <input type="text" name="certificacao_azul_link" class="translate" value="<?php echo $certificacao_azul_link; ?>">
-            </td>       
+            </td>
         </tr>
     </table>
-    <?php
+<?php
 }
 
-function metabox_pagina() {
+function metabox_pagina()
+{
     global $post;
 
     add_meta_box('detalhes_pagina', 'Página Topo', 'detalhes_pagina', array('page', 'post', 'imprensa', 'evento', 'podcast', 'treinamento'), 'normal', 'high');
-    
+
     if ($post->post_name == 'quem-somos') {
         add_meta_box('page_quemsomos', 'Página Quem Somos', 'page_quemsomos', array('page'), 'normal', 'high');
     }
@@ -1870,15 +1922,15 @@ function metabox_pagina() {
     if ($post->post_name == 'treinamentos') {
         add_meta_box('page_treinamentos', 'Página Treinamentos', 'page_treinamentos', array('page'), 'normal', 'high');
     }
-    
+
     if ($post->post_name == 'cb005') {
         add_meta_box('page_cb005', 'Página CB005', 'page_cb005', array('page'), 'normal', 'high');
     }
-    
+
     if (get_post_meta($post->ID, '_wp_page_template', true) == 'page-vencedores-premio.php') {
         add_meta_box('page_vencedores_premio', 'Página vencedores prêmio', 'page_vencedores_premio', array('page'), 'normal', 'high');
     }
-    
+
     if (get_post_meta($post->ID, '_wp_page_template', true) == 'page-certificacao-profissionais.php') {
         add_meta_box('page_certificacao_profissionais', 'Página certificação profissionais', 'page_certificacao_profissionais', array('page'), 'normal', 'high');
     }
@@ -1886,33 +1938,38 @@ function metabox_pagina() {
 
 add_action('add_meta_boxes', 'metabox_pagina');
 
-function save_pagina() {
+function save_pagina()
+{
     global $typenow;
     global $post;
-    
+
     if ($typenow == 'page' || $typenow == 'post' || $typenow == 'imprensa' || $typenow == 'evento' || $typenow == 'podcast' || $typenow == 'treinamento') {
         update_post_meta($post->ID, 'page_imagem', stripslashes($_POST['page_imagem']));
     }
-    
+
     if ($typenow == 'page') {
         if ($post->post_name == 'quem-somos') {
-            update_post_meta($post->ID, 'quemsomos_historico_texto', stripslashes($_POST['quemsomos_historico_texto']));
-            update_post_meta($post->ID, 'quemsomos_historico', $_POST['quemsomos_historico']);
+            update_post_meta($post->ID, 'quemsomos_sobre_mrcla', stripslashes($_POST['quemsomos_sobre_mrcla']));
+            update_post_meta($post->ID, 'quemsomos_missao', stripslashes($_POST['quemsomos_missao']));
+            update_post_meta($post->ID, 'quemsomos_visao', stripslashes($_POST['quemsomos_visao']));
+            update_post_meta($post->ID, 'quemsomos_valores', stripslashes($_POST['quemsomos_valores']));
+            update_post_meta($post->ID, 'quemsomos_equipe', $_POST['quemsomos_equipe']);
+            update_post_meta($post->ID, 'quemsomos_foto', $_POST['quemsomos_foto']);
             update_post_meta($post->ID, 'quemsomos_downloads', $_POST['quemsomos_downloads']);
         }
-        
+
         if ($post->post_name == 'missao-e-valores') {
             update_post_meta($post->ID, 'missaovalores', $_POST['missaoval']);
         }
-        
+
         if ($post->post_name == 'parcerias') {
             update_post_meta($post->ID, 'parcerias', $_POST['parcerias']);
         }
-        
+
         if ($post->post_name == 'imprensa') {
             update_post_meta($post->ID, 'imprensa_downloads', $_POST['imprensa_downloads']);
         }
-        
+
         if ($post->post_name == 'atuacao') {
             update_post_meta($post->ID, 'atuacao_agilidade', stripslashes($_POST['atuacao_agilidade']));
             update_post_meta($post->ID, 'atuacao_avancados', stripslashes($_POST['atuacao_avancados']));
@@ -1920,7 +1977,7 @@ function save_pagina() {
             update_post_meta($post->ID, 'atuacao_global', stripslashes($_POST['atuacao_global']));
             update_post_meta($post->ID, 'atuacao_global_atuacao', $_POST['atuacao_global_atuacao']);
         }
-        
+
         if ($post->post_name == 'diretoria-e-conselho') {
             update_post_meta($post->ID, 'diretoria_executiva_texto', stripslashes($_POST['diretoria_executiva_texto']));
             update_post_meta($post->ID, 'diretoria_executiva_entidades', $_POST['diretoria_executiva_entidades']);
@@ -1931,11 +1988,11 @@ function save_pagina() {
             update_post_meta($post->ID, 'conselho_fiscal', $_POST['conselho_fiscal']);
             update_post_meta($post->ID, 'conselho_fiscal_suplentes', $_POST['conselho_fiscal_suplentes']);
         }
-        
+
         if ($post->post_name == 'compliance') {
             update_post_meta($post->ID, 'compliance_downloads', $_POST['compliance_downloads']);
         }
-        
+
         if ($post->post_name == 'comissao-tecnica-da-qualidade') {
             update_post_meta($post->ID, 'comissao_titulo', $_POST['comissao_titulo']);
             update_post_meta($post->ID, 'comissao_texto', $_POST['comissao_texto']);
@@ -1944,7 +2001,7 @@ function save_pagina() {
             update_post_meta($post->ID, 'comissao_texto_azul', $_POST['comissao_texto_azul']);
             update_post_meta($post->ID, 'comissao_opcoes', $_POST['comissao_opcoes']);
         }
-        
+
         if ($post->post_name == 'treinamentos') {
             update_post_meta($post->ID, 'treinamentos_topo_imagem', $_POST['treinamentos_topo_imagem']);
             update_post_meta($post->ID, 'treinamentos_topo_titulo', $_POST['treinamentos_topo_titulo']);
@@ -1956,7 +2013,7 @@ function save_pagina() {
             update_post_meta($post->ID, 'treinamentos_promocao_de', $_POST['treinamentos_promocao_de']);
             update_post_meta($post->ID, 'treinamentos_promocao_por', $_POST['treinamentos_promocao_por']);
         }
-        
+
         if ($post->post_name == 'cb005') {
             update_post_meta($post->ID, 'cb005_superintendente', $_POST['cb005_superintendente']);
             update_post_meta($post->ID, 'cb005_secretaria_tecnica', $_POST['cb005_secretaria_tecnica']);
@@ -1968,11 +2025,11 @@ function save_pagina() {
             update_post_meta($post->ID, 'cb005_email', $_POST['cb005_email']);
             update_post_meta($post->ID, 'cbooc_links', $_POST['cbooc_links']);
         }
-        
+
         if (get_post_meta($post->ID, '_wp_page_template', true) == 'page-vencedores-premio.php') {
             update_post_meta($post->ID, 'premio_ranking', $_POST['premio_ranking']);
         }
-        
+
         if (get_post_meta($post->ID, '_wp_page_template', true) == 'page-certificacao-profissionais.php') {
             update_post_meta($post->ID, 'certificacao_videos', $_POST['certificacao_videos']);
             update_post_meta($post->ID, 'certificacao_apoiadores', $_POST['certificacao_apoiadores']);

@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php get_header();
+$equipe = get_post_meta(get_the_ID(), 'quemsomos_equipe', true);
+$downloads = get_post_meta($post->ID, 'quemsomos_downloads', true);
+?>
+
 
 <div class="position-relative banner-pagina mt-5 container-fluid p-0">
     <img src="<?php bloginfo('template_url'); ?>/assets/images/quem-somos-banner.png" alt="banner trem">
@@ -9,61 +13,77 @@
     <div class="position-relative">
 
         <img src="<?php bloginfo('template_url'); ?>/assets/images/foto-quem-somos.png" alt="">
-        <div class="sobre-mrcla azul-escuro d-flex flex-column justify-content-center p-5">
+        <div class="sobre-mrcla azul-escuro d-none d-sm-flex flex-column justify-content-center p-5">
             <h2 class="fw300 pb-4">SOBRE A <fw900> MRCLA E NEGÓCIOS </fw900>
             </h2>
 
             <p>
-                A MRCLA é pioneira no setor de locação de vagões, locomotivas e terminais de cargas na América Latina, tendo participado da maioria das implantações no setor ferroviário brasileiro. <br><br>
-
-                Há mais de 17 anos, promovemos soluções financeiras personalizadas para logística de material rodante, garantindo maior capacidade de carga aos clientes.
+                <?= $sobre_mrcla = get_post_meta($post->ID, 'quemsomos_sobre_mrcla', true); ?>
             </p>
         </div>
+    </div>
+    <div class="d-flex d-sm-none flex-column text-white py-4">
+        <h2 class="fw300 py-4">SOBRE A <fw900> MRCLA E NEGÓCIOS </fw900>
+        </h2>
+
+        <p>
+            A MRCLA é pioneira no setor de locação de vagões, locomotivas e terminais de cargas na América Latina, tendo participado da maioria das implantações no setor ferroviário brasileiro. <br><br>
+
+            Há mais de 17 anos, promovemos soluções financeiras personalizadas para logística de material rodante, garantindo maior capacidade de carga aos clientes.
+        </p>
     </div>
 </section>
 <section class="section-mmv azul-escuro container py-10">
     <div class="d-flex flex-column align-items-center justify-content-center">
-        <h2 class="fw300 pb-5">MISSÃO, VISÃO E <fw900>VALORES</fw900>
+        <h2 class="fw300 pb-5 text-center">MISSÃO, VISÃO E <fw900>VALORES</fw900>
         </h2>
         <div class="row d-flex justify-content-center align-items-center align-items-md-start flex-column flex-md-row">
             <div class="d-flex flex-column align-items-center col-10 col-sm-7 col-md-4">
                 <img src="<?php bloginfo('template_url'); ?>/assets/images/missao.png" alt="foto trem">
                 <p class="fs-28 fw400 pt-4">Missão</p>
-                <p class="fw-400 text-center">Prover serviços logísticos que possam ser uma contribuição para a sociedade através da inovação, criatividade e outros recursos próprios.</p>
+                <p class="fw-400 text-center"><?= get_post_meta(get_the_ID(), 'quemsomos_missao', true); ?></p>
             </div>
 
             <div class="d-flex flex-column align-items-center col-10 col-sm-7 col-md-4 py-5 py-md-0">
                 <img src="<?php bloginfo('template_url'); ?>/assets/images/visao.png" alt=" foto trilho">
                 <p class="fs-28 fw400 pt-4">Visão</p>
-                <p class="fw-400 text-center">Ser uma “Companhia de Solução Logística” no setor de Infraestrutura do Brasil, atendendo as necessidades e demandas dos clientes, sempre utilizando nossos recursos intelectuais e experiências.</p>
+                <p class="fw-400 text-center"><?= get_post_meta(get_the_ID(), 'quemsomos_visao', true); ?></p>
             </div>
 
             <div class="d-flex flex-column align-items-center col-10 col-sm-7 col-md-4">
                 <img src="<?php bloginfo('template_url'); ?>/assets/images/valores.png" alt=" foto aperto de mão">
                 <p class="fs-28 fw400 pt-4">Valores</p>
-                <p class="fw-400 text-center">Trabalhar com justiça para construir um elo de confiança de longo prazo com todos os clientes, com a sociedade e com os funcionários.</p>
+                <p class="fw-400 text-center"><?= get_post_meta(get_the_ID(), 'quemsomos_valores', true); ?></p>
             </div>
         </div>
     </div>
 </section>
 <section class="section-nossa-equipe container">
-    <h2 class="fw300 pb-4 azul-escuro">NOSSA <fw900>EQUIPE</fw900>
+    <h2 class="fw300 pb-4 azul-escuro text-center">NOSSA <fw900>EQUIPE</fw900>
     </h2>
-    <div class="row text-white justify-content-between">
-        <div class="bg-azul-escuro w-47 rad-100 d-flex align-items-center py-2 mb-3">
-            <img src="<?php bloginfo('template_url'); ?>/assets/images/foto-equipe-presidente.png" alt="foto colaborador">
-            <div class="d-flex flex-column ps-4">
-                <p class="fw600 fs-25 m-0">Naoki Ohashi</p>
-                <p class="fw400 fs-20 m-0">Presidente</p>
-            </div>
-        </div>
-        <div class="bg-azul-escuro w-47 rad-100 d-flex align-items-center py-2 mb-3">
-            <img src="<?php bloginfo('template_url'); ?>/assets/images/foto-equipe-presidente.png" alt="foto colaborador">
-            <div class="d-flex flex-column ps-4">
-                <p class="fw600 fs-25 m-0">Naoki Ohashi</p>
-                <p class="fw400 fs-20 m-0">Presidente</p>
-            </div>
-        </div>
+    <div class="row text-white justify-content-between flex-column flex-lg-row">
+        <?php $i = 0;
+        if ($equipe) {
+            foreach ($equipe as $row) {
+        ?>
+                <div class="d-flex flex-column align-items-center col-12 col-sm-11 col-lg-6">
+                    <div class="bg-azul-escuro w-100 rad-100 d-flex justify-content-center justify-content-sm-start align-items-center  py-2 mb-3">
+                        <img src="<?php echo wp_get_attachment_url($equipe[$i][2]); ?>" alt="foto colaborador">
+                        <div class="d-none d-sm-flex flex-column ps-4">
+                            <p class="fw600 fs-25 m-0"><?php echo $equipe[$i][0] ?></p>
+                            <p class="fw400 fs-20 m-0"><?php echo $equipe[$i][1] ?></p>
+                            <p class="fw400 fs-20 m-0"></p>
+                        </div>
+                    </div>
+                    <div class="d-flex d-sm-none flex-column align-items-center pb-3 azul-escuro">
+                        <p class="fw600 fs-25 m-0"><?php echo $equipe[$i][0] ?></p>
+                        <p class="fw400 fs-20 m-0"><?php echo $equipe[$i][1] ?></p>
+                    </div>
+                </div>
+        <?php
+                $i++;
+            }
+        } ?>
     </div>
 </section>
 
