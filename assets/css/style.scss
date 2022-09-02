@@ -117,12 +117,15 @@ header{
     top: 50%;
     left: 10%;
 }
-.banner-pagina img{
+.banner-pagina {
     background: linear-gradient(90deg, #4848C6 0%, rgba(72, 72, 198, 0) 100%);
+    img{
     max-width: 100%;
     min-height: 425px;
     object-fit: cover;
+    }
 }
+
 .rad-100{
     border-radius: 110px;
 }
@@ -161,6 +164,8 @@ header{
     }
 }
 .section-nossa-equipe{
+
+
     @media (max-width:575px) {
         .bg-azul-escuro{
             width: 158px !important;
@@ -168,7 +173,10 @@ header{
     }
     @media (min-width:576px) {
         img{
-            padding-left: 10px;
+            margin-left: 10px;
+            width: 153px;
+            height: 143px;
+            border-radius: 103px;
         }
     }
 
@@ -206,6 +214,69 @@ header{
         }
     }
 }
+.nesses-17 p{
+    margin: 0;
+    padding: 0px 0.6rem;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    @media (max-width:992px) {
+        text-align: left;
+    }
+}
+// VVVVVV PAGE PRODUTOS E SERVIÇOS VVVVVVV
+.lista-produtos{
+    li{
+        display: flex;
+        list-style: none;
+        &::before{
+            content: url(http://localhost/mitsui/wp-content/themes/mitsui/assets/images/list-style-produtos.png);
+            padding-right: 15px;
+        }
+        p{
+            padding-top: 3px;
+            margin: 0;
+        }
+    }
+}
+.quebra-cabeca{
+    img{
+        box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        width: 100%;
+    }
+    @media (min-width:1200px) {
+        .position-quebra-cabeca-cima{
+        position: absolute;
+        top:60px;
+        }
+        .position-quebra-cabeca-baixo{
+            position: absolute;
+            top: 57%;
+        } 
+    }
+    .row{
+        @media (max-width:1199px) {
+            box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+    }
+}
+.section-servicos{
+    h4{
+        &::before{
+            content: url(http://localhost/mitsui/wp-content/themes/mitsui/assets/images/before-servicos.png);
+            padding-right: 15px;
+            background-image: url(/assets/images/fundo-servicos-diferenciados.png);
+        }
+    }
+}
+.section-servicos-diferenciados{
+    display: flex;
+    align-items: center;
+    height: 691px;
+}
+
+
 // VVVVVVVVVV FOOTER VVVVVVVVVV
 
 .section-fale-conosco{

@@ -1,7 +1,7 @@
 $azul-escuro:#353597;
 $azul-claro:#2D647D;
 $amarelo-botao:#DDFF15;
-$cinza:#868686;
+$cinza:#756E6E;
 $branco: #fff;
 $laranja:#FF7C1E;
 $azul-roxo:#4848C6;
@@ -14,4 +14,13 @@ $azul-roxo:#4848C6;
 }
 .bg-azul-escuro{
     background-color: $azul-escuro;
+}
+.bg-azul-roxo{
+    background-color: $azul-roxo;
+}
+.azul-roxo{
+    color: $azul-roxo;
+}
+.cinza{
+    color: $cinza;
 }
