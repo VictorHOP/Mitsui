@@ -5,9 +5,9 @@ function va_theme_styles()
     wp_enqueue_style('bootstrap_css', get_template_directory_uri() . '/assets/bootstrap/bootstrap.css');
     wp_enqueue_style('style_css', get_template_directory_uri() . '/style.css');
 
-    wp_enqueue_script('bootstrap_js', get_template_directory_uri() . '/assets/bootstrap/bootstrap.min.js');
     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/scripts/jquery.js');
     wp_enqueue_script('swiper_js', get_template_directory_uri() . 'https://unpkg.com/swiper/swiper-bundle.min.js');
+    wp_enqueue_script('bootstrap_js', get_template_directory_uri() . '/assets/bootstrap/bootstrap.min.js');
 }
 
 function va_after_setup()
@@ -20,7 +20,6 @@ function va_after_setup()
     register_nav_menu('footer institucional', 'Menu footer institucinal');
     register_nav_menu('footer produtos', 'Menu footer produtos e servicos');
     register_nav_menu('footer segmentos', 'Menu footer segmentos e setores');
-
 }
 
 //registros dos sidebar/widgtes

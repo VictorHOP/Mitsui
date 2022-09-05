@@ -260,7 +260,128 @@ function page_quemsomos($post)
 <?php
 }
 
-function page_missaovalores($post)
+
+function page_produtoseservicos($post)
+{
+    $swiper_produtos = get_post_meta($post->ID, 'produtoseservicos_swiper', true);
+?>
+
+    <script>
+        jQuery(function() {
+            var file_frame;
+            var text;
+            var id;
+
+            jQuery('.clear_button').on('click', function() {
+                jQuery(this).siblings('.produtos_swiper').val('');
+                jQuery(this).siblings('.produtos_swiper_texto').val('');
+            });
+
+            jQuery('.upload_button').on('click', function() {
+                id = jQuery(this).parent().find('.produtos_swiper');
+                text = jQuery(this).parent().find('.produtos_swiper_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.id);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+
+            jQuery('.repeatable-add').click(function() {
+                field = jQuery(this).siblings('.custom_repeatable').find('li:last').clone(true);
+                fieldLocation = jQuery(this).siblings('.custom_repeatable').find('li:last');
+                jQuery('input[type="hidden"], input[type="text"], input[type="color"], textarea', field).val('').attr('name', function(index, name) {
+                    return name.replace(/(\d+)/, function(fullMatch, n) {
+                        return Number(n) + 1;
+                    });
+                })
+                field.insertAfter(fieldLocation);
+                return false;
+            });
+
+            jQuery('.repeatable-remove').click(function() {
+                if (jQuery(this).parent().siblings().length > 0)
+                    jQuery(this).parent().remove();
+                return false;
+            });
+
+            jQuery('.custom_repeatable').sortable({
+                opacity: 0.6,
+                revert: true,
+                cursor: 'move',
+                handle: '.sort'
+            });
+        });
+    </script>
+
+    <table>
+        <tr>
+            <th>Tipos de Vagões</th>
+            <td>
+                <a class="repeatable-add button" href="#">Adicionar</a>
+                <ul class="custom_repeatable">
+                    <?php
+                    $i = 0;
+                    if ($swiper_produtos) {
+                        foreach ($swiper_produtos as $row) {
+                    ?>
+                            <li>
+                                <span class="sort hndle">|||</span><br>
+                                <input type="text" name="produtoseservicos_swiper[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Tipo do Vagão" />
+                                <a class="repeatable-remove button" href="#">Excluir</a><br><br>
+                                <textarea name="produtoseservicos_swiper[<?php echo $i; ?>][1]" cols="100" rows="5" placeholder="Descrição do vagão"><?php echo $row[1]; ?></textarea>
+                                <br><br>
+                                <input type="hidden" name="produtoseservicos_swiper[<?php echo $i; ?>][2]" class="produtos_swiper" value="<?php echo $row[2]; ?>" />
+                                <input type="text" name="produtoseservicos_swiper_texto" class="produtos_swiper_texto" value="<?php echo wp_get_attachment_url($row[2]); ?>" readonly="readonly" />
+                                <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                                <input type="button" class="clear_button button" value="Remove Arquivo" />
+
+                            </li>
+                        <?php
+                            $i++;
+                        }
+                    } else {
+                        ?>
+                        <li>
+
+                            <span class="sort hndle">|||</span><br>
+                            <input type="text" name="produtoseservicos_swiper[<?php echo $i; ?>][0]" placeholder="Tipo do Vagão" />
+                            <a class="repeatable-remove button" href="#">Excluir</a><br><br>
+                            <input type="text" name="produtoseservicos_swiper[<?php echo $i; ?>][1]" placeholder="Descrição do vagão" />
+
+                            <br><br>
+                            <input type="hidden" name="produtoseservicos_swiper[<?php echo $i; ?>][2]" class="produtos_swiper" value="" />
+                            <input type="text" name="produtoseservicos_swiper_texto" class="produtos_swiper_texto" value="" readonly="readonly" />
+                            <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                            <input type="button" class="clear_button button" value="Remove Arquivo" />
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+                <a class="repeatable-add button" href="#">Adicionar</a>
+            </td>
+        </tr>
+    </table>
+
+<?php } ?>
+
+<?php function page_missaovalores($post)
 {
     $missaovalores = get_post_meta($post->ID, 'missaovalores', true);
 ?>
@@ -1885,10 +2006,13 @@ function metabox_pagina()
 {
     global $post;
 
-    add_meta_box('detalhes_pagina', 'Página Topo', 'detalhes_pagina', array('page', 'post', 'imprensa', 'evento', 'podcast', 'treinamento'), 'normal', 'high');
-
+    
     if ($post->post_name == 'quem-somos') {
         add_meta_box('page_quemsomos', 'Página Quem Somos', 'page_quemsomos', array('page'), 'normal', 'high');
+    }
+
+    if ($post->post_name == 'produtos-e-servicos') {
+        add_meta_box('page_produtoseservicos', 'Página Produtos e Serviços', 'page_produtoseservicos', array('page'), 'normal', 'high');
     }
 
     if ($post->post_name == 'missao-e-valores') {
@@ -1943,9 +2067,6 @@ function save_pagina()
     global $typenow;
     global $post;
 
-    if ($typenow == 'page' || $typenow == 'post' || $typenow == 'imprensa' || $typenow == 'evento' || $typenow == 'podcast' || $typenow == 'treinamento') {
-        update_post_meta($post->ID, 'page_imagem', stripslashes($_POST['page_imagem']));
-    }
 
     if ($typenow == 'page') {
         if ($post->post_name == 'quem-somos') {
@@ -1958,6 +2079,9 @@ function save_pagina()
             update_post_meta($post->ID, 'quemsomos_downloads', $_POST['quemsomos_downloads']);
         }
 
+        if ($post->post_name == 'produtos-e-servicos') {
+            update_post_meta($post->ID, 'produtoseservicos_swiper', $_POST['produtoseservicos_swiper']);
+        }
         if ($post->post_name == 'missao-e-valores') {
             update_post_meta($post->ID, 'missaovalores', $_POST['missaoval']);
         }

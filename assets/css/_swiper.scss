@@ -1,0 +1,20 @@
+.vagoes .swiper-button-next, .vagoes .swiper-button-prev {
+ top: 39px;
+ border: 1px solid black;
+ padding: 27px;
+ border-radius: 100px;
+ &:hover{
+    border: 2px solid black;
+ }
+}
+
+.vagoes{
+    .swiper-button-prev, .swiper-rtl .swiper-button-next{
+        right: 80px;
+        left:auto
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+        font-size: 20px;
+        color: black;
+    }
+}

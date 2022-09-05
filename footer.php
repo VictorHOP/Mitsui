@@ -72,6 +72,8 @@
 
 <?php wp_footer(); ?>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
 <!-- CONFG. ACCORDION BUTTON MENU HEADER -->
 <script>
 	jQuery(document).ready(function() {
@@ -99,6 +101,37 @@
 	});
 </script>
 
+<!-- VVVVV SWIPPER VVVVV -->
+<script>
+	var swiper = new Swiper(".vagoes", {
+		slidesPerView: 3,
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+		},
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+		breakpoints: {
+			// when window width is >= 320px
+			300: {
+				slidesPerView: 1,
+				spaceBetween: 20
+			},
+
+			768: {
+				slidesPerView: 2,
+				spaceBetween: 20
+			},
+
+			992: {
+				slidesPerView: 3,
+				spaceBetween: 30
+			}
+		},
+	});
+</script>
 
 </body>
 

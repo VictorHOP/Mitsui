@@ -108,6 +108,7 @@ $downloads = get_post_meta($post->ID, 'quemsomos_downloads', true);
     </div>
 </section>
 
+<!-- REDES SOCIAIS LATERAL -->
 <div class="redes-fixed d-flex flex-column">
     <a href=""><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19.7847 19.7905V19.7895H19.7899V12.5319C19.7899 8.98167 19.0256 6.24622 14.8745 6.24622C12.8791 6.24622 11.5402 7.34133 10.9934 8.37923H10.9357V6.57758H7V19.7895H11.098V13.2477C11.098 11.5254 11.4248 9.85982 13.5578 9.85982C15.6599 9.85982 15.6908 11.8254 15.6908 13.3585V19.7905H19.7847Z" fill="#353597" />
