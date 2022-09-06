@@ -122,6 +122,7 @@ header{
     position: absolute;
     top: 50%;
     left: 10%;
+    z-index: 7;
 }
 .bg-gradient-azul-esquerda{
     background: linear-gradient(90deg, #4848C6 17%, rgba(72, 72, 198, 0) 100%);
@@ -134,7 +135,13 @@ header{
     object-fit: cover;
     }
 }
-
+.efeito-banner{
+    position: absolute;
+    top:0;
+    background: linear-gradient(90deg, #4848C6 0%, rgba(72, 72, 198, 0) 100%);
+    z-index: 6;
+    width: 100%;
+}
 .rad-100{
     border-radius: 110px;
 }
@@ -455,3 +462,72 @@ footer {
         // padding: 0 15px;
     }
 }
+
+#o2-admin-bar-wrapper {
+    position: fixed;
+    z-index: 99999;
+    width: 33px;
+    height: 32px;
+    left: 0;
+    top: 20%;
+    border-radius: 0 5px 5px 0;
+    background: linear-gradient(90deg, #1e315b 0%, #496dbf 100%);
+    * {
+        color: #fff;
+    }
+    #o2-admin-bar {
+        display: none;
+    }
+    &:hover {
+        width: 210px;
+        #o2-admin-bar {
+            display: block;
+        }
+    }
+}
+#o2-admin-bar {
+    background: linear-gradient(90deg, #1e315b 0%, #496dbf 100%);
+    #wpadminbar {
+        margin-top: 12px;
+        min-width: 210px;
+        max-width: 210px;
+        position: relative;
+        height: fit-content;
+        .ab-top-menu,
+        .ab-top-menu {
+            display: flex;
+            flex-direction: column;
+        }
+        .ab-submenu {
+            width: 210px;
+        }
+        #adminbarsearch {
+            display: none;
+        }
+        .menupop {
+            &.hover {
+                .ab-sub-wrapper {
+                    top: 0;
+                    left: 100%;
+                    min-width: 210px;
+                    .ab-sub-wrapper {
+                        left: 0;
+                    }
+                }
+            }
+        }
+        #wp-admin-bar-top-secondary {
+            position: absolute;
+            top: -32px;
+            left: 33px;
+            width: 177px;
+            .admin-bar-search {
+                height: 0;
+            }
+        }
+    }
+}
+.html-m0 {
+    margin: 0 !important;
+}
+

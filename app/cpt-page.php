@@ -263,7 +263,10 @@ function page_quemsomos($post)
 
 function page_produtoseservicos($post)
 {
+    $oque_fazemos = get_post_meta($post->ID, 'produtoseservicos_oque_fazemos', true);
+    $produtos_servicos = get_post_meta($post->ID, 'produtoseservicos_produtos_servicos', true);
     $swiper_produtos = get_post_meta($post->ID, 'produtoseservicos_swiper', true);
+
 ?>
 
     <script>
@@ -273,13 +276,13 @@ function page_produtoseservicos($post)
             var id;
 
             jQuery('.clear_button').on('click', function() {
-                jQuery(this).siblings('.produtos_swiper').val('');
-                jQuery(this).siblings('.produtos_swiper_texto').val('');
+                jQuery(this).siblings('.imagem').val('');
+                jQuery(this).siblings('.equipe_texto').val('');
             });
 
             jQuery('.upload_button').on('click', function() {
-                id = jQuery(this).parent().find('.produtos_swiper');
-                text = jQuery(this).parent().find('.produtos_swiper_texto');
+                id = jQuery(this).parent().find('.imagem');
+                text = jQuery(this).parent().find('.imagem_texto');
 
                 event.preventDefault();
 
@@ -301,6 +304,37 @@ function page_produtoseservicos($post)
 
                 file_frame.open();
             });
+
+            jQuery('.clear_butto').on('click', function() {
+                jQuery(this).siblings('.imagem').val('');
+                jQuery(this).siblings('.equipe_texto').val('');
+            });
+
+            jQuery('.upload_butto').on('click', function() {
+                id = jQuery(this).parent().find('.image');
+                text = jQuery(this).parent().find('.imagem_text');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquiv',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.id);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+
 
             jQuery('.repeatable-add').click(function() {
                 field = jQuery(this).siblings('.custom_repeatable').find('li:last').clone(true);
@@ -330,6 +364,60 @@ function page_produtoseservicos($post)
     </script>
 
     <table>
+
+        <tr>
+            <th>Seção o que fazemos</th>
+            <td>
+                <br><br>
+                <label for="">1 Bloco esquerdo</label>
+                <textarea name="produtoseserv[0]" cols="100" rows="5" placeholder="Primeiro bloco o que fazemos"><?php echo $oque_fazemos[0]; ?></textarea><br><br>
+
+                <label for="">foto 1 Bloco</label>
+                <input type="hidden" name="produtoseserv[2]" class="imagem" value="<?php echo $oque_fazemos[2]; ?>" />
+                <input type="text" name="produtoseserv_texto[2]" class="imagem_texto" value="<?php echo wp_get_attachment_url($oque_fazemos[2]); ?>" readonly="readonly" />
+                <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_button button" value="Remove Arquivo" /> <br><br>
+
+                <label for="">2 Bloco direito</label>
+                <textarea name="produtoseserv[1]" cols="100" rows="5" placeholder="Segundo bloco o que fazemos"><?php echo $oque_fazemos[1]; ?></textarea> <br><br>
+
+                <label for="">foto 2 Bloco</label>
+                <input type="hidden" name="produtoseserv[3]" class="image" value="<?php echo $oque_fazemos[3]; ?>" />
+                <input type="text" name="produtoseserv_texto[3]" class="imagem_text" value="<?php echo wp_get_attachment_url($oque_fazemos[3]); ?>" readonly="readonly" />
+                <input type="button" class="upload_butto button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_butto button" value="Remove Arquivo" /> <br><br>
+
+
+                <hr>
+            </td>
+        </tr>
+
+        <tr>
+            <th> Serviços e Produtos</th>
+            <td>
+                <label for="">1º titulo</label><br>
+                <input type="text" name="produtoseservicos[0]" placeholder="1º tiulo" value="<?php echo $produtos_servicos[0]; ?>"><br><br>
+                <label for="">1º texto</label><br>
+                <textarea name="produtoseservicos[1]" cols="100" rows="2" placeholder="Insira o texto aqui"><?php echo $produtos_servicos[1]; ?></textarea><br><br>
+
+                <label for="">2º titulo</label><br>
+                <input type="text" name="produtoseservicos[2]" placeholder="1º tiulo" value="<?php echo $produtos_servicos[2]; ?>"><br><br>
+                <label for="">2º texto</label><br>
+                <textarea name="produtoseservicos[3]" cols="100" rows="2" placeholder="Insira o texto aqui"><?php echo $produtos_servicos[3]; ?></textarea><br><br>
+
+                <label for="">3º titulo</label><br>
+                <input type="text" name="produtoseservicos[4]" placeholder="1º tiulo" value="<?php echo $produtos_servicos[4]; ?>"><br><br>
+                <label for="">3º texto</label><br>
+                <textarea name="produtoseservicos[5]" cols="100" rows="2" placeholder="Insira o texto aqui"><?php echo $produtos_servicos[5]; ?></textarea><br><br>
+
+                <label for="">4º titulo</label><br>
+                <input type="text" name="produtoseservicos[6]" placeholder="1º tiulo" value="<?php echo $produtos_servicos[6]; ?>"><br><br>
+                <label for="">4º texto</label><br>
+                <textarea name="produtoseservicos[7]" cols="100" rows="2" placeholder="Insira o texto aqui"><?php echo $produtos_servicos[7]; ?></textarea><br><br>
+                <hr>
+            </td>
+        </tr>
+
         <tr>
             <th>Tipos de Vagões</th>
             <td>
@@ -381,21 +469,23 @@ function page_produtoseservicos($post)
 
 <?php } ?>
 
-<?php function page_missaovalores($post)
+<?php function page_segmentos($post)
 {
-    $missaovalores = get_post_meta($post->ID, 'missaovalores', true);
+    $segmentos_swiper = get_post_meta($post->ID, 'segmentos_swiper', true);
 ?>
     <script type="text/javascript">
         jQuery(document).ready(function() {
             var file_frame;
             var text;
 
-            jQuery('.clear_missao_button').on('click', function() {
-                jQuery(this).siblings('.missaovalores').val('');
+            jQuery('.clear_button').on('click', function() {
+                jQuery(this).siblings('.segmentos_swiper').val('');
+                jQuery(this).siblings('.segmentos_swiper_texto').val('');
             });
 
-            jQuery('.upload_missao_button').on('click', function() {
-                text = jQuery(this).parent().find('.missaovalores');
+            jQuery('.upload_button').on('click', function() {
+                id = jQuery(this).parent().find('.segmentos_swiper');
+                text = jQuery(this).parent().find('.segmentos_swiper_texto');
 
                 event.preventDefault();
 
@@ -405,58 +495,69 @@ function page_produtoseservicos($post)
                 }
 
                 file_frame = wp.media.frames.file_frame = wp.media({
-                    title: 'Imagem',
+                    title: 'Arquivo',
                     multiple: false
                 });
 
                 file_frame.on('select', function() {
                     attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.id);
                     text.val(attachment.url);
                 });
 
                 file_frame.open();
             });
+
         });
     </script>
     <table style="width:100%;">
         <tr>
-            <th>Missão</th>
+            <th>Tipos de Segmentos e Setores</th>
             <td>
-                <textarea name="missaoval[0]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $missaovalores[0]; ?></textarea><br><br>
-                <input type="text" name="missaoval[1]" class="missaovalores" size="40" style="width: 100%;" value="<?php echo $missaovalores[1]; ?>" readonly="true" />
-                <input type="button" class="upload_missao_button button" value="Adicionar Imagem" />
-                <input type="button" class="clear_missao_button button" value="Remove Imagem" />
+                <a class="repeatable-add button" href="#">Adicionar</a>
+                <ul class="custom_repeatable">
+                    <?php
+                    $i = 0;
+                    if ($segmentos_swiper) {
+                        foreach ($segmentos_swiper as $row) {
+                    ?>
+                            <li>
+                                <span class="sort hndle">|||</span><br>
+                                <input type="text" name="segmentos_swiper[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome do segmento" />
+                                <a class="repeatable-remove button" href="#">Excluir</a><br><br>
+                                <br><br>
+                                <input type="hidden" name="segmentos_swiper[<?php echo $i; ?>][1]" class="segmentos_swiper" value="<?php echo $row[1]; ?>" />
+                                <input type="text" name="segmentos_swiper_texto" class="segmentos_swiper_texto" value="<?php echo wp_get_attachment_url($row[1]); ?>" readonly="readonly" />
+                                <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                                <input type="button" class="clear_button button" value="Remove Arquivo" />
+
+                            </li>
+                        <?php
+                            $i++;
+                        }
+                    } else {
+                        ?>
+                        <li>
+
+                            <span class="sort hndle">|||</span><br>
+                            <input type="text" name="segmentos_swiper[<?php echo $i; ?>][0]" placeholder="Nome do segmento" />
+                            <a class="repeatable-remove button" href="#">Excluir</a><br><br>
+
+                            <br><br>
+                            <input type="hidden" name="segmentos_swiper[<?php echo $i; ?>][1]" class="segmentos_swiper" value="" />
+                            <input type="text" name="segmentos_swiper_texto" class="segmentos_swiper_texto" value="" readonly="readonly" />
+                            <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                            <input type="button" class="clear_button button" value="Remove Arquivo" />
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+                <a class="repeatable-add button" href="#">Adicionar</a>
                 <hr>
             </td>
         </tr>
-        <tr>
-            <th>Visão</th>
-            <td>
-                <textarea name="missaoval[2]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $missaovalores[2]; ?></textarea><br><br>
-                <input type="text" name="missaoval[3]" class="missaovalores" size="40" style="width: 100%;" value="<?php echo $missaovalores[3]; ?>" readonly="true" />
-                <input type="button" class="upload_missao_button button" value="Adicionar Imagem" />
-                <input type="button" class="clear_missao_button button" value="Remove Imagem" />
-                <hr>
-            </td>
-        </tr>
-        <tr>
-            <th>Política</th>
-            <td>
-                <textarea name="missaoval[4]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $missaovalores[4]; ?></textarea><br><br>
-                <input type="text" name="missaoval[5]" class="missaovalores" size="40" style="width: 100%;" value="<?php echo $missaovalores[5]; ?>" readonly="true" />
-                <input type="button" class="upload_missao_button button" value="Adicionar Imagem" />
-                <input type="button" class="clear_missao_button button" value="Remove Imagem" />
-            </td>
-        </tr>
-        <tr>
-            <th>Propósito</th>
-            <td>
-                <textarea name="missaoval[6]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $missaovalores[6]; ?></textarea><br><br>
-                <input type="text" name="missaoval[7]" class="missaovalores" size="40" style="width: 100%;" value="<?php echo $missaovalores[7]; ?>" readonly="true" />
-                <input type="button" class="upload_missao_button button" value="Adicionar Imagem" />
-                <input type="button" class="clear_missao_button button" value="Remove Imagem" />
-            </td>
-        </tr>
+
         <tr>
             <th>Princípios</th>
             <td>
@@ -2006,7 +2107,7 @@ function metabox_pagina()
 {
     global $post;
 
-    
+
     if ($post->post_name == 'quem-somos') {
         add_meta_box('page_quemsomos', 'Página Quem Somos', 'page_quemsomos', array('page'), 'normal', 'high');
     }
@@ -2015,8 +2116,8 @@ function metabox_pagina()
         add_meta_box('page_produtoseservicos', 'Página Produtos e Serviços', 'page_produtoseservicos', array('page'), 'normal', 'high');
     }
 
-    if ($post->post_name == 'missao-e-valores') {
-        add_meta_box('page_missaovalores', 'Página Missão & Valores', 'page_missaovalores', array('page'), 'normal', 'high');
+    if ($post->post_name == 'segmentos-e-setores') {
+        add_meta_box('page_segmentos', 'Página Segmentos & Setores', 'page_segmentos', array('page'), 'normal', 'high');
     }
 
     if ($post->post_name == 'parcerias') {
@@ -2081,9 +2182,11 @@ function save_pagina()
 
         if ($post->post_name == 'produtos-e-servicos') {
             update_post_meta($post->ID, 'produtoseservicos_swiper', $_POST['produtoseservicos_swiper']);
+            update_post_meta($post->ID, 'produtoseservicos_oque_fazemos', $_POST['produtoseserv']);
+            update_post_meta($post->ID, 'produtoseservicos_produtos_servicos', $_POST['produtoseservicos']);
         }
-        if ($post->post_name == 'missao-e-valores') {
-            update_post_meta($post->ID, 'missaovalores', $_POST['missaoval']);
+        if ($post->post_name == 'segmentos-e-setores') {
+            update_post_meta($post->ID, 'segmentos_swiper', $_POST['segmentos_swiper']);
         }
 
         if ($post->post_name == 'parcerias') {

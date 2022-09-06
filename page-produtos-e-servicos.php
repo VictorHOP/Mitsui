@@ -1,5 +1,7 @@
 <?php get_header();
 $swiper_produtos = get_post_meta($post->ID, 'produtoseservicos_swiper', true);
+$oque_fazemos = get_post_meta($post->ID, 'produtoseservicos_oque_fazemos', true);
+$produtos_servicos = get_post_meta($post->ID, 'produtoseservicos_produtos_servicos', true);
 ?>
 
 
@@ -9,27 +11,18 @@ $swiper_produtos = get_post_meta($post->ID, 'produtoseservicos_swiper', true);
 </div>
 
 <section class="container mrcla-te-ajuda">
-    <div class="row my-5">
+    <div class="row my-5 flex-md-row flex-column">
 
-        <div class="d-flex flex-column col-6">
+        <div class="d-flex flex-column col-12 col-md-6 pb-4 pb-md-0">
             <h2 class="fw300 pb-4 azul-escuro">O QUE <fw900> FAZEMOS </fw900>
             </h2>
-            <p class="cinza fw400">A Mitsui Rail Capital Latin America (MRCLA) oferece soluções integradas e personalizadas atendendo sua necessidade de mobilidade logística ferroviária. Somos referência em locação de locomotivas, vagões e terminais de cargas. <br><br>
-
-                Nossa expertise em materiais rodantes engloba as melhores soluções com a capacidade de atender com mais eficiência, segurança e confiabilidade nos diversos segmentos e setores. O transporte ferroviário preza pelo desenvolvimento sustentável na mobilidade de cargas.
-            </p>
-            <img src="<?php bloginfo('template_url'); ?>/assets/images/o-que-fazemos-trem1.png" alt="">
+            <p class="cinza fw400" style="white-space: pre-wrap;"><?php echo $oque_fazemos[0]; ?></p>
+            <img src="<?php echo wp_get_attachment_url($oque_fazemos[2]); ?>" alt="">
         </div>
-        <div class="d-flex flex-column col-6">
-            <img src="<?php bloginfo('template_url'); ?>/assets/images/o-que-fazemos-trem2.png" alt="">
+        <div class="d-flex flex-md-column flex-column-reverse col-12 col-md-6">
+            <img src="<?php echo wp_get_attachment_url($oque_fazemos[3]); ?>" alt="">
 
-            <p class="cinza fw400 pt-4">Temos know-how em soluções integradas e personalizadas. Contribuímos com seu negócio! Analisamos sua necessidade, avaliamos junto aos nossos fornecedores o material rodante mais adequado ao seu produto e trazemos uma solução financeira que seja favorável. <br><br>
-
-                Conte com a MRCLA para locação de vagões, locomotivas e terminais de cargas. <br><br>
-
-                Nosso atendimento é voltado a diversos setores, donos de cargas, operadores ferroviários e de terminais de cargas.
-
-            </p>
+            <p class="cinza fw400 pt-4" style="white-space: pre-wrap;"><?php echo $oque_fazemos[1];?></p>
         </div>
     </div>
 </section>
@@ -73,25 +66,25 @@ $swiper_produtos = get_post_meta($post->ID, 'produtoseservicos_swiper', true);
         <div class="w-100 quebra-cabeca position-relative">
             <img class="d-xl-block d-none" src="<?php bloginfo('template_url'); ?>/assets/images/fundo-quebra-cabeca.png" alt="">
 
-            <div class="row">
+            <div class="row py-4">
                 <div class="d-flex justify-content-between px-5 position-quebra-cabeca-cima flex-xl-row flex-column">
-                    <div class="d-flex flex-column col-12 col-xl-5 p-4">
-                        <h4 class="azul-escuro fs-24 ">Serviço Personalizado</h4>
-                        <p class="cinza">A MRCLA atende às necessidades e demandas dos clientes, oferecendo a melhor gestão de compra logística com soluções integradas de mobilidade para seu negócio.</p>
+                    <div class="d-flex flex-column col-12 col-xl-5 p-sm-4 pt-4">
+                        <h4 class="azul-escuro fs-24 "><?php echo $produtos_servicos[0]; ?></h4>
+                        <p class="cinza"><?php echo $produtos_servicos[1]; ?></p>
                     </div>
-                    <div class="d-flex flex-column col-12 col-xl-5 p-4">
-                        <h4 class="azul-escuro fs-24">Vantagem competitiva</h4>
-                        <p class="cinza">Com a locação em ativos de mobilidade, é possível direcionar melhor os recursos do seu negócio. A responsabilidade de compra dos ativos rodantes fica por conta da MRCLA e sua empresa pode focar em sua atividade principal.</p>
+                    <div class="d-flex flex-column col-12 col-xl-5 p-sm-4 pt-4">
+                        <h4 class="azul-escuro fs-24"><?php echo $produtos_servicos[2]; ?></h4>
+                        <p class="cinza"><?php echo $produtos_servicos[3]; ?></p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between px-5 position-quebra-cabeca-baixo flex-xl-row flex-column">
-                    <div class="d-flex flex-column col-12 col-xl-6 p-4">
-                        <h4 class="azul-escuro fs-24 ">Qualidade e Segurança</h4>
-                        <p class="cinza">Garantia de qualidade e eficiência nos transportes de cargas. A MRCLA assegura a entrega dos vagões e locomotivas conforme as normas legais e de segurança. Dessa forma, você tem tranquilidade em todo o processo e adquire produtos novos que atendam às suas necessidades.</p>
+                    <div class="d-flex flex-column col-12 col-xl-6 p-sm-4 pt-4">
+                        <h4 class="azul-escuro fs-24 "><?php echo $produtos_servicos[4]; ?></h4>
+                        <p class="cinza"><?php echo $produtos_servicos[5]; ?></p>
                     </div>
-                    <div class="d-flex flex-column col-12 col-xl-5 p-4">
-                        <h4 class="azul-escuro fs-24">Fluxo de caixa otimizado</h4>
-                        <p class="cinza">A MRCLA realiza a gestão da compra dos ativos de mobilidade adequados para o seu negócio e faz a locação à sua empresa. Você fica responsável apenas pela contratação do seguro e da manutenção.</p>
+                    <div class="d-flex flex-column col-12 col-xl-5 p-sm-4 pt-4">
+                        <h4 class="azul-escuro fs-24"><?php echo $produtos_servicos[6]; ?></h4>
+                        <p class="cinza"><?php echo $produtos_servicos[7]; ?></p>
                     </div>
                 </div>
             </div>

@@ -36,3 +36,23 @@ function dd($q, $vdump = false) {
   }
   echo '</pre>';
 }
+
+function o2_admin_bar() {
+  if (is_admin_bar_showing()) {
+  ?>
+      <div id="o2-admin-bar-wrapper" class="d-none d-sm-block">
+          <div class="d-flex align-items-center">
+              <span style="font-size: 30px;" class="dashicons dashicons-admin-tools"></span>
+          </div>
+          <div class="" id="o2-admin-bar"></div>
+      </div>
+      <script>
+          jQuery(document).ready(function() {
+              jQuery('#wpadminbar').appendTo('#o2-admin-bar');
+              jQuery('html').addClass('html-m0');
+          });
+      </script>
+<?php
+  }
+}
+add_action('wp_footer', 'o2_admin_bar');
