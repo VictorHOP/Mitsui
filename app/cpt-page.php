@@ -472,6 +472,8 @@ function page_produtoseservicos($post)
 <?php function page_segmentos($post)
 {
     $segmentos_swiper = get_post_meta($post->ID, 'segmentos_swiper', true);
+    $cases_swiper = get_post_meta($post->ID, 'cases_swiper', true);
+    $sustentabilidade = get_post_meta($post->ID, 'sustentabilidade', true);
 ?>
     <script type="text/javascript">
         jQuery(document).ready(function() {
@@ -507,12 +509,144 @@ function page_produtoseservicos($post)
 
                 file_frame.open();
             });
+            jQuery('.clear_button').on('click', function() {
+                jQuery(this).siblings('.cases_swiper').val('');
+                jQuery(this).siblings('.cases_swiper_texto').val('');
+            });
+
+            jQuery('.upload_button').on('click', function() {
+                id = jQuery(this).parent().find('.cases_swiper');
+                text = jQuery(this).parent().find('.cases_swiper_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.id);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+            jQuery('.clear_sustentabilidade_button').on('click', function() {
+                jQuery(this).siblings('.sustentabilidade').val('');
+            });
+
+            jQuery('.upload_sustentabilidade_button').on('click', function() {
+                text = jQuery(this).parent().find('.sustentabilidade');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Imagem',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+            jQuery('.clear_sustentabilidade_button2').on('click', function() {
+                jQuery(this).siblings('.sustentabilidade2').val('');
+            });
+
+            jQuery('.upload_sustentabilidade_button2').on('click', function() {
+                text = jQuery(this).parent().find('.sustentabilidade2');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Imagem',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+            jQuery('.clear_sustentabilidade_button3').on('click', function() {
+                jQuery(this).siblings('.sustentabilidade3').val('');
+            });
+
+            jQuery('.upload_sustentabilidade_button3').on('click', function() {
+                text = jQuery(this).parent().find('.sustentabilidade3');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Imagem',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+            jQuery('.repeatable-add').click(function() {
+                field = jQuery(this).siblings('.custom_repeatable').find('li:last').clone(true);
+                fieldLocation = jQuery(this).siblings('.custom_repeatable').find('li:last');
+                jQuery('input[type="hidden"], input[type="text"], input[type="color"], textarea', field).val('').attr('name', function(index, name) {
+                    return name.replace(/(\d+)/, function(fullMatch, n) {
+                        return Number(n) + 1;
+                    });
+                })
+                field.insertAfter(fieldLocation);
+                return false;
+            });
+
+            jQuery('.repeatable-remove').click(function() {
+                if (jQuery(this).parent().siblings().length > 0)
+                    jQuery(this).parent().remove();
+                return false;
+            });
+
+            jQuery('.custom_repeatable').sortable({
+                opacity: 0.6,
+                revert: true,
+                cursor: 'move',
+                handle: '.sort'
+            });
 
         });
     </script>
     <table style="width:100%;">
         <tr>
             <th>Tipos de Segmentos e Setores</th>
+            <hr>
             <td>
                 <a class="repeatable-add button" href="#">Adicionar</a>
                 <ul class="custom_repeatable">
@@ -523,9 +657,10 @@ function page_produtoseservicos($post)
                     ?>
                             <li>
                                 <span class="sort hndle">|||</span><br>
+                                <label for="">Segmento: </label>
                                 <input type="text" name="segmentos_swiper[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome do segmento" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br><br>
-                                <br><br>
+                                <br>
                                 <input type="hidden" name="segmentos_swiper[<?php echo $i; ?>][1]" class="segmentos_swiper" value="<?php echo $row[1]; ?>" />
                                 <input type="text" name="segmentos_swiper_texto" class="segmentos_swiper_texto" value="<?php echo wp_get_attachment_url($row[1]); ?>" readonly="readonly" />
                                 <input type="button" class="upload_button button" value="Adicionar Arquivo" />
@@ -540,10 +675,11 @@ function page_produtoseservicos($post)
                         <li>
 
                             <span class="sort hndle">|||</span><br>
+                            <label for="">Segmento: </label>
                             <input type="text" name="segmentos_swiper[<?php echo $i; ?>][0]" placeholder="Nome do segmento" />
-                            <a class="repeatable-remove button" href="#">Excluir</a><br><br>
+                            <a class="repeatable-remove button" href="#">Excluir</a><br>
 
-                            <br><br>
+                            <br>
                             <input type="hidden" name="segmentos_swiper[<?php echo $i; ?>][1]" class="segmentos_swiper" value="" />
                             <input type="text" name="segmentos_swiper_texto" class="segmentos_swiper_texto" value="" readonly="readonly" />
                             <input type="button" class="upload_button button" value="Adicionar Arquivo" />
@@ -559,12 +695,113 @@ function page_produtoseservicos($post)
         </tr>
 
         <tr>
-            <th>Princípios</th>
+            <th>Cases de Sucesso</th>
             <td>
-                <textarea name="missaoval[8]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $missaovalores[8]; ?></textarea><br><br>
-                <input type="text" name="missaoval[9]" class="missaovalores" size="40" style="width: 100%;" value="<?php echo $missaovalores[9]; ?>" readonly="true" />
-                <input type="button" class="upload_missao_button button" value="Adicionar Imagem" />
-                <input type="button" class="clear_missao_button button" value="Remove Imagem" />
+                <a class="repeatable-add button" href="#">Adicionar</a>
+                <ul class="custom_repeatable">
+                    <?php
+                    $i = 0;
+                    if ($cases_swiper) {
+                        foreach ($cases_swiper as $row) {
+                    ?>
+                            <li>
+                                <span class="sort hndle">|||</span><br>
+                                <input type="text" name="cases_swiper[<?php echo $i; ?>][0]" value="<?php echo $row[0]; ?>" placeholder="Nome do produto" />
+                                <a class="repeatable-remove button" href="#">Excluir</a>
+                                <br><br>
+                                <label for="">Imagem Swiper</label><br>
+                                <input type="hidden" name="cases_swiper[<?php echo $i; ?>][1]" class="cases_swiper" value="<?php echo $row[1]; ?>" />
+                                <input type="text" name="cases_swiper_texto" class="cases_swiper_texto" value="<?php echo wp_get_attachment_url($row[1]); ?>" readonly="readonly" />
+                                <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                                <input type="button" class="clear_button button" value="Remove Arquivo" />
+                                <br><br>
+                                <label for="">Parceria com : </label>
+                                <input type="text" name="cases_swiper[<?php echo $i; ?>][2]" value="<?php echo $row[2]; ?>" placeholder="Digite a parceria" /><br>
+                                <label for="">Cliente : </label>
+                                <input type="text" name="cases_swiper[<?php echo $i; ?>][3]" value="<?php echo $row[3]; ?>" placeholder="Digite o Cliente" /><br>
+                                <label for="">Material Rodante : </label>
+                                <input type="text" name="cases_swiper[<?php echo $i; ?>][4]" value="<?php echo $row[4]; ?>" placeholder="Digite o Material" /><br>
+                                <label for="">Fabricante : </label>
+                                <input type="text" name="cases_swiper[<?php echo $i; ?>][5]" value="<?php echo $row[5]; ?>" placeholder="Digite o Fabricante" /><br>
+                                <label for="">Produto : </label>
+                                <input type="text" name="cases_swiper[<?php echo $i; ?>][6]" value="<?php echo $row[6]; ?>" placeholder="Digite o Produto" /><br>
+                                <label for="">Objetivo : </label>
+                                <textarea name="cases_swiper[<?php echo $i; ?>][7]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $row[7]; ?></textarea>
+
+                            </li>
+                        <?php
+                            $i++;
+                        }
+                    } else {
+                        ?>
+                        <li>
+
+                            <span class="sort hndle">|||</span><br>
+                            <input type="text" name="cases_swiper[<?php echo $i; ?>][0]" placeholder="Nome do produto" />
+                            <a class="repeatable-remove button" href="#">Excluir</a>
+
+                            <br><br>
+                            <label for="">Imagem Swiper</label><br>
+                            <input type="hidden" name="cases_swiper[<?php echo $i; ?>][1]" class="cases_swiper" value="" />
+                            <input type="text" name="cases_swiper_texto" class="cases_swiper_texto" value="" readonly="readonly" />
+                            <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                            <input type="button" class="clear_button button" value="Remove Arquivo" />
+                            <br><br>
+
+                            <label for="">Parceria com : </label>
+                            <input type="text" name="cases_swiper[<?php echo $i; ?>][2]" value="<?php echo $row[2]; ?>" placeholder="Digite a parceria" /><br>
+                            <label for="">Cliente : </label>
+                            <input type="text" name="cases_swiper[<?php echo $i; ?>][3]" value="<?php echo $row[3]; ?>" placeholder="Digite o Cliente" /><br>
+                            <label for="">Material Rodante : </label>
+                            <input type="text" name="cases_swiper[<?php echo $i; ?>][4]" value="<?php echo $row[4]; ?>" placeholder="Digite o Material" /><br>
+                            <label for="">Fabricante : </label>
+                            <input type="text" name="cases_swiper[<?php echo $i; ?>][5]" value="<?php echo $row[5]; ?>" placeholder="Digite o Fabricante" /><br>
+                            <label for="">Produto : </label>
+                            <input type="text" name="cases_swiper[<?php echo $i; ?>][6]" value="<?php echo $row[6]; ?>" placeholder="Digite o Produto" /><br>
+                            <label for="">Objetivo : </label>
+                            <textarea name="cases_swiper[<?php echo $i; ?>][7]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $row[7]; ?></textarea>
+
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+                <a class="repeatable-add button" href="#">Adicionar</a>
+                <hr>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Seção Modelo de Sustentabildade</th>
+            <td>
+
+
+                <label for="">Texto 1 bloco Sustentabilidade</label><br>
+                <textarea name="sustentabilidade[0]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $sustentabilidade[0]; ?></textarea><br><br>
+
+                <label for="">1 imagem sustentabilidade</label><br>
+                <input type="text" name="sustentabilidade[1]" class="sustentabilidade" size="40" style="width: 100%;" value="<?php echo $sustentabilidade[1]; ?>" readonly="true" />
+                <input type="button" class="upload_sustentabilidade_button button" value="Adicionar Imagem" />
+                <input type="button" class="clear_sustentabilidade_button button" value="Remove Imagem" />
+
+
+                <br><br>
+                <label for="">Texto 2 bloco Sustentabilidade</label><br>
+                <textarea name="sustentabilidade[2]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $sustentabilidade[2]; ?></textarea><br><br>
+
+                <label for="">2 imagem sustentabilidade</label><br>
+                <input type="text" name="sustentabilidade[3]" class="sustentabilidade2" size="40" style="width: 100%;" value="<?php echo $sustentabilidade[3]; ?>" readonly="true" />
+                <input type="button" class="upload_sustentabilidade_button2 button" value="Adicionar Imagem" />
+                <input type="button" class="clear_sustentabilidade_button2 button" value="Remove Imagem" />
+
+                <br><br>
+                <label for="">Texto 3 bloco Sustentabilidade</label><br>
+                <textarea name="sustentabilidade[4]" cols="30" rows="3" class="translate" style="width:100%;"><?php echo $sustentabilidade[4]; ?></textarea><br><br>
+
+                <label for="">3 imagem sustentabilidade</label><br>
+                <input type="text" name="sustentabilidade[5]" class="sustentabilidade3" size="40" style="width: 100%;" value="<?php echo $sustentabilidade[5]; ?>" readonly="true" />
+                <input type="button" class="upload_sustentabilidade_button3 button" value="Adicionar Imagem" />
+                <input type="button" class="clear_sustentabilidade_button3 button" value="Remove Imagem" />
             </td>
         </tr>
     </table>
@@ -2187,6 +2424,8 @@ function save_pagina()
         }
         if ($post->post_name == 'segmentos-e-setores') {
             update_post_meta($post->ID, 'segmentos_swiper', $_POST['segmentos_swiper']);
+            update_post_meta($post->ID, 'cases_swiper', $_POST['cases_swiper']);
+            update_post_meta($post->ID, 'sustentabilidade', $_POST['sustentabilidade']);
         }
 
         if ($post->post_name == 'parcerias') {

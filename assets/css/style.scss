@@ -93,6 +93,9 @@ header{
 // VVVVVVVVVV Fim do HEADER VVVVVVVVVV
 .botao{
     border-radius: 3px;
+    &:hover{
+        filter: brightness(1.75);
+    }
 }
 .py-6{
     padding-top: 60px;
@@ -346,6 +349,17 @@ header{
     top: 0;
     left: 0;
 }
+.section-modelo-sustentabilidade {
+    img{
+        filter: drop-shadow(0px 40px 50px rgba(0, 0, 0, 0.2));
+        width: 100%;
+        max-width: 352px;
+    }
+    p::before{
+        content: url(http://localhost/mitsui/wp-content/themes/mitsui/assets/images/before-servicos.png);
+        padding-right: 15px;
+    }
+}
 
 // VVVVVVVVVV FOOTER VVVVVVVVVV
 
@@ -457,9 +471,6 @@ footer {
 
         }
 
-    }
-    .redes-footer img{
-        // padding: 0 15px;
     }
 }
 
