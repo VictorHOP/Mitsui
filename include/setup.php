@@ -17,6 +17,7 @@ function va_after_setup()
     add_theme_support('custom-logo');
 
     register_nav_menu('primary', 'menu primário');
+    register_nav_menu('categorias blog', 'categorias blog');
     register_nav_menu('footer institucional', 'Menu footer institucinal');
     register_nav_menu('footer produtos', 'Menu footer produtos e servicos');
     register_nav_menu('footer segmentos', 'Menu footer segmentos e setores');
