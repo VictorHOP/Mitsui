@@ -436,6 +436,31 @@ header{
 hr{
     color: gray;
 }
+.form-control {
+    border: 2px solid #756E6E;
+    border-radius: 3px;
+    padding: 10px;
+}
+.form-submit{
+    padding-top: 20px;
+    input{
+        background-color: $laranja;
+        padding: 10px 20px; 
+        color: white;
+        border: none;
+    }
+}
+.botao-form-email{
+    input{
+        background-color: $laranja;
+        padding: 10px 20px; 
+        color: white;
+        border: none;
+    }
+}
+.wpcf7-spinner {
+    margin: 0 !important;
+}
 // VVVVVVVVVV FOOTER VVVVVVVVVV
 
 .section-fale-conosco{
