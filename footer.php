@@ -81,9 +81,8 @@
 		</div>
 		<div class="w-100 borda-azul"></div>
 		<div class="d-flex flex-column flex-md-row justify-content-between container pt-4">
-			<p class="text-white fs-15 m-0 pb-3 pb-md-0">Politica de cookies  |  Politica de privacidade</p>
+			<a href="<?php echo home_url('politica-e-privacidade'); ?>" class="text-white fs-15 m-0 pb-3 pb-md-0">Politica de cookies  |  Politica de privacidade</a>
 			<p class="text-white fs-15 m-0">Todos os direitos reservados &#xA9; 2021 - MITSUI RAIL CAPITAL</p>
-
 		</div>
 	</section>
 
@@ -120,6 +119,18 @@
 			});
 		});
 	});
+</script>
+
+<!-- CONFG. ACCORDION FALE CONOSCO -->
+<script>
+	
+		jQuery(function() {
+			jQuery('.accordion-perguntas').on('click', function() {
+				jQuery(this).find('.resposta').stop().slideToggle();
+				jQuery(this).toggleClass('active');
+			});
+			jQuery('.accordion-perguntas').first().addClass('active');
+		});
 </script>
 
 <!-- VVVVV SWIPPER VVVVV -->

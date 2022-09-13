@@ -5,7 +5,8 @@ $downloads = get_post_meta($post->ID, 'quemsomos_downloads', true);
 
 
 <div class="position-relative banner-pagina mt-5 container-fluid p-0">
-    <img src="<?php bloginfo('template_url'); ?>/assets/images/quem-somos-banner.png" alt="banner trem">
+    <img class="banner-produtos" src="<?php bloginfo('template_url'); ?>/assets/images/quem-somos-banner.png" alt="banner trem">
+    <div class="h-100 efeito-banner"></div>
     <h1 class="text-uppercase text-white position-h1"><?php the_title(); ?></h1>
 </div>
 

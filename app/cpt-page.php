@@ -738,21 +738,22 @@ function page_produtoseservicos($post)
 <?php
 }
 
-function page_parcerias($post)
+function page_fale_conosco($post)
 {
-    $parcerias = get_post_meta($post->ID, 'parcerias', true);
+    $perguntas = get_post_meta($post->ID, 'perguntas', true);
+    $endereco = get_post_meta($post->ID, 'endereco', true);
 ?>
     <script>
         jQuery(function() {
             var file_frame;
             var text;
 
-            jQuery('.clear_parcerias_button').on('click', function() {
-                jQuery(this).siblings('.parcerias').val('');
+            jQuery('.clear_perguntas_button').on('click', function() {
+                jQuery(this).siblings('.perguntas').val('');
             });
 
-            jQuery('.upload_parcerias_button').on('click', function() {
-                text = jQuery(this).parent().find('.parcerias');
+            jQuery('.upload_perguntas_button').on('click', function() {
+                text = jQuery(this).parent().find('.perguntas');
 
                 event.preventDefault();
 
@@ -802,24 +803,22 @@ function page_parcerias($post)
     </script>
     <table style="width:100%;">
         <tr>
-            <th>Parceiros</th>
+            <th>Perguntas <br> Frequentes</th>
             <td>
                 <a class="repeatable-add button" href="#">Adicionar</a>
                 <ul class="custom_repeatable">
                     <?php
                     $i = 0;
-                    if ($parcerias) {
-                        foreach ($parcerias as $row) {
+                    if ($perguntas) {
+                        foreach ($perguntas as $row) {
                     ?>
                             <li>
                                 <span class="sort hndle">|||</span><br>
-                                <input type="text" name="parcerias[<?php echo $i; ?>][2]" value="<?php echo $row[2]; ?>" placeholder="Nome" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
-                                <textarea name="parcerias[<?php echo $i; ?>][0]" class="translate" rows="3" style="width:100%;"><?php echo $row[0]; ?></textarea><br>
-                                <input type="text" name="parcerias[<?php echo $i; ?>][3]" value="<?php echo $row[3]; ?>" placeholder="Link" />
-                                <input type="text" name="parcerias[<?php echo $i; ?>][1]" class="parcerias" size="40" style="width: 100%;" value="<?php echo $row[1]; ?>" readonly="true" />
-                                <input type="button" class="upload_parcerias_button button" value="Adicionar Imagem" />
-                                <input type="button" class="clear_parcerias_button button" value="Remove Imagem" />
+                                <label for="">Pergunta:</label><br>
+                                <textarea name="perguntas[<?php echo $i; ?>][0]" class="translate" rows="3" style="width:100%;" placeholder="Insira a Pergunta"><?php echo $row[0]; ?></textarea><br>
+                                <label for="">Restposta:</label><br>
+                                <textarea name="perguntas[<?php echo $i; ?>][1]" class="translate" rows="3" placeholder="Insira a Resposta" style="width:100%;"><?php echo $row[1]; ?></textarea><br>
                                 <hr>
                             </li>
                         <?php
@@ -829,13 +828,11 @@ function page_parcerias($post)
                         ?>
                         <li>
                             <span class="sort hndle">|||</span><br>
-                            <input type="text" name="parcerias[<?php echo $i; ?>][2]" value="" placeholder="Nome" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
-                            <textarea name="parcerias[<?php echo $i; ?>][0]" class="translate" rows="3" style="width:100%;"></textarea><br>
-                            <input type="text" name="parcerias[<?php echo $i; ?>][3]" value="" placeholder="Link" />
-                            <input type="text" name="parcerias[<?php echo $i; ?>][1]" class="parcerias" size="40" style="width: 100%;" value="" readonly="true" />
-                            <input type="button" class="upload_parcerias_button button" value="Adicionar Imagem" />
-                            <input type="button" class="clear_parcerias_button button" value="Remove Imagem" />
+                            <label for="">Pergunta:</label><br>
+                            <textarea name="perguntas[<?php echo $i; ?>][0]" class="translate" rows="3" value="" style="width:100%;" placeholder="Insira a pergunta"></textarea><br>
+                            <label for="">Restposta:</label><br>
+                            <textarea name="perguntas[<?php echo $i; ?>][1]" class="translate" rows="3" style="width:100%;" placeholder="Insira a resposta"></textarea><br>
                             <hr>
                         </li>
                     <?php
@@ -843,6 +840,25 @@ function page_parcerias($post)
                     ?>
                 </ul>
                 <a class="repeatable-add button" href="#">Adicionar</a>
+            </td>
+        </tr>
+    </table>
+    <table style="width:100%;">
+        <hr>
+        <tr>
+            <th>Endereço/Contato</th>
+            <td>
+                <br>
+                <label for="">Digite o endereço:</label>
+                <textarea name="endereco[0]" cols="100" rows="5" placeholder="Digite o endereço aqui"><?php echo $endereco[0]; ?></textarea><br><br>
+                <label for="">Digite o CEP:</label><br>
+                <input type="text" name="endereco[4]" cols="100" rows="5" placeholder="Digite o CEP" value="<?php echo $endereco[4]; ?>"/><br><br>
+                <label for="">Digite o telefone:</label><br>
+                <input type="tel" name="endereco[1]" cols="100" rows="5" placeholder="Digite o Telefone" value="<?php echo $endereco[1]; ?>"/><br><br>
+                <label for="">Digite o e-mail:</label><br>
+                <input type="email" name="endereco[2]" cols="100" rows="5" placeholder="Digite o email" value="<?php echo $endereco[2]; ?>"/><br><br>
+                <label for="">Digite o src do iframe:</label>
+                <textarea name="endereco[3]" cols="100" rows="5" placeholder="Cole somente o conteudo do src=' 'aqui"><?php echo $endereco[3]; ?></textarea><br><br>
             </td>
         </tr>
     </table>
@@ -2287,44 +2303,8 @@ function metabox_pagina()
         add_meta_box('page_segmentos', 'Página Segmentos & Setores', 'page_segmentos', array('page'), 'normal', 'high');
     }
 
-    if ($post->post_name == 'parcerias') {
-        add_meta_box('page_parcerias', 'Página Parcerias', 'page_parcerias', array('page'), 'normal', 'high');
-    }
-
-    if ($post->post_name == 'imprensa') {
-        add_meta_box('page_imprensa', 'Página imprensa', 'page_imprensa', array('page'), 'normal', 'high');
-    }
-
-    if ($post->post_name == 'atuacao') {
-        add_meta_box('page_atuacao', 'Página atuação', 'page_atuacao', array('page'), 'normal', 'high');
-    }
-
-    if ($post->post_name == 'diretoria-e-conselho') {
-        add_meta_box('page_diretoria', 'Página Diretoria e Conselho', 'page_diretoria', array('page'), 'normal', 'high');
-    }
-
-    if ($post->post_name == 'compliance') {
-        add_meta_box('page_compliance', 'Página Compliance', 'page_compliance', array('page'), 'normal', 'high');
-    }
-
-    if ($post->post_name == 'comissao-tecnica-da-qualidade') {
-        add_meta_box('page_comissao_tecnica', 'Página Comissão Técnica', 'page_comissao_tecnica', array('page'), 'normal', 'high');
-    }
-
-    if ($post->post_name == 'treinamentos') {
-        add_meta_box('page_treinamentos', 'Página Treinamentos', 'page_treinamentos', array('page'), 'normal', 'high');
-    }
-
-    if ($post->post_name == 'cb005') {
-        add_meta_box('page_cb005', 'Página CB005', 'page_cb005', array('page'), 'normal', 'high');
-    }
-
-    if (get_post_meta($post->ID, '_wp_page_template', true) == 'page-vencedores-premio.php') {
-        add_meta_box('page_vencedores_premio', 'Página vencedores prêmio', 'page_vencedores_premio', array('page'), 'normal', 'high');
-    }
-
-    if (get_post_meta($post->ID, '_wp_page_template', true) == 'page-certificacao-profissionais.php') {
-        add_meta_box('page_certificacao_profissionais', 'Página certificação profissionais', 'page_certificacao_profissionais', array('page'), 'normal', 'high');
+    if ($post->post_name == 'fale-conosco') {
+        add_meta_box('page_fale_conosco', 'Página Fale Conosco', 'page_fale_conosco', array('page'), 'normal', 'high');
     }
 }
 
@@ -2358,80 +2338,9 @@ function save_pagina()
             update_post_meta($post->ID, 'sustentabilidade', $_POST['sustentabilidade']);
         }
 
-        if ($post->post_name == 'parcerias') {
-            update_post_meta($post->ID, 'parcerias', $_POST['parcerias']);
-        }
-
-        if ($post->post_name == 'imprensa') {
-            update_post_meta($post->ID, 'imprensa_downloads', $_POST['imprensa_downloads']);
-        }
-
-        if ($post->post_name == 'atuacao') {
-            update_post_meta($post->ID, 'atuacao_agilidade', stripslashes($_POST['atuacao_agilidade']));
-            update_post_meta($post->ID, 'atuacao_avancados', stripslashes($_POST['atuacao_avancados']));
-            update_post_meta($post->ID, 'atuacao_avancados_atuacao', $_POST['atuacao_avancados_atuacao']);
-            update_post_meta($post->ID, 'atuacao_global', stripslashes($_POST['atuacao_global']));
-            update_post_meta($post->ID, 'atuacao_global_atuacao', $_POST['atuacao_global_atuacao']);
-        }
-
-        if ($post->post_name == 'diretoria-e-conselho') {
-            update_post_meta($post->ID, 'diretoria_executiva_texto', stripslashes($_POST['diretoria_executiva_texto']));
-            update_post_meta($post->ID, 'diretoria_executiva_entidades', $_POST['diretoria_executiva_entidades']);
-            update_post_meta($post->ID, 'diretoria_executiva_diretores', $_POST['diretoria_executiva_diretores']);
-            update_post_meta($post->ID, 'conselho_texto', $_POST['conselho_texto']);
-            update_post_meta($post->ID, 'conselho_entidades', $_POST['conselho_entidades']);
-            update_post_meta($post->ID, 'conselho_diretores', $_POST['conselho_diretores']);
-            update_post_meta($post->ID, 'conselho_fiscal', $_POST['conselho_fiscal']);
-            update_post_meta($post->ID, 'conselho_fiscal_suplentes', $_POST['conselho_fiscal_suplentes']);
-        }
-
-        if ($post->post_name == 'compliance') {
-            update_post_meta($post->ID, 'compliance_downloads', $_POST['compliance_downloads']);
-        }
-
-        if ($post->post_name == 'comissao-tecnica-da-qualidade') {
-            update_post_meta($post->ID, 'comissao_titulo', $_POST['comissao_titulo']);
-            update_post_meta($post->ID, 'comissao_texto', $_POST['comissao_texto']);
-            update_post_meta($post->ID, 'comissao_imagem_azul', $_POST['comissao_imagem_azul']);
-            update_post_meta($post->ID, 'comissao_titulo_azul', $_POST['comissao_titulo_azul']);
-            update_post_meta($post->ID, 'comissao_texto_azul', $_POST['comissao_texto_azul']);
-            update_post_meta($post->ID, 'comissao_opcoes', $_POST['comissao_opcoes']);
-        }
-
-        if ($post->post_name == 'treinamentos') {
-            update_post_meta($post->ID, 'treinamentos_topo_imagem', $_POST['treinamentos_topo_imagem']);
-            update_post_meta($post->ID, 'treinamentos_topo_titulo', $_POST['treinamentos_topo_titulo']);
-            update_post_meta($post->ID, 'treinamentos_topo_texto', $_POST['treinamentos_topo_texto']);
-            update_post_meta($post->ID, 'treinamentos_topo_texto_cor', $_POST['treinamentos_topo_texto_cor']);
-            update_post_meta($post->ID, 'treinamentos_topo_link', $_POST['treinamentos_topo_link']);
-            update_post_meta($post->ID, 'treinamentos_topo_link_texto', $_POST['treinamentos_topo_link_texto']);
-            update_post_meta($post->ID, 'treinamentos_promocao', $_POST['treinamentos_promocao']);
-            update_post_meta($post->ID, 'treinamentos_promocao_de', $_POST['treinamentos_promocao_de']);
-            update_post_meta($post->ID, 'treinamentos_promocao_por', $_POST['treinamentos_promocao_por']);
-        }
-
-        if ($post->post_name == 'cb005') {
-            update_post_meta($post->ID, 'cb005_superintendente', $_POST['cb005_superintendente']);
-            update_post_meta($post->ID, 'cb005_secretaria_tecnica', $_POST['cb005_secretaria_tecnica']);
-            update_post_meta($post->ID, 'cb005_chefe_secretaria', $_POST['cb005_chefe_secretaria']);
-            update_post_meta($post->ID, 'cb005_secretaria', $_POST['cb005_secretaria']);
-            update_post_meta($post->ID, 'cb005_endereco', $_POST['cb005_endereco']);
-            update_post_meta($post->ID, 'cb005_fone', $_POST['cb005_fone']);
-            update_post_meta($post->ID, 'cb005_fone_ramal', $_POST['cb005_fone_ramal']);
-            update_post_meta($post->ID, 'cb005_email', $_POST['cb005_email']);
-            update_post_meta($post->ID, 'cbooc_links', $_POST['cbooc_links']);
-        }
-
-        if (get_post_meta($post->ID, '_wp_page_template', true) == 'page-vencedores-premio.php') {
-            update_post_meta($post->ID, 'premio_ranking', $_POST['premio_ranking']);
-        }
-
-        if (get_post_meta($post->ID, '_wp_page_template', true) == 'page-certificacao-profissionais.php') {
-            update_post_meta($post->ID, 'certificacao_videos', $_POST['certificacao_videos']);
-            update_post_meta($post->ID, 'certificacao_apoiadores', $_POST['certificacao_apoiadores']);
-            update_post_meta($post->ID, 'certificacao_azul_titulo', $_POST['certificacao_azul_titulo']);
-            update_post_meta($post->ID, 'certificacao_azul_texto', $_POST['certificacao_azul_texto']);
-            update_post_meta($post->ID, 'certificacao_azul_link', $_POST['certificacao_azul_link']);
+        if ($post->post_name == 'fale-conosco') {
+            update_post_meta($post->ID, 'perguntas', $_POST['perguntas']);
+            update_post_meta($post->ID, 'endereco', $_POST['endereco']);
         }
     }
 }

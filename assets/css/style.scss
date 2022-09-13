@@ -101,8 +101,11 @@ header{
     padding-top: 60px;
     padding-bottom: 60px;
 }
+.pt-6{
+    padding-top: 60px !important;
+}
 .ps-6{
-    padding-left: 60px;
+    padding-left: 60px !important;
 }
 .ps-8{
     padding-left: 80px;
@@ -461,10 +464,89 @@ hr{
 .wpcf7-spinner {
     margin: 0 !important;
 }
+// VVVVV FALE CONOSCO VVVVV
+.accordion-perguntas{
+    border-radius: 10px;
+    padding: 50px;
+    &::before{
+        content: "";
+        width: 8px;
+        height: 8px;
+        border: none;
+        border-top: #fff 1px solid;
+        border-right: #fff 1px solid;
+        position: absolute;
+        top: 54px;
+        left: 28px;
+        z-index: 17;
+        transform: rotate(137deg);
+        transition: all .5s ease-in-out;
+    }
+    &::after{
+        content: "";
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        border: 1px solid $laranja;
+        background-color: $laranja;
+        top: 43px;
+        z-index: 16;
+        left: 16px;
+        position: absolute;
+        filter: drop-shadow(0px 25px 40px rgba(0, 0, 0, 0.3));
+    }
+    &.active::before{
+        transition: all 0.5s ease-in-out;
+        top: 57px;
+        transform: rotate(-45deg);
+    }
+
+}
+.pergunta{
+    cursor: pointer;
+}
+
+.section-perguntas{
+    .accordion-perguntas:first-child{
+        .resposta{
+            display: block;
+        }
+    }
+    .resposta{
+        display: none;
+    }
+
+}
+
+// VVVVVVV POLITICA DE PRIVACIDADE VVVVVVV
+
+.lista-politica{
+    background-color: $azul-escuro;
+    padding-left: 0;
+    border-radius: 5px;
+    li{
+        position: relative;
+        color: white;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 28px;
+        list-style: none;
+        border-bottom: 1px solid #4848C6;
+        &:hover{
+            background-color: $laranja;
+            cursor: pointer;
+        }
+    }
+
+}
+.lista-politica li:last-of-type{
+    border: none;
+}
 // VVVVVVVVVV FOOTER VVVVVVVVVV
 
 .section-fale-conosco{
     background-color: $azul-roxo;
+    filter: drop-shadow(0px 25px 40px rgba(0,0,0,0.9));
 }
 .accordion .menu-item-has-children{
     @media (max-width:990px) {
