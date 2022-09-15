@@ -39,7 +39,7 @@
                     <a href="<?php the_permalink(); ?>" class="d-flex flex-column">
                         <?php the_post_thumbnail(); ?>
                         <p class="fs-20 cinza fw500"><?php the_title(); ?></p>
-                        <p class="laranja fw500 fs-20">Leia mais</p>
+                        <p class="laranja fw500 fs-20 leia">Leia mais</p>
                     </a>
                 </div>
             <?php endwhile; ?>

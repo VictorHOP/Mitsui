@@ -34,15 +34,14 @@
                 <a class="navbar-brand m-0" href="#"><img src="<?php bloginfo('template_url'); ?>/assets/images/logo-mitsui.png" alt="logo brasscom"></a>
 
                 <div class="offcanvas offcanvas-top justify-content-center" data-bs-hideresize="true" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenu">
-                    <!-- <div class="offcanvas-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="21.3345" y="23.3345" width="30" height="3" transform="rotate(-135 21.3345 23.3345)" fill="#DDFF15" />
-                                <rect x="23.3345" y="2.33447" width="30" height="3" transform="rotate(135 23.3345 2.33447)" fill="#DDFF15" />
-                            </svg>
-                        </button>
-                    </div> -->
+
                     <div class="offcanvas-body justify-content-center">
+                        <div class="d-flex d-sm-none justify-content-center align-items-center py-3">
+
+                            <!-- Button trigger modal -->
+                            <img class="px-4 lupa pointer" src="<?php bloginfo('template_url'); ?>/assets/images/lupa.png" alt="lupa" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <img class="px-4" src="<?php bloginfo('template_url'); ?>/assets/images/pt-br.png" alt="brasil">
+                        </div>
                         <?php
                         if (has_nav_menu('primary')) {
                             wp_nav_menu(array(
@@ -75,11 +74,26 @@
                     </div>
 
                 </div>
-                <div class="d-sm-flex d-none align-items-center">
-                    <img class="px-4" src="<?php bloginfo('template_url'); ?>/assets/images/lupa.png" alt="lupa">
-                    <img class="px-4" src="<?php bloginfo('template_url'); ?>/assets/images/pt-br.png" alt="lupa">
+                <div class="d-sm-flex align-items-center d-none">
+                    <!-- Button trigger modal -->
+                    <img class="px-4 lupa pointer" src="<?php bloginfo('template_url'); ?>/assets/images/lupa.png" alt="lupa" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <img class="px-4" src="<?php bloginfo('template_url'); ?>/assets/images/pt-br.png" alt="brasil">
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo get_search_form(); ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
 
     </header>
+    <div class="mt-header"></div>

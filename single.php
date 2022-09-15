@@ -133,7 +133,7 @@ add_filter('comment_form_defaults', 'o2_comment_form_text', 100); ?>
                                 <a href="<?php the_permalink(); ?>" class="d-flex flex-column">
                                     <p class="fs-16 cinza fw500"><?php echo get_the_date('d|m|Y') ?></p>
                                     <p class="fs-16 cinza fw500"><?php the_title(); ?></p>
-                                    <p class="laranja fw500 fs-16 ">Leia mais</p>
+                                    <p class="laranja fw500 fs-16 leia">Leia mais</p>
                                     <hr>
                                 </a>
                             </div>

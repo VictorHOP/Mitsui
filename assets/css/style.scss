@@ -82,7 +82,7 @@ header{
 }
 .navbar-toggler {
     border: none;
-    width: 150px !important;
+    width: 170px !important;
     &:focus{
         box-shadow: none;
     }
@@ -103,6 +103,9 @@ header{
 }
 .pt-6{
     padding-top: 60px !important;
+}
+.pt-8{
+    padding-top: 80px !important;
 }
 .ps-6{
     padding-left: 60px !important;
@@ -464,6 +467,22 @@ hr{
 .wpcf7-spinner {
     margin: 0 !important;
 }
+.leia{
+    position: relative;
+    padding-left: 15px;
+    &::before{
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-top: $laranja 1px solid;
+        border-right: $laranja 1px solid;
+        position: absolute;
+        z-index: 17;
+        transform: rotate(40deg);
+        top:34%;
+        left: 0;
+    }
+}
 // VVVVV FALE CONOSCO VVVVV
 .accordion-perguntas{
     border-radius: 10px;
@@ -529,18 +548,117 @@ hr{
         color: white;
         font-size: 15px;
         font-weight: 500;
-        padding: 28px;
         list-style: none;
         border-bottom: 1px solid #4848C6;
         &:hover{
             background-color: $laranja;
             cursor: pointer;
         }
+        &.active{
+            background-color: $laranja;
+        }
+        a{
+            text-decoration: none;
+            color: #fff;
+            padding: 28px;
+            display: block;
+        }
     }
-
+    li::after{
+        content: "";
+        width: 12px;
+        height: 12px;
+        border: none;
+        border-top: #fff 2px solid;
+        border-right: #fff 2px solid;
+        position: absolute;
+        transform: rotate(45deg);
+        right: 22px;
+        top: 44%;
+    }
 }
 .lista-politica li:last-of-type{
     border: none;
+}
+.conteudo-politica{
+    p{
+        color: $cinza;
+    }
+}
+.sub-politica{
+    font-weight: 700;
+    color: #161616;
+    &:hover{
+        color: #161616;
+    }
+}
+
+
+// VVVVVVV BUSCA VVVVVVVV
+
+
+
+.modal-backdrop {
+    z-index: 8 !important;
+    background-color: rgba(255, 255, 255);
+    opacity: 0.85 !important;
+    backdrop-filter: blur(10px);
+}
+.modal-dialog{
+    max-width: none;
+}
+.modal-content {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .modal-header{
+        border: none;
+        width: 80%;
+    }
+    .modal-body{
+        width: 80%;
+    }
+}
+.button-search{
+    border: none;
+    color: #fff;
+    background-color: #ff7c1e;
+    border-radius: 5px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 222px;
+    display: flex;
+    align-items: center;
+    min-height: 57px;
+    @media (max-width:766px) {
+        max-width: none;
+    }
+}
+.busca{
+
+    input{
+        height: 54px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0);
+        &:focus{
+            outline: none;
+        }
+    }
+}
+.caixa_pesquisa{
+    border: 2px solid $cinza;
+    border-radius: 5px;
+}
+.pointer{
+    cursor: pointer;
+}
+.mt-header{
+    margin-top: 108px;
 }
 // VVVVVVVVVV FOOTER VVVVVVVVVV
 
