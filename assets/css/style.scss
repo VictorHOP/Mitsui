@@ -82,7 +82,7 @@ header{
 }
 .navbar-toggler {
     border: none;
-    width: 170px !important;
+    width: 167px !important;
     &:focus{
         box-shadow: none;
     }
@@ -90,7 +90,42 @@ header{
 .aberto{
     display: none;
 }
-// VVVVVVVVVV Fim do HEADER VVVVVVVVVV
+// VVVVVVV Fim do HEADER VVVVVVV
+
+// VVVVVVV HOME VVVVVVVV
+
+.position-conteudo-banner{
+    position: absolute;
+    top: 30%;
+    z-index: 7;
+    @media (max-width:767px) {
+        top:20%;
+    }
+}
+.margin-banner{
+    margin-left: 120px;
+    @media (max-width:767px) {
+        margin-left: auto;
+    }
+}
+.fundo-p{
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+    width: fit-content;
+}
+.fundo-h2{
+    background: rgba(53, 53, 151, 0.8);
+    mix-blend-mode: normal;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+}
+.banner-home{
+    img{
+        width: 100%;
+        object-fit: cover;
+        height: 500px;
+    }
+}
+//Fim da Home
 .botao{
     border-radius: 3px;
     &:hover{
@@ -597,9 +632,12 @@ hr{
 // VVVVVVV BUSCA VVVVVVVV
 
 
-
+.modal{
+    
+    backdrop-filter: blur(10px);
+}
 .modal-backdrop {
-    z-index: 8 !important;
+    z-index: 1029 !important;
     background-color: rgba(255, 255, 255);
     opacity: 0.85 !important;
     backdrop-filter: blur(10px);
@@ -613,6 +651,7 @@ hr{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2000;
     .modal-header{
         border: none;
         width: 80%;

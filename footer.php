@@ -202,7 +202,7 @@
 	});
 </script>
 <script>
-	var swiper2 = new Swiper(".swiperCases", {
+	var swiper3 = new Swiper(".swiperCases", {
 		slidesPerView: 1,
 		pagination: {
 			el: ".swiper-pagination",
@@ -231,7 +231,19 @@
 		},
 	});
 </script>
-
+<script>
+	var swiper4 = new Swiper(".swiperBanner", {
+		slidesPerView: 1,
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+		},
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+	});
+</script>
 </body>
 
 </html>

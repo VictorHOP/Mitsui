@@ -31,7 +31,7 @@
                     </svg>
                     <span class="ps-2" style="color:#353597">MENU</span>
                 </button>
-                <a class="navbar-brand m-0" href="#"><img src="<?php bloginfo('template_url'); ?>/assets/images/logo-mitsui.png" alt="logo brasscom"></a>
+                <a class="navbar-brand m-0" href="index.php"><img src="<?php bloginfo('template_url'); ?>/assets/images/logo-mitsui.png" alt="logo mitsui"></a>
 
                 <div class="offcanvas offcanvas-top justify-content-center" data-bs-hideresize="true" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenu">
 

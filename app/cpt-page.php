@@ -852,11 +852,11 @@ function page_fale_conosco($post)
                 <label for="">Digite o endereço:</label>
                 <textarea name="endereco[0]" cols="100" rows="5" placeholder="Digite o endereço aqui"><?php echo $endereco[0]; ?></textarea><br><br>
                 <label for="">Digite o CEP:</label><br>
-                <input type="text" name="endereco[4]" cols="100" rows="5" placeholder="Digite o CEP" value="<?php echo $endereco[4]; ?>"/><br><br>
+                <input type="text" name="endereco[4]" cols="100" rows="5" placeholder="Digite o CEP" value="<?php echo $endereco[4]; ?>" /><br><br>
                 <label for="">Digite o telefone:</label><br>
-                <input type="tel" name="endereco[1]" cols="100" rows="5" placeholder="Digite o Telefone" value="<?php echo $endereco[1]; ?>"/><br><br>
+                <input type="tel" name="endereco[1]" cols="100" rows="5" placeholder="Digite o Telefone" value="<?php echo $endereco[1]; ?>" /><br><br>
                 <label for="">Digite o e-mail:</label><br>
-                <input type="email" name="endereco[2]" cols="100" rows="5" placeholder="Digite o email" value="<?php echo $endereco[2]; ?>"/><br><br>
+                <input type="email" name="endereco[2]" cols="100" rows="5" placeholder="Digite o email" value="<?php echo $endereco[2]; ?>" /><br><br>
                 <label for="">Digite o src do iframe:</label>
                 <textarea name="endereco[3]" cols="100" rows="5" placeholder="Cole somente o conteudo do src=' 'aqui"><?php echo $endereco[3]; ?></textarea><br><br>
             </td>
@@ -865,9 +865,9 @@ function page_fale_conosco($post)
 <?php
 }
 
-function page_imprensa($post)
+function page_home($post)
 {
-    $imprensa_downloads = get_post_meta($post->ID, 'imprensa_downloads', true);
+    $banner = get_post_meta($post->ID, 'banner', true);
 ?>
     <script>
         jQuery(function() {
@@ -875,14 +875,14 @@ function page_imprensa($post)
             var text;
             var id;
 
-            jQuery('.clear_arquivo_button').on('click', function() {
-                jQuery(this).siblings('.imprensa_downloads').val('');
-                jQuery(this).siblings('.imprensa_downloads_texto').val('');
+            jQuery('.clear_button').on('click', function() {
+                jQuery(this).siblings('.banner').val('');
+                jQuery(this).siblings('.banner_texto').val('');
             });
 
-            jQuery('.upload_arquivo_button').on('click', function() {
-                id = jQuery(this).parent().find('.imprensa_downloads');
-                text = jQuery(this).parent().find('.imprensa_downloads_texto');
+            jQuery('.upload_button').on('click', function() {
+                id = jQuery(this).parent().find('.banner');
+                text = jQuery(this).parent().find('.banner_texto');
 
                 event.preventDefault();
 
@@ -933,24 +933,38 @@ function page_imprensa($post)
     </script>
     <table>
         <tr>
-            <th>Downloads</th>
+            <th>Banner Home</th>
             <td>
-                <a class="repeatable-add button" href="#">Adicionar</a>
+                <a class="repeatable-add button" href="#">Adicionar novo banner</a>
                 <ul class="custom_repeatable">
                     <?php
                     $i = 0;
-                    if ($imprensa_downloads) {
-                        foreach ($imprensa_downloads as $row) {
+                    if ($banner) {
+                        foreach ($banner as $row) {
                     ?>
                             <li>
                                 <span class="sort hndle">|||</span>
-                                <input type="hidden" name="imprensa_downloads[<?php echo $i; ?>]" class="imprensa_downloads" value="<?php echo $row; ?>" />
-                                <input type="text" name="imprensa_downloads_texto" class="imprensa_downloads_texto" value="<?php echo wp_get_attachment_url($row); ?>" readonly="readonly" />
-                                <input type="button" class="upload_arquivo_button button" value="Adicionar Arquivo" />
-                                <input type="button" class="clear_arquivo_button button" value="Remove Arquivo" />
                                 <a class="repeatable-remove button" href="#">Excluir</a><br>
+                                <label for="">Imagem Banner</label><br>
+                                <input type="hidden" name="banner[<?php echo $i; ?>][0]" class="banner" value="<?php echo $row[0]; ?>" />
+                                <input type="text" name="banner_texto" class="banner_texto" value="<?php echo wp_get_attachment_url($row[0]); ?>" readonly="readonly" />
+                                <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                                <input type="button" class="clear_button button" value="Remove Arquivo" /> <br><br>
+
+
+                                <label for="">Insira a parte do titulo Sem negrito: </label>
+                                <input type="text" name="banner[<?php echo $i; ?>][1]" placeholder="Titulo sem Negrito" value="<?php echo $row[1]; ?>" /><br>
+                                <label for="">Insira a parte do titulo Com negrito: </label>
+                                <input type="text" name="banner[<?php echo $i; ?>][2]" placeholder="Titulo com Negrito" value="<?php echo $row[2]; ?>"/><br>
+                                <label for="">Insira o conteudo do subtitulo: </label>
+                                <input type="text" name="banner[<?php echo $i; ?>][3]" placeholder="subtitulo" value="<?php echo $row[3]; ?>"/><br>
+                                <label for="">Insira o conteudo do botao: </label>
+                                <input type="text" name="banner[<?php echo $i; ?>][4]" placeholder="texto do botao" value="<?php echo $row[4]; ?>"/><br>
+
                                 <hr>
                             </li>
+
+
                         <?php
                             $i++;
                         }
@@ -958,18 +972,31 @@ function page_imprensa($post)
                         ?>
                         <li>
                             <span class="sort hndle">|||</span>
-                            <input type="hidden" name="imprensa_downloads[<?php echo $i; ?>]" class="imprensa_downloads" value="" />
-                            <input type="text" name="imprensa_downloads_texto" class="imprensa_downloads_texto" value="" readonly="readonly" />
-                            <input type="button" class="upload_arquivo_button button" value="Adicionar Arquivo" />
-                            <input type="button" class="clear_arquivo_button button" value="Remove Arquivo" />
+
+                            <label for="">Imagem Banner</label><br>
+                            <input type="hidden" name="banner[<?php echo $i; ?>][0]" class="banner" value="" />
+                            <input type="text" name="banner_texto" class="banner_texto" value="" readonly="readonly" />
+                            <input type="button" class="upload_button button" value="Adicionar Arquivo" />
+                            <input type="button" class="clear_button button" value="Remove Arquivo" />
                             <a class="repeatable-remove button" href="#">Excluir</a><br>
+                            <br><br>
+
+                            <label for="">Insira a parte do titulo Sem negrito: </label>
+                                <input type="text" name="banner[<?php echo $i; ?>][1]" placeholder="Titulo sem Negrito" /><br>
+
+                                <label for="">Insira a parte do titulo Com negrito: </label>
+                                <input type="text" name="banner[<?php echo $i; ?>][2]" placeholder="Titulo com Negrito" /><br>
+                                <label for="">Insira o conteudo do subtitulo: </label>
+                                <input type="text" name="banner[<?php echo $i; ?>][3]" placeholder="subtitulo" /><br>
+                                <label for="">Insira o conteudo do botao: </label>
+                                <input type="text" name="banner[<?php echo $i; ?>][4]" placeholder="texto do botao" /><br>
                             <hr>
                         </li>
                     <?php
                     }
                     ?>
                 </ul>
-                <a class="repeatable-add button" href="#">Adicionar</a>
+                <a class="repeatable-add button" href="#">Adicionar novo banner</a>
             </td>
         </tr>
     </table>
@@ -2306,6 +2333,10 @@ function metabox_pagina()
     if ($post->post_name == 'fale-conosco') {
         add_meta_box('page_fale_conosco', 'Página Fale Conosco', 'page_fale_conosco', array('page'), 'normal', 'high');
     }
+
+    if ($post->post_name == 'home') {
+        add_meta_box('page_home', 'Página Home', 'page_home', array('page'), 'normal', 'high');
+    }
 }
 
 add_action('add_meta_boxes', 'metabox_pagina');
@@ -2341,6 +2372,9 @@ function save_pagina()
         if ($post->post_name == 'fale-conosco') {
             update_post_meta($post->ID, 'perguntas', $_POST['perguntas']);
             update_post_meta($post->ID, 'endereco', $_POST['endereco']);
+        }
+        if ($post->post_name == 'home') {
+            update_post_meta($post->ID, 'banner', $_POST['banner']);
         }
     }
 }

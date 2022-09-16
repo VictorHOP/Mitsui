@@ -98,8 +98,8 @@ $sustentabilidade = get_post_meta($post->ID, 'sustentabilidade', true);
             </p>
         </div>
 
-        <div class="d-flex align-items-center py-5 flex-column flex-lg-row-reverse">
-            <img class="pe-md-5" src="<?php echo ($sustentabilidade[3]); ?>" alt="">
+        <div class="d-flex align-items-center py-5 flex-column flex-md-row-reverse">
+            <img class="ps-md-5" src="<?php echo ($sustentabilidade[3]); ?>" alt="">
             <p class="text-white pt-4 pt-md-0"><?php echo $sustentabilidade[2]; ?>
             </p>
         </div>

@@ -22,7 +22,8 @@
     <div class="row">
         <?php query_posts(array(
             'post_type' => 'post',
-            'paged' => $paged
+            'paged' => $paged,
+            'posts_per_page' => 6
         ));
 
         if (have_posts()) : ?>
