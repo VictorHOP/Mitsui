@@ -125,6 +125,95 @@ header{
         height: 500px;
     }
 }
+.efeito-secao{
+    position: absolute;
+    top: 0;
+    left: 12px;
+    background: linear-gradient(90deg, #4848C6 33.46%, rgba(72, 72, 198, 0) 100%);
+    transform: matrix(1, 0, 0, -1, 0, 0);
+    z-index: 3;
+    height: 633px;
+    width: calc(100% - 12px);
+    @media (max-width:575px) {
+        position: relative;
+        width: 100%;
+        left: 0;
+        display: none;
+    }
+}
+.section-quemsomos-home{
+    img{
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        object-fit: cover;
+        height: 633px;
+    }
+    .position-conteudo{
+        position: absolute;
+        top: 70px;
+        left: 60px;
+        z-index: 4;
+        @media (max-width:575px) {
+            top: 0;
+            left: auto;
+            right: auto;
+            position: relative;
+            padding-bottom: 25px;
+            background-color: $azul-roxo;
+        }
+    }
+}
+.section-conheca-locomotica{
+    @media (max-width:575px) {
+        background-color: $azul-roxo;
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+    img{
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        object-fit: cover;
+        height: 596px;
+        @media (max-width:575px) {
+            height: 100%;
+        }
+    }
+    .efeito-secao{
+        position: absolute;
+        top: 0;
+        left: 12px;
+        background: linear-gradient(90deg, #4848C6 33.46%, rgba(72, 72, 198, 0) 100%);
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+        z-index: 3;
+        height: 100%;
+        width: calc(100% - 12px);
+        @media (max-width:575px) {
+            position: relative;
+            width: 100%;
+            left: 0;
+            display: none;
+        }
+    }
+    .position-conteudo{
+        position: absolute;
+        bottom: 90px;
+        right: 90px;
+        z-index: 4;
+        max-width: 540px;
+        @media (max-width:767px) {
+            right: 30px;
+            padding-left: 50px;    
+        }
+        @media (max-width:575px) {
+            position: relative;
+            bottom: auto;
+            right: auto;
+            padding-left: 12px;  
+        }
+    }
+}
 //Fim da Home
 .botao{
     border-radius: 3px;
@@ -147,6 +236,9 @@ header{
 }
 .ps-8{
     padding-left: 80px;
+}
+.pb-8{
+ padding-bottom: 80px;
 }
 .py-8{
     padding-top: 80px;
