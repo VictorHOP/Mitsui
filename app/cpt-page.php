@@ -869,6 +869,8 @@ function page_home($post)
 {
     $banner = get_post_meta($post->ID, 'banner', true);
     $produtos_home = get_post_meta($post->ID, 'produtos_home', true);
+    $quem_somos = get_post_meta($post->ID, 'quem_somos', true);
+    $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
 ?>
     <script>
         jQuery(function() {
@@ -905,12 +907,12 @@ function page_home($post)
 
                 file_frame.open();
             });
-            jQuery('.clear_button').on('click', function() {
+            jQuery('.clear_butto').on('click', function() {
                 jQuery(this).siblings('.produtos_home').val('');
                 jQuery(this).siblings('.produtos_home_texto').val('');
             });
 
-            jQuery('.upload_button').on('click', function() {
+            jQuery('.upload_butto').on('click', function() {
                 id = jQuery(this).parent().find('.produtos_home');
                 text = jQuery(this).parent().find('.produtos_home_texto');
 
@@ -1030,6 +1032,22 @@ function page_home($post)
             </td>
         </tr>
 
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
+            <th>Section Quem somos</th>
+            <td>
+                <label for="">Insira o texto da seção Quem somos</label><br>
+                <textarea name="quem_somos" rows="3" style="width:100%" class="translate"><?php echo $quem_somos; ?></textarea>
+            </td>
+        </tr>
+
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
+            <th>Section Produtos</th>
+            <td>
+                <label for="">Insira o texto da seção Produtos e serviços</label><br>
+                <textarea name="produtos_conteudo" rows="3" style="width:100%" class="translate"><?php echo $produtos_conteudo; ?></textarea>
+            </td>
+        </tr>
+
         <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15); padding-bottom:30px">
             <th>Swiper <br> Produtos e Serviços</th>
             <td>
@@ -1046,8 +1064,8 @@ function page_home($post)
                                 <label for="">Imagem Swiper</label><br>
                                 <input type="hidden" name="produtos_home[<?php echo $i; ?>][0]" class="produtos_home" value="<?php echo $row[0]; ?>" />
                                 <input type="text" name="produtos_home_texto" class="produtos_home_texto" value="<?php echo wp_get_attachment_url($row[0]); ?>" readonly="readonly" />
-                                <input type="button" class="upload_button button" value="Adicionar Arquivo" />
-                                <input type="button" class="clear_button button" value="Remove Arquivo" /> <br><br>
+                                <input type="button" class="upload_butto button" value="Adicionar Arquivo" />
+                                <input type="button" class="clear_butto button" value="Remove Arquivo" /> <br><br>
 
 
                                 <label for="">Nome do Serviço: </label>
@@ -1068,8 +1086,8 @@ function page_home($post)
                             <label for="">Imagem produtos_home</label><br>
                             <input type="hidden" name="produtos_home[<?php echo $i; ?>][0]" class="produtos_home" value="" />
                             <input type="text" name="produtos_home_texto" class="produtos_home_texto" value="" readonly="readonly" />
-                            <input type="button" class="upload_button button" value="Adicionar Arquivo" />
-                            <input type="button" class="clear_button button" value="Remove Arquivo" />
+                            <input type="button" class="upload_butto button" value="Adicionar Arquivo" />
+                            <input type="button" class="clear_butto button" value="Remove Arquivo" />
                             <a class="repeatable-remove button" style="color:red;" href="#">Excluir</a><br>
                             <br><br>
 
@@ -2462,6 +2480,8 @@ function save_pagina()
         if ($post->post_name == 'home') {
             update_post_meta($post->ID, 'banner', $_POST['banner']);
             update_post_meta($post->ID, 'produtos_home', $_POST['produtos_home']);
+            update_post_meta($post->ID, 'quem_somos', $_POST['quem_somos']);
+            update_post_meta($post->ID, 'produtos_conteudo', $_POST['produtos_conteudo']);
         }
     }
 }

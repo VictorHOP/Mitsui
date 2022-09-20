@@ -188,7 +188,7 @@ header{
         transform: matrix(-1, 0, 0, 1, 0, 0);
         z-index: 3;
         height: 100%;
-        width: calc(100% - 12px);
+        width: calc(100% - 24px);
         @media (max-width:575px) {
             position: relative;
             width: 100%;
@@ -214,11 +214,23 @@ header{
         }
     }
 }
+.button-produtos{
+    @media (max-width:575px) {
+        margin-top: 100px !important;
+        margin-bottom: 100px;
+    }
+}
+.button-novidades{
+    @media (max-width:575px) {
+        margin-top: 80px;
+    }
+}
 //Fim da Home
 .botao{
     border-radius: 3px;
+    filter: drop-shadow(0px 25px 40px rgba(0, 0, 0, 0.3));
     &:hover{
-        filter: brightness(0.90);
+        background-color: $laranja-hover;
     }
 }
 .py-6{
@@ -243,6 +255,12 @@ header{
 .py-8{
     padding-top: 80px;
     padding-bottom: 80px;
+}
+.py-sm-8{
+    @media (min-width:576px) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
 }
 .py-10{
     padding-top: 100px;
@@ -518,7 +536,9 @@ header{
             border-radius: 50px;
             font-size: 16px;
             padding: 5px 15px !important;
-
+            &:hover{
+                background-color: $laranja-hover;
+            }
         }
         &:first-child a{
             background-color: $azul-escuro;
@@ -639,7 +659,7 @@ hr{
         z-index: 16;
         left: 16px;
         position: absolute;
-        filter: drop-shadow(0px 25px 40px rgba(0, 0, 0, 0.3));
+        box-shadow: 0px 11px 28px grey;
     }
     &.active::before{
         transition: all 0.5s ease-in-out;
@@ -784,6 +804,10 @@ hr{
 .caixa_pesquisa{
     border: 2px solid $cinza;
     border-radius: 5px;
+
+    &:focus-within{
+        border: 2px solid black;
+    }
 }
 .pointer{
     cursor: pointer;

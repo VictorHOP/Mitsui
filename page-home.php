@@ -1,6 +1,10 @@
 <?php get_header();
 $banner = get_post_meta($post->ID, 'banner', true);
-$segmentos_swiper = get_post_meta($post->ID, 'segmentos_swiper', true);
+$quem_somos = get_post_meta($post->ID, 'quem_somos', true);
+$segmentos_swiper = get_post_meta(get_page_by_path('segmentos-e-setores')->ID, 'segmentos_swiper', true);
+$produtos_home = get_post_meta($post->ID, 'produtos_home', true);
+$produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
+// dd(get_page_by_path('segmentos-e-setores')->ID)
 ?>
 <section class="banner-home">
     <div class="position-relative banner-home mt-5 container-fluid p-0">
@@ -38,7 +42,6 @@ $segmentos_swiper = get_post_meta($post->ID, 'segmentos_swiper', true);
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
             <div class="w-100 d-flex justify-content-center">
-
                 <div class="swiper-pagination swiper-pagination-vertical d-flex flex-md-column justify-content-around align-items-around"></div>
             </div>
         </div>
@@ -55,12 +58,7 @@ $segmentos_swiper = get_post_meta($post->ID, 'segmentos_swiper', true);
             <h2 class="fw300 text-white pt-4 pt-sm-0 m-">QUEM <fw900> SOMOS </fw900>
             </h2>
             <p class="text-white text-start fw400" style="white-space: pre-line;">
-                A Mitsui Rail Capital Latin America (MRCLA) está há mais de 17 anos no mercado, trazendo soluções inovadoras e integradas para mobilidade logística de material rodante em diversos setores.
-
-                Como uma das principais empresas de locação de vagões, locomotivas e terminais no Brasil, oferecemos soluções que atendem as necessidades e demandas de nossos clientes.
-
-                A MRCLA valoriza o relacionamento de longo prazo com seus clientes, e preza pela excelência no atendimento, segurança, qualidade e confiança.
-
+            <?php echo $quem_somos ;?>
             </p>
             <a href="" class="text-white bg-laranja d-flex align-items-center justify-content-center py-3 px-5 botao col-sm-10 col-lg-8 col-12"><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
@@ -78,7 +76,7 @@ $segmentos_swiper = get_post_meta($post->ID, 'segmentos_swiper', true);
         <div class="col-lg-4 pb-4">
             <h2 class="fw300 fs-40 azul-escuro pt-4 pt-sm-0">PRODUTOS E <fw900> SERVIÇOS </fw900>
             </h2>
-            <p class="cinza fw400">Somos referência em soluções integradas para mobilidade logística ferroviária. Locamos locomotivas, vagões e terminais de carga para diversos segmentos de produtos, como agrícolas, minério, combustíveis, siderúrgicos e industrializados.</p>
+            <p class="cinza fw400" style="white-space: pre-line;"><?php echo $produtos_conteudo ;?></p>
             <p class="cinza fw600">Conte com a MRCLA para potencializar a gestão de ativos ferroviários da sua empresa! </p>
             <a href="" class="text-white bg-laranja d-lg-flex d-none align-items-center justify-content-center py-3 px-5 botao col-12"><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
@@ -90,30 +88,22 @@ $segmentos_swiper = get_post_meta($post->ID, 'segmentos_swiper', true);
         <div class="col-lg-8">
             <div class="swiper swiperProdutosHome pb-lg-4">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="pointer">
-                            <img src="<?php bloginfo('template_url'); ?>/assets/images/trem-laranja.png" alt="">
-                            <div class="efeito-img"></div>
-                            <p class="fw600 fs-20 text-white texto m-0">Vagões</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="pointer">
-                            <img src="<?php bloginfo('template_url'); ?>/assets/images/trem-laranja.png" alt="">
-                            <div class="efeito-img"></div>
-                            <p class="fw600 fs-20 text-white texto m-0">Vagões</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="pointer">
-                            <img src="<?php bloginfo('template_url'); ?>/assets/images/trem-laranja.png" alt="">
-                            <div class="efeito-img"></div>
-                            <p class="fw600 fs-20 text-white texto m-0">Vagões</p>
-                        </div>
-                    </div>
-
+                    <?php $i = 0;
+                    if ($produtos_home) {
+                        foreach ($produtos_home as $row) {
+                    ?>
+                            <div class="swiper-slide">
+                                <div class="pointer">
+                                    <img src="<?php echo wp_get_attachment_url($produtos_home[$i][0]); ?>" alt="">
+                                    <div class="efeito-img"></div>
+                                    <p class="fw600 fs-20 text-white texto m-0"><?php echo $produtos_home[$i][1] ?></p>
+                                </div>
+                            </div>
+                    <?php $i++;
+                        }
+                    } ?>
                 </div>
-                <div class="d-flex justify-content-end w-100 mt-5">
+                <div class="d-flex justify-content-sm-end justify-content-center w-100 mt-5 button-produtos">
                     <a href="" class="text-white bg-laranja d-flex d-lg-none align-items-center justify-content-center py-3 px-5 botao "><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
                             <path d="M56 1L64 9L56 17" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
@@ -126,14 +116,16 @@ $segmentos_swiper = get_post_meta($post->ID, 'segmentos_swiper', true);
             </div>
         </div>
 </section>
-
-<section class="container section-segmentos pt-8">
-    <p class="cinza my-5">Sua empresa poderá aumentar a quantidade de ativos logísticos disponíveis por meio da locação de vagões e locomotivas, assim é possível garantir maior capacidade no transporte de cargas e alavancar seu negócio.
+<div class="py-sm-5"></div>
+<section class="container section-segmentos py-sm-8">
+    <h2 class="fw300 fs-40 azul-escuro pt-4 pt-sm-0 pb-2">SEGMENTOS E <fw900> SETORES </fw900>
+    </h2>
+    <p class="cinza mt-sm-5">Sua empresa poderá aumentar a quantidade de ativos logísticos disponíveis por meio da locação de vagões e locomotivas, assim é possível garantir maior capacidade no transporte de cargas e alavancar seu negócio.
 
         <strong>Confira os segmentos e setores que atuamos e contate um dos nossos especialistas para saber como obter vantagem competitiva na sua empresa com a MRCLA!</strong>
     </p>
 
-    <div class="swiper swiperSegmentos py-5">
+    <div class="swiper swiperSegmentos py-6 mt-3">
         <div class="swiper-wrapper">
             <?php $i = 0;
             if ($segmentos_swiper) {
@@ -168,6 +160,46 @@ $segmentos_swiper = get_post_meta($post->ID, 'segmentos_swiper', true);
                 </svg>
                 <p class="m-0"> Veja nossa locomotiva!</p>
             </a>
+        </div>
+    </div>
+</section>
+<section class="container py-6">
+    <h2 class="azul-roxo fs-sm-35 fs-44 pb-4">NOVIDADES DO <fw900>BLOG</fw900>
+    </h2>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="swiper swiperNovidades">
+            <div class="swiper-wrapper">
+                <?php query_posts(array(
+                    'post_type' => 'post',
+                    'posts_per_page' => '6'
+                ));
+
+                if (have_posts()) : ?>
+                    <?php while (have_posts()) : ?>
+                        <?php the_post(); ?>
+                        <div class="swiper-slide">
+                            <div class="d-flex flex-column post-blog">
+                                <a href="<?php the_permalink(); ?>" class="d-flex flex-column">
+                                    <?php the_post_thumbnail('', array('class' => '')); ?>
+                                    <p class="fs-16 cinza fw500"><?php the_title(); ?></p>
+                                    <p class="laranja fw500 fs-16 ">Leia o artigo</p>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+            </div>
+            <div class="d-flex justify-content-center justify-content-sm-start w-100 button-novidades">
+                <a href="<?php echo home_url('blog'); ?>" class="text-white bg-laranja d-flex align-items-center justify-content-center py-3 px-5 botao "><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
+                        <path d="M56 1L64 9L56 17" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
+                    </svg>
+                    <p class="m-0"> Acesse outros artigos</p>
+                </a>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
     </div>
 </section>
