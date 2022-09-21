@@ -77,7 +77,7 @@ header{
     top: 0;
     left: 0;
 }
-.nav-item:hover:before{
+.nav-item:hover:before, .current-menu-item::before{
     width: 100%;
 }
 .navbar-toggler {
@@ -100,6 +100,9 @@ header{
     z-index: 7;
     @media (max-width:767px) {
         top:20%;
+    }
+    @media (min-width:1420px) {
+        left: calc(25% - 200px)
     }
 }
 .margin-banner{
@@ -162,9 +165,12 @@ header{
             padding-bottom: 25px;
             background-color: $azul-roxo;
         }
+        @media (min-width:1400px) {
+            right: auto;
+        }
     }
 }
-.section-conheca-locomotica{
+.section-conheca-locomotica, .section-grupo-mitsui{
     @media (max-width:575px) {
         background-color: $azul-roxo;
         padding-top: 20px;
@@ -211,6 +217,10 @@ header{
             bottom: auto;
             right: auto;
             padding-left: 12px;  
+        }
+        @media (min-width:1400px) {
+            right: calc(50% - 655px);
+
         }
     }
 }
@@ -338,6 +348,10 @@ header{
         width: 1306px;
         height: 661px;
     }
+    @media (min-width:1400px) {
+        right: calc(50% - 651px);
+
+    }
 }
 .section-nossa-equipe{
 
@@ -368,15 +382,11 @@ header{
     object-fit: cover;
     height: 871px;
     object-position: center;
-
+    @media (max-width:575px) {
+        height: auto;
+    }
 }
-.grupo-mitsui{
-    position: absolute;
-    top: 110px;
-    right: 70px;
-    width: 460px;
 
-}
 .redes-fixed{
     position: fixed;
     top:50%;
@@ -540,7 +550,9 @@ header{
                 background-color: $laranja-hover;
             }
         }
-        &:first-child a{
+    }
+    .current-menu-item{
+        a{
             background-color: $azul-escuro;
         }
     }
@@ -813,7 +825,7 @@ hr{
     cursor: pointer;
 }
 .mt-header{
-    margin-top: 108px;
+    margin-top: 106px;
 }
 // VVVVVVVVVV FOOTER VVVVVVVVVV
 

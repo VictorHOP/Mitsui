@@ -112,6 +112,9 @@
     }
     .swiper-button-next, .swiper-button-prev{
         border: none;
+        @media (min-width:1450px) {
+            left: calc(19% - 47px);
+        }
     }
     .swiper-button-next:after, .swiper-button-prev:after {
         color: white;
@@ -126,6 +129,9 @@
             top: 86%;
             left: auto;
             right: auto;
+        }
+        @media (min-width:1450px) {
+            left: calc(19% - 40px);
         }
     }
     .swiper-pagination-bullet{

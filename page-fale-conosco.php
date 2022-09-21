@@ -4,7 +4,7 @@
 ?>
 
 <div class="position-relative banner-pagina mt-5 container-fluid p-0">
-    <img class="banner-produtos" src="<?php bloginfo('template_url'); ?>/assets/images/banner-fale-conosco.png" alt="banner trem">
+    <?php the_post_thumbnail('', array('class' => 'banner-produtos')); ?>
     <div class="h-100 efeito-banner"></div>
     <h1 class="text-uppercase text-white position-h1"><?php the_title(); ?></h1>
 </div>

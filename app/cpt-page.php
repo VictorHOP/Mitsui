@@ -8,7 +8,7 @@ function page_quemsomos($post)
     $visao = get_post_meta($post->ID, 'quemsomos_visao', true);
     $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
     $equipe = get_post_meta($post->ID, 'quemsomos_equipe', true);
-    $downloads = get_post_meta($post->ID, 'quemsomos_downloads', true);
+    $grupo_mitsui = get_post_meta($post->ID, 'quemsomos_grupo_mitsui', true);
 ?>
     <script>
         jQuery(function() {
@@ -73,31 +73,34 @@ function page_quemsomos($post)
         });
     </script>
     <table style="width:100%;">
-        <tr>
+    <div>
+        
+    </div>
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Sobre MRCLA</th>
             <td>
                 <textarea name="quemsomos_sobre_mrcla" class="translate" rows="3" style="width:100%;"><?php echo $sobre_mrcla; ?></textarea>
             </td>
         </tr>
-        <tr>
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Missão</th>
             <td>
                 <textarea name="quemsomos_missao" class="translate" rows="3" style="width:100%;"><?php echo $missao; ?></textarea>
             </td>
         </tr>
-        <tr>
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Visão</th>
             <td>
                 <textarea name="quemsomos_visao" class="translate" rows="3" style="width:100%;"><?php echo $visao; ?></textarea>
             </td>
         </tr>
-        <tr>
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Valores</th>
             <td>
                 <textarea name="quemsomos_valores" class="translate" rows="3" style="width:100%;"><?php echo $valores; ?></textarea>
             </td>
         </tr>
-        <tr>
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Nossa Equipe</th>
             <td>
                 <a class="repeatable-add button" href="#">Adicionar</a>
@@ -145,45 +148,12 @@ function page_quemsomos($post)
                 <a class="repeatable-add button" href="#">Adicionar</a>
             </td>
         </tr>
-        <tr>
-            <th>Downloads</th>
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
+            <th>Section Grupo Mitsui</th>
             <td>
-                <hr>
-                <a class="repeatable-add button" href="#">Adicionar</a>
-                <ul class="custom_repeatable">
-                    <?php
-                    $i = 0;
-                    if ($downloads) {
-                        foreach ($downloads as $row) {
-                    ?>
-                            <li>
-                                <span class="sort hndle">|||</span>
-                                <input type="hidden" name="quemsomos_downloads[<?php echo $i; ?>]" class="downloads" value="<?php echo $row; ?>" />
-                                <input type="text" name="quemsomos_downloads_texto" class="downloads_texto" value="<?php echo wp_get_attachment_url($row); ?>" readonly="readonly" />
-                                <input type="button" class="upload_button button" value="Adicionar Arquivo" />
-                                <input type="button" class="clear_button button" value="Remove Arquivo" />
-                                <a class="repeatable-remove button" href="#">Excluir</a><br>
-                                <hr>
-                            </li>
-                        <?php
-                            $i++;
-                        }
-                    } else {
-                        ?>
-                        <li>
-                            <span class="sort hndle">|||</span>
-                            <input type="hidden" name="quemsomos_downloads[<?php echo $i; ?>]" class="downloads" value="" />
-                            <input type="text" name="quemsomos_downloads_texto" class="downloads_texto" value="" readonly="readonly" />
-                            <input type="button" class="upload_button button" value="Adicionar Arquivo" />
-                            <input type="button" class="clear_button button" value="Remove Arquivo" />
-                            <a class="repeatable-remove button" href="#">Excluir</a><br>
-                            <hr>
-                        </li>
-                    <?php
-                    }
-                    ?>
-                </ul>
-                <a class="repeatable-add button" href="#">Adicionar</a>
+                <label for="">Texto Grupo Mitsui</label><br>
+                <textarea name="quemsomos_grupo_mitsui" rows="3" style="width:100%" class="translate"><?php echo $grupo_mitsui; ?></textarea>
+
             </td>
         </tr>
     </table>
@@ -2459,7 +2429,7 @@ function save_pagina()
             update_post_meta($post->ID, 'quemsomos_valores', stripslashes($_POST['quemsomos_valores']));
             update_post_meta($post->ID, 'quemsomos_equipe', $_POST['quemsomos_equipe']);
             update_post_meta($post->ID, 'quemsomos_foto', $_POST['quemsomos_foto']);
-            update_post_meta($post->ID, 'quemsomos_downloads', $_POST['quemsomos_downloads']);
+            update_post_meta($post->ID, 'quemsomos_grupo_mitsui', $_POST['quemsomos_grupo_mitsui']);
         }
 
         if ($post->post_name == 'produtos-e-servicos') {

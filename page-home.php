@@ -42,7 +42,7 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
             <div class="w-100 d-flex justify-content-center">
-                <div class="swiper-pagination swiper-pagination-vertical d-flex flex-md-column justify-content-around align-items-around"></div>
+                <div class="swiper-pagination junin swiper-pagination-vertical d-flex flex-md-column justify-content-around align-items-around"></div>
             </div>
         </div>
     </div>
@@ -120,10 +120,7 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
 <section class="container section-segmentos py-sm-8">
     <h2 class="fw300 fs-40 azul-escuro pt-4 pt-sm-0 pb-2">SEGMENTOS E <fw900> SETORES </fw900>
     </h2>
-    <p class="cinza mt-sm-5">Sua empresa poderá aumentar a quantidade de ativos logísticos disponíveis por meio da locação de vagões e locomotivas, assim é possível garantir maior capacidade no transporte de cargas e alavancar seu negócio.
-
-        <strong>Confira os segmentos e setores que atuamos e contate um dos nossos especialistas para saber como obter vantagem competitiva na sua empresa com a MRCLA!</strong>
-    </p>
+    <p class="cinza mt-sm-5">Sua empresa poderá aumentar a quantidade de ativos logísticos disponíveis por meio da locação de vagões e locomotivas, assim é possível garantir maior capacidade no transporte de cargas e alavancar seu negócio.</p>
 
     <div class="swiper swiperSegmentos py-6 mt-3">
         <div class="swiper-wrapper">
@@ -152,14 +149,15 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
     <div class="position-relative row justify-content-center">
         <img src="<?php bloginfo('template_url'); ?>/assets/images/conheca-locomotiva.png" alt="trem">
         <div class="efeito-secao"></div>
-        <div class="position-conteudo text-white col-12 text-sm-end">
-            <p class="fs-20 text-wrap pt-4 pt-sm-0">Conheça a locomotiva diesel-elétrica produzida pela GE, modelo de sustentabilidade com participação da MRCLA!</p>
-            <a href="" class="text-white bg-laranja d-flex align-items-center justify-content-center py-3 px-5 botao"><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
-                    <path d="M56 1L64 9L56 17" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
-                </svg>
-                <p class="m-0"> Veja nossa locomotiva!</p>
-            </a>
+            <div class="position-conteudo text-white col-12 text-sm-end ">
+                <p class="fs-20 text-wrap pt-4 pt-sm-0">Conheça a locomotiva diesel-elétrica produzida pela GE, modelo de sustentabilidade com participação da MRCLA!</p>
+                <a href="" class="text-white bg-laranja d-flex align-items-center justify-content-center py-3 px-5 botao"><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
+                        <path d="M56 1L64 9L56 17" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
+                    </svg>
+                    <p class="m-0"> Veja nossa locomotiva!</p>
+                </a>
+            </div>
         </div>
     </div>
 </section>

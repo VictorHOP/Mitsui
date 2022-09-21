@@ -22,12 +22,14 @@
 
 	<!-- VVV FALE CONOSCO VVV -->
 	<section class="section-fale-conosco py-8">
-		<div class="row mx-4">
-			<h2 class="text-white text-center fs-sm-35">FALE <fw900>CONOSCO</fw900>
-			</h2>
-			<p class="text-white fs-24 col-12 col-sm-10 m-auto py-3 text-center fs-sm-16">Entre em contato com um de nossos especialistas e saiba o que a MRCLA pode fazer para te ajudar a melhorar a logística de ativos ferroviários da sua empresa!</p>
-			<div class="d-flex justify-content-center">
-				<a href="<?php echo home_url('fale-conosco'); ?>" class="text-white bg-laranja d-flex py-3 px-4 botao"><img class="pe-3 d-none d-sm-block" src="<?php bloginfo('template_url'); ?>/assets/images/seta-branca-comprida.png" alt="seta branca"> Entre em contato</a>
+		<div class="container-xxl">
+			<div class="row mx-4">
+				<h2 class="text-white text-center fs-sm-35">FALE <fw900>CONOSCO</fw900>
+				</h2>
+				<p class="text-white fs-24 col-12 col-sm-10 m-auto py-3 text-center fs-sm-16">Entre em contato com um de nossos especialistas e saiba o que a MRCLA pode fazer para te ajudar a melhorar a logística de ativos ferroviários da sua empresa!</p>
+				<div class="d-flex justify-content-center">
+					<a href="<?php echo home_url('fale-conosco'); ?>" class="text-white bg-laranja d-flex py-3 px-4 botao"><img class="pe-3 d-none d-sm-block" src="<?php bloginfo('template_url'); ?>/assets/images/seta-branca-comprida.png" alt="seta branca"> Entre em contato</a>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -135,7 +137,7 @@
 <script>
 	jQuery(function() {
 		jQuery('.lupa').on('click', function() {
-			
+
 		});
 	});
 </script>
@@ -232,23 +234,26 @@
 	});
 </script>
 <script>
-	var swiper4 = new Swiper(".swiperBanner", {
-		slidesPerView: 1,
-		speed: 1000,
-		effect: "fade",
-		autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
-		pagination: {
-			el: ".swiper-pagination",
-			clickable: true,
-		},
-		navigation: {
-			nextEl: ".swiper-button-next",
-			prevEl: ".swiper-button-prev",
-		},
-	});
+	jQuery(document).ready(function() {
+
+		var swiper4 = new Swiper(".swiperBanner", {
+			slidesPerView: 1,
+			speed: 1000,
+			effect: "fade",
+			autoplay: {
+				delay: 30000,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: ".swiper-pagination",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+		});
+	})
 </script>
 <script>
 	var swiper5 = new Swiper(".swiperProdutosHome", {
@@ -256,9 +261,9 @@
 		speed: 700,
 		spaceBetween: 25,
 		autoplay: {
-          delay: 3500,
-          disableOnInteraction: false,
-        },
+			delay: 3500,
+			disableOnInteraction: false,
+		},
 		pagination: {
 			el: ".swiper-pagination",
 			clickable: true,

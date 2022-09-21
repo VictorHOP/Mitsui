@@ -18,7 +18,7 @@
     <header class="fixed-top">
 
         <nav class="navbar navbar-expand-xl py-0" id="navbar">
-            <div class="d-flex flex-row container-fluid align-items-center justify-content-between">
+            <div class="d-flex flex-row container-fluid container-xxl align-items-center justify-content-between">
                 <button class="navbar-toggler m-0 d-flex justify-content-center align-items-center d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
                     <svg class="fechado" width="40" height="21" viewBox="0 0 40 21" fill="#353597" xmlns="http://www.w3.org/2000/svg">
                         <rect x="40" y="21" width="40" height="3" transform="rotate(-180 40 21)" fill="#353597" />

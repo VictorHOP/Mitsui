@@ -1,11 +1,11 @@
 <?php get_header();
 $equipe = get_post_meta(get_the_ID(), 'quemsomos_equipe', true);
-$downloads = get_post_meta($post->ID, 'quemsomos_downloads', true);
+$grupo_mitsui = get_post_meta($post->ID, 'quemsomos_grupo_mitsui', true);
 ?>
 
 
 <div class="position-relative banner-pagina mt-5 container-fluid p-0">
-    <img class="banner-produtos" src="<?php bloginfo('template_url'); ?>/assets/images/quem-somos-banner.png" alt="banner trem">
+    <?php the_post_thumbnail('', array('class' => 'banner-produtos')); ?>
     <div class="h-100 efeito-banner"></div>
     <h1 class="text-uppercase text-white position-h1"><?php the_title(); ?></h1>
 </div>
@@ -18,7 +18,7 @@ $downloads = get_post_meta($post->ID, 'quemsomos_downloads', true);
             <h2 class="fw300 pb-4">SOBRE A <fw900> MRCLA E NEGÓCIOS </fw900>
             </h2>
 
-            <p>
+            <p style="white-space: pre-line;">
                 <?= $sobre_mrcla = get_post_meta($post->ID, 'quemsomos_sobre_mrcla', true); ?>
             </p>
         </div>
@@ -88,26 +88,24 @@ $downloads = get_post_meta($post->ID, 'quemsomos_downloads', true);
     </div>
 </section>
 
-<section class="section-grupo-mitsui container-fluid d-flex justify-content-center">
-    <div class="position-relative pb-4">
-        <img class="img-grupo-mitsui" src="<?php bloginfo('template_url'); ?>/assets/images/foto-grupo-mitsui.png" alt="fundo grupo mitsui">
-        <div class="grupo-mitsui text-white d-flex flex-column justify-content-center text-end">
+
+<section class="container-fluid section-grupo-mitsui">
+    <div class="position-relative row justify-content-center">
+        <img class="img-grupo-mitsui" src="<?php bloginfo('template_url'); ?>/assets/images/grupo-mitsui.png" alt="fundo grupo mitsui">
+        <div class="efeito-secao"></div>
+        <div class="position-conteudo text-white col-12 text-sm-end ">
             <h2 class="fw300 pb-4">GRUPO <fw900> MITSUI </fw900>
             </h2>
-
-            <p class="fs-16 fw-400">
-                A Mitsui Rail Capital Participações Ltda. (MRCLA) é subsidiária da Mitsui & Co., Ltd., um dos maiores conglomerados japoneses, presente em 66 países. O Grupo Mitsui é uma das empresas de trade, investimento e serviços abrangentes mais diversificados do mundo. <br><br>
-
-                Com objetivo de expandir os serviços oferecidos, a Mitsui ingressou no mercado de material rodante ao estabelecer a MRC nos EUA, Brasil e Rússia, e há décadas está envolvida em projetos logísticos como transporte de pessoas e cargas. <br><br>
-
-                O conglomerado Mitsui continuará a empenhar esforços para melhorar o valor corporativo da MRCLA, mediante a expansão da escala de negócios e melhoria do portfólio de vagões. Consequentemente, contribuirá no desenvolvimento e maior eficiência da plataforma de logística ferroviária do Brasil.
-            </p>
-            <div class="d-flex justify-content-end pt-4">
-                <a href="" class="text-white w-fit bg-laranja d-flex py-3 px-4 botao"><img class="pe-3 d-none d-sm-block" src="<?php bloginfo('template_url'); ?>/assets/images/seta-branca-comprida.png" alt="seta branca"> Conheça o GRUPO MITSUI</a>
-            </div>
+            <p class="fs-16 fw-400" style="white-space: pre-line;"><?php echo $grupo_mitsui ;?></p>
+            <a href="" class="text-white bg-laranja d-flex align-items-center justify-content-center py-3 px-5 botao"><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
+                    <path d="M56 1L64 9L56 17" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
+                </svg>
+                <p class="m-0"> Conheça o GRUPO MITSUI</p>
+            </a>
         </div>
     </div>
+    </div>
 </section>
-
 
 <?php get_footer(); ?>
