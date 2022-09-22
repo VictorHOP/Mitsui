@@ -204,7 +204,7 @@ header{
     }
     .position-conteudo{
         position: absolute;
-        bottom: 90px;
+        top: 90px;
         right: 90px;
         z-index: 4;
         max-width: 540px;
@@ -215,6 +215,7 @@ header{
         @media (max-width:575px) {
             position: relative;
             bottom: auto;
+            top: 50px;
             right: auto;
             padding-left: 12px;  
         }
@@ -262,6 +263,9 @@ header{
 .pb-8{
  padding-bottom: 80px;
 }
+.pb-6{
+    padding-bottom: 60px;
+   }
 .py-8{
     padding-top: 80px;
     padding-bottom: 80px;
@@ -353,6 +357,13 @@ header{
 
     }
 }
+.foto-mmv{
+    img{
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+    }
+}
 .section-nossa-equipe{
 
     img{
@@ -380,7 +391,7 @@ header{
     width: 100%;
     min-height: fit-content;
     object-fit: cover;
-    height: 871px;
+    height: 760px;
     object-position: center;
     @media (max-width:575px) {
         height: auto;
@@ -470,7 +481,7 @@ header{
     align-items: center;
     height: 691px;
 }
-.section-nossos-produtos{
+.section-nossos-produtos, .section-terminal-de-cargas{
     img{
         height: 635px;
         object-fit: cover;
@@ -480,6 +491,7 @@ header{
         .position-locomotiva{
             position: relative;
             padding: 20px;
+            right: auto;
         }
         img{
             width: 100%;
@@ -487,12 +499,26 @@ header{
         }
 
     }
+    @media (min-width:1550px) {
+        .position-locomotiva{
+        right: calc(50% - 65px);
+        }
+    }
+}
+.position-servicos-diferenciados{
+    position: absolute;
+    top: calc(50% - 152px);
+    right: calc(50% - 516px);
+    z-index: 4;
+    max-width: 540px;
+
 }
 .position-locomotiva{
     position: absolute;
     top: 0;
-    left: 0;
-
+    right: calc(50% - 120px);
+    z-index: 6;
+    max-width: 710px !important;
 }
 .section-terminal-de-cargas{
     img{

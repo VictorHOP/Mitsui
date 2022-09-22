@@ -1,7 +1,10 @@
 <?php get_header();
-$swiper_produtos = get_post_meta($post->ID, 'produtoseservicos_swiper', true);
-$oque_fazemos = get_post_meta($post->ID, 'produtoseservicos_oque_fazemos', true);
-$produtos_servicos = get_post_meta($post->ID, 'produtoseservicos_produtos_servicos', true);
+    $oque_fazemos = get_post_meta($post->ID, 'produtoseservicos_oque_fazemos', true);
+    $produtos_servicos = get_post_meta($post->ID, 'produtoseservicos_produtos_servicos', true);
+    $servicos_diferenciados = get_post_meta($post->ID, 'produtoseservicos_servicos_diferenciados', true);
+    $locomotiva = get_post_meta($post->ID, 'produtoseservicos_locomotiva', true);
+    $terminal = get_post_meta($post->ID, 'produtoseservicos_terminal', true);
+    $swiper_produtos = get_post_meta($post->ID, 'produtoseservicos_swiper', true);
 ?>
 
 
@@ -23,7 +26,7 @@ $produtos_servicos = get_post_meta($post->ID, 'produtoseservicos_produtos_servic
         <div class="d-flex flex-md-column flex-column-reverse col-12 col-md-6">
             <img src="<?php echo wp_get_attachment_url($oque_fazemos[3]); ?>" alt="">
 
-            <p class="cinza fw400 pt-4" style="white-space: pre-wrap;"><?php echo $oque_fazemos[1];?></p>
+            <p class="cinza fw400 pt-4" style="white-space: pre-wrap;"><?php echo $oque_fazemos[1]; ?></p>
         </div>
     </div>
 </section>
@@ -95,24 +98,23 @@ $produtos_servicos = get_post_meta($post->ID, 'produtoseservicos_produtos_servic
     </div>
 </section>
 
-<section class="section-servicos-diferenciados" style="background-image: linear-gradient(270deg, #4848C6 33.46%, rgba(72, 72, 198, 0) 100%),url(http://localhost/mitsui/wp-content/themes/mitsui/assets/images/fundo-servicos-diferenciados.png);">
-    <div class="container">
-
-        <div class="row justify-content-end">
-
-            <div class="text-white text-center text-md-start col-12 col-md-6 ">
+<section class="container-fluid section-conheca-locomotica">
+    <div class="position-relative row justify-content-center">
+        <img src="<?php echo $servicos_diferenciados[1]; ?>" alt="trem">
+        <div class="efeito-secao"></div>
+        <div class="position-servicos-diferenciados text-white col-12 text-sm-end ">
+            <div class="text-white text-center text-md-start ">
                 <h2 class="fw300 pb-4 fw900">
                     SERVIÇOS DIFERENCIADOS
                 </h2>
-                <p>A MRCLA pode oferecer serviços diferenciados à sua empresa, agregando todo nosso know-how adquirido através da implantação de vários projetos no setor ferroviário brasileiro e gestão de compra logística aplicadas com sucesso. <br><br>
-
-                    Nossa equipe está pronta para te auxiliar nos conceitos operacionais e gerenciais do transporte de carga ferroviário. Entre em contato conosco!
+                <p style="white-space: pre-line;"><?php echo $servicos_diferenciados[0]; ?>
                 </p>
             </div>
         </div>
     </div>
-
+    </div>
 </section>
+
 
 <section class="section-nossa-experiencia container py-8">
     <div class="pb-5">
@@ -170,18 +172,13 @@ $produtos_servicos = get_post_meta($post->ID, 'produtoseservicos_produtos_servic
 <section class="section-nossos-produtos py-4">
     <div class="d-flex flex-column align-items-center position-relative">
 
-        <img class="container-fluid" src="<?php bloginfo('template_url'); ?>/assets/images/nossos-produtos-locomotiva.png" alt="">
-        <div class="row flex-column text-white mx-3">
-            <div class="d-flex justify-content-center flex-column col-lg-7 col-md-8 position-locomotiva h-100 bg-gradient-azul-esquerda ps-8">
+        <img class="container-fluid" src="<?php echo $locomotiva[1] ?>" alt=" fundo secao locomotiva">
+        <div class="flex-column text-white mx-3">
+            <div class="h-100 efeito-banner start-0 d-none d-md-block"></div>
+            <div class="d-flex justify-content-center flex-column col-lg-7 col-md-8 position-locomotiva h-100 p-xxl-0 ps-8">
                 <h2 class="fw900">LOCOMOTIVA</h2>
-                <p class="fw400">
-                    Pensada em modelo moderno, a locomotiva desenvolvida pela GE Transportation, em parceria com a MRCLA, tem oito eixos e atende aos trilhos de bitola métrica, que representa 80% da malha ferroviária nacional. <br><br>
-
-                    O seu motor de tração com tecnologia AC (corrente alternada) oferece alta performance, usando melhor o espaço disponível na malha ferroviária em comparação aos motores de corrente contínua.<br><br>
-
-                    Além disso, o investimento na locomotiva digital traz mais eficiência e agilidade no transporte de cargas, já que duas máquinas de oito eixos podem substituir até cinco máquinas com seis eixos.<br><br>
-
-                    Ainda, é possível receber alerta sobre problemas ou imprevistos com o transporte, pois a locomotiva está apta a receber softwares e sistema de monitoramento remoto, que emite informações em tempo real.
+                <p class="fw400" style="white-space: pre-line;">
+                    <?php echo $locomotiva[0] ?>
                 </p>
             </div>
         </div>
@@ -218,25 +215,27 @@ $produtos_servicos = get_post_meta($post->ID, 'produtoseservicos_produtos_servic
 
 </section>
 
-<section class="section-terminal-de-cargas position-relative container-fluid p-0">
-    <img class="container-fluid p-sm-0 pt-3" style="min-height: 405px;" src="<?php bloginfo('template_url'); ?>/assets/images/terminal-de-cargas.png" alt="terminal de cargas">
-    <div class="row justify-content-center mx-3">
-        <div class="d-flex flex-column justify-content-center bg-gradient-azul-esquerda position-terminal text-white col-lg-7 col-md-9 col-11 h-100 ps-8">
-            <h2 class="fw900 pt-3 pb-4">TERMINAL DE CARGAS</h2>
-            <p>Está situado na cidade de Paranaguá, no Paraná e faz parte da malha ferroviária Norte-Sul e Centro-Atlântica. <br><br>
+<section class="section-terminal-de-cargas py-4">
+    <div class="d-flex flex-column align-items-center position-relative">
 
-                Esse terminal é de uso exclusivo da RUMO, e tem o intuito de dinamizar as atividades operacionais da empresa na região. <br><br>
+        <img class="container-fluid p-0" src="<?php bloginfo('template_url'); ?>/assets/images/terminal-de-cargas.png" alt="">
+        <div class="flex-column text-white mx-3">
+            <div class="h-100 efeito-banner start-0 d-none d-md-block"></div>
+            <div class="d-flex justify-content-center flex-column col-lg-7 col-md-8 position-locomotiva h-100 p-xxl-0 ps-8">
+                <h2 class="fw900">TERMINAL DE CARGAS</h2>
+                <p>Está situado na cidade de Paranaguá, no Paraná e faz parte da malha ferroviária Norte-Sul e Centro-Atlântica. <br><br>
 
-                Com capacidade de receber cerca de 1,5 mil toneladas de grãos por hora e de três diferentes tipos de produtos. <br><br>
+                    Esse terminal é de uso exclusivo da RUMO, e tem o intuito de dinamizar as atividades operacionais da empresa na região. <br><br>
 
-                A potência de armazenagem diária do terminal é de 100 mil toneladas para transporte ferroviário e 20 mil toneladas no rodoviário e, em tempos de safra, o fluxo diário é de 480 vagões graneleiros.
-            </p>
+                    Com capacidade de receber cerca de 1,5 mil toneladas de grãos por hora e de três diferentes tipos de produtos. <br><br>
+
+                    A potência de armazenagem diária do terminal é de 100 mil toneladas para transporte ferroviário e 20 mil toneladas no rodoviário e, em tempos de safra, o fluxo diário é de 480 vagões graneleiros.
+                </p>
+            </div>
         </div>
-
     </div>
-
-
 </section>
+
 
 
 

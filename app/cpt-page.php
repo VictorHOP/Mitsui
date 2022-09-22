@@ -16,6 +16,155 @@ function page_quemsomos($post)
             var text;
             var id;
 
+            jQuery('.clear_butto').on('click', function() {
+                jQuery(this).siblings('.sobre_foto').val('');
+                jQuery(this).siblings('.sobre_foto_texto').val('');
+            });
+
+            jQuery('.upload_butto').on('click', function() {
+                id = jQuery(this).parent().find('.sobre_foto');
+                text = jQuery(this).parent().find('.sobre_foto_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.url);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+            jQuery('.clear_button_missao').on('click', function() {
+                jQuery(this).siblings('.missao_foto').val('');
+                jQuery(this).siblings('.missao_foto_texto').val('');
+            });
+
+            jQuery('.upload_button_missao').on('click', function() {
+                id = jQuery(this).parent().find('.missao_foto');
+                text = jQuery(this).parent().find('.missao_foto_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.url);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+
+            jQuery('.clear_button_visao').on('click', function() {
+                jQuery(this).siblings('.visao_foto').val('');
+                jQuery(this).siblings('.visao_foto_texto').val('');
+            });
+
+            jQuery('.upload_button_visao').on('click', function() {
+                id = jQuery(this).parent().find('.visao_foto');
+                text = jQuery(this).parent().find('.visao_foto_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.url);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+
+            jQuery('.clear_button_valores').on('click', function() {
+                jQuery(this).siblings('.valores_foto').val('');
+                jQuery(this).siblings('.valores_foto_texto').val('');
+            });
+
+            jQuery('.upload_button_valores').on('click', function() {
+                id = jQuery(this).parent().find('.valores_foto');
+                text = jQuery(this).parent().find('.valores_foto_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.url);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+
+            jQuery('.clear_button_grupo').on('click', function() {
+                jQuery(this).siblings('.grupo_foto').val('');
+                jQuery(this).siblings('.grupo_foto_texto').val('');
+            });
+
+            jQuery('.upload_button_grupo').on('click', function() {
+                id = jQuery(this).parent().find('.grupo_foto');
+                text = jQuery(this).parent().find('.grupo_foto_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.url);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+
             jQuery('.clear_button').on('click', function() {
                 jQuery(this).siblings('.equipe').val('');
                 jQuery(this).siblings('.equipe_texto').val('');
@@ -73,31 +222,52 @@ function page_quemsomos($post)
         });
     </script>
     <table style="width:100%;">
-    <div>
-        
-    </div>
+        <div>
+
+        </div>
         <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Sobre MRCLA</th>
             <td>
-                <textarea name="quemsomos_sobre_mrcla" class="translate" rows="3" style="width:100%;"><?php echo $sobre_mrcla; ?></textarea>
+                <label for="">Texto Sobre MRCLA</label><br>
+                <textarea name="quemsomos_sobre_mrcla[0]" class="translate" rows="3" style="width:100%;"><?php echo $sobre_mrcla[0]; ?></textarea><br>
+
+                <br><br>
+                <label for="">Fundo da Seção:</label>
+                <input type="text" name="quemsomos_sobre_mrcla[1]" class="sobre_foto_texto" value="<?php echo $sobre_mrcla[1]; ?>" readonly />
+                <input type="button" class="upload_butto button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_butto button" value="Remove Arquivo" />
             </td>
         </tr>
         <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Missão</th>
             <td>
-                <textarea name="quemsomos_missao" class="translate" rows="3" style="width:100%;"><?php echo $missao; ?></textarea>
+                <textarea name="quemsomos_missao[0]" class="translate" rows="3" style="width:100%;"><?php echo $missao[0]; ?></textarea><br>
+                <label for="">Imagem Missão:</label>
+                <input type="text" name="quemsomos_missao[1]" class="missao_foto_texto" value="<?php echo $missao[1]; ?>" readonly />
+                <input type="button" class="upload_button_missao button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_button_missao button" value="Remove Arquivo" />
             </td>
         </tr>
         <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Visão</th>
             <td>
-                <textarea name="quemsomos_visao" class="translate" rows="3" style="width:100%;"><?php echo $visao; ?></textarea>
+                <textarea name="quemsomos_visao[0]" class="translate" rows="3" style="width:100%;"><?php echo $visao[0]; ?></textarea>
+                <br>
+                <label for="">Imagem Visão:</label>
+                <input type="text" name="quemsomos_visao[1]" class="visao_foto_texto" value="<?php echo $visao[1]; ?>" readonly />
+                <input type="button" class="upload_button_visao button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_button_visao button" value="Remove Arquivo" />
             </td>
         </tr>
         <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Valores</th>
             <td>
-                <textarea name="quemsomos_valores" class="translate" rows="3" style="width:100%;"><?php echo $valores; ?></textarea>
+                <textarea name="quemsomos_valores[0]" class="translate" rows="3" style="width:100%;"><?php echo $valores[0]; ?></textarea>
+                <br>
+                <label for="">Imagem Valores:</label>
+                <input type="text" name="quemsomos_valores[1]" class="valores_foto_texto" value="<?php echo $valores[1]; ?>" readonly />
+                <input type="button" class="upload_button_valores button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_button_valores button" value="Remove Arquivo" />
             </td>
         </tr>
         <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
@@ -152,8 +322,12 @@ function page_quemsomos($post)
             <th>Section Grupo Mitsui</th>
             <td>
                 <label for="">Texto Grupo Mitsui</label><br>
-                <textarea name="quemsomos_grupo_mitsui" rows="3" style="width:100%" class="translate"><?php echo $grupo_mitsui; ?></textarea>
-
+                <textarea name="quemsomos_grupo_mitsui[0]" rows="3" style="width:100%" class="translate"><?php echo $grupo_mitsui[0]; ?></textarea>
+                <br>
+                <label for="">Imagem Fundo Seção Grupo Mitsui:</label>
+                <input type="text" name="quemsomos_grupo_mitsui[1]" class="grupo_foto_texto" value="<?php echo $grupo_mitsui[1]; ?>" readonly />
+                <input type="button" class="upload_button_grupo button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_button_grupo button" value="Remove Arquivo" />
             </td>
         </tr>
     </table>
@@ -165,6 +339,9 @@ function page_produtoseservicos($post)
 {
     $oque_fazemos = get_post_meta($post->ID, 'produtoseservicos_oque_fazemos', true);
     $produtos_servicos = get_post_meta($post->ID, 'produtoseservicos_produtos_servicos', true);
+    $servicos_diferenciados = get_post_meta($post->ID, 'produtoseservicos_servicos_diferenciados', true);
+    $locomotiva = get_post_meta($post->ID, 'produtoseservicos_locomotiva', true);
+    $terminal = get_post_meta($post->ID, 'produtoseservicos_terminal', true);
     $swiper_produtos = get_post_meta($post->ID, 'produtoseservicos_swiper', true);
 
 ?>
@@ -183,6 +360,95 @@ function page_produtoseservicos($post)
             jQuery('.upload_button').on('click', function() {
                 id = jQuery(this).parent().find('.imagem');
                 text = jQuery(this).parent().find('.imagem_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.id);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+            jQuery('.clear_button_locomotiva').on('click', function() {
+                jQuery(this).siblings('.locomotiva').val('');
+                jQuery(this).siblings('.locomotiva_texto').val('');
+            });
+
+            jQuery('.upload_button_locomotiva').on('click', function() {
+                id = jQuery(this).parent().find('.locomotiva');
+                text = jQuery(this).parent().find('.locomotiva_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.id);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+
+            jQuery('.clear_button_servicos_diferenciados').on('click', function() {
+                jQuery(this).siblings('.servicos_diferenciados').val('');
+                jQuery(this).siblings('.servicos_diferenciados_texto').val('');
+            });
+
+            jQuery('.upload_button_servicos_diferenciados').on('click', function() {
+                id = jQuery(this).parent().find('.servicos_diferenciados');
+                text = jQuery(this).parent().find('.servicos_diferenciados_texto');
+
+                event.preventDefault();
+
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                file_frame = wp.media.frames.file_frame = wp.media({
+                    title: 'Arquivo',
+                    multiple: false
+                });
+
+                file_frame.on('select', function() {
+                    attachment = file_frame.state().get('selection').first().toJSON();
+                    id.val(attachment.id);
+                    text.val(attachment.url);
+                });
+
+                file_frame.open();
+            });
+
+            jQuery('.clear_button_terminal').on('click', function() {
+                jQuery(this).siblings('.terminal').val('');
+                jQuery(this).siblings('.terminal_texto').val('');
+            });
+
+            jQuery('.upload_button_terminal').on('click', function() {
+                id = jQuery(this).parent().find('.terminal');
+                text = jQuery(this).parent().find('.terminal_texto');
 
                 event.preventDefault();
 
@@ -265,7 +531,7 @@ function page_produtoseservicos($post)
 
     <table>
 
-        <tr>
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Seção o que fazemos</th>
             <td>
                 <br><br>
@@ -292,7 +558,7 @@ function page_produtoseservicos($post)
             </td>
         </tr>
 
-        <tr>
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th> Serviços e Produtos</th>
             <td>
                 <label for="">1º titulo</label><br>
@@ -318,7 +584,31 @@ function page_produtoseservicos($post)
             </td>
         </tr>
 
-        <tr>
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
+            <th>Seção Serviços Diferenciados</th>
+            <td>
+                <textarea name="produtoseservicos_servicos_diferenciados[0]" class="translate" rows="3" style="width:100%;"><?php echo $servicos_diferenciados[0]; ?></textarea>
+                <br>
+                <label for="">Imagem fundo seção servicos diferenciados:</label>
+                <input type="text" name="produtoseservicos_servicos_diferenciados[1]" class="servicos_diferenciados_texto" value="<?php echo $servicos_diferenciados[1]; ?>" readonly />
+                <input type="button" class="upload_button_servicos_diferenciados button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_button_servicos_diferenciados button" value="Remove Arquivo" />
+            </td>
+        </tr>
+
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
+            <th>Seção Locomotiva</th>
+            <td>
+                <textarea name="produtoseservicos_locomotiva[0]" class="translate" rows="3" style="width:100%;"><?php echo $locomotiva[0]; ?></textarea>
+                <br>
+                <label for="">Imagem fundo seção locomotiva:</label>
+                <input type="text" name="produtoseservicos_locomotiva[1]" class="locomotiva_texto" value="<?php echo $locomotiva[1]; ?>" readonly />
+                <input type="button" class="upload_button_locomotiva button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_button_locomotiva button" value="Remove Arquivo" />
+            </td>
+        </tr>
+
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
             <th>Tipos de Vagões</th>
             <td>
                 <a class="repeatable-add button" href="#">Adicionar</a>
@@ -363,6 +653,18 @@ function page_produtoseservicos($post)
                     ?>
                 </ul>
                 <a class="repeatable-add button" href="#">Adicionar</a>
+            </td>
+        </tr>
+
+        <tr style="width:100%; border: 1px solid gray; border-radius:5px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);padding-bottom:30px">
+            <th>Seção Terminal de Cargas</th>
+            <td>
+                <textarea name="produtoseservicos_terminal[0]" class="translate" rows="3" style="width:100%;"><?php echo $terminal[0]; ?></textarea>
+                <br>
+                <label for="">Imagem fundo seção terminal de cargas:</label>
+                <input type="text" name="produtoseservicos_terminal[1]" class="terminal_texto" value="<?php echo $terminal[1]; ?>" readonly />
+                <input type="button" class="upload_button_terminal button" value="Adicionar Arquivo" />
+                <input type="button" class="clear_button_terminal button" value="Remove Arquivo" />
             </td>
         </tr>
     </table>
@@ -2423,10 +2725,10 @@ function save_pagina()
 
     if ($typenow == 'page') {
         if ($post->post_name == 'quem-somos') {
-            update_post_meta($post->ID, 'quemsomos_sobre_mrcla', stripslashes($_POST['quemsomos_sobre_mrcla']));
-            update_post_meta($post->ID, 'quemsomos_missao', stripslashes($_POST['quemsomos_missao']));
-            update_post_meta($post->ID, 'quemsomos_visao', stripslashes($_POST['quemsomos_visao']));
-            update_post_meta($post->ID, 'quemsomos_valores', stripslashes($_POST['quemsomos_valores']));
+            update_post_meta($post->ID, 'quemsomos_sobre_mrcla', $_POST['quemsomos_sobre_mrcla']);
+            update_post_meta($post->ID, 'quemsomos_missao', $_POST['quemsomos_missao']);
+            update_post_meta($post->ID, 'quemsomos_visao', $_POST['quemsomos_visao']);
+            update_post_meta($post->ID, 'quemsomos_valores', $_POST['quemsomos_valores']);
             update_post_meta($post->ID, 'quemsomos_equipe', $_POST['quemsomos_equipe']);
             update_post_meta($post->ID, 'quemsomos_foto', $_POST['quemsomos_foto']);
             update_post_meta($post->ID, 'quemsomos_grupo_mitsui', $_POST['quemsomos_grupo_mitsui']);
@@ -2434,6 +2736,9 @@ function save_pagina()
 
         if ($post->post_name == 'produtos-e-servicos') {
             update_post_meta($post->ID, 'produtoseservicos_swiper', $_POST['produtoseservicos_swiper']);
+            update_post_meta($post->ID, 'produtoseservicos_locomotiva', $_POST['produtoseservicos_locomotiva']);
+            update_post_meta($post->ID, 'produtoseservicos_terminal', $_POST['produtoseservicos_terminal']);
+            update_post_meta($post->ID, 'produtoseservicos_servicos_diferenciados', $_POST['produtoseservicos_servicos_diferenciados']);
             update_post_meta($post->ID, 'produtoseservicos_oque_fazemos', $_POST['produtoseserv']);
             update_post_meta($post->ID, 'produtoseservicos_produtos_servicos', $_POST['produtoseservicos']);
         }

@@ -63,7 +63,7 @@ add_filter('comment_form_defaults', 'o2_comment_form_text', 100); ?>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row pb-6">
 
                 <?php if (comments_open()) { ?>
                     <div class="comentario-form mt-5">
