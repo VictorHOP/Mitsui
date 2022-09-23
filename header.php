@@ -15,7 +15,7 @@
 
 <body <?php body_class(); ?>>
 
-    <header class="fixed-top">
+    <header class="fixed-top header">
 
         <nav class="navbar navbar-expand-xl py-0" id="navbar">
             <div class="d-flex flex-row container-fluid container-xxl align-items-center justify-content-between">
@@ -31,7 +31,7 @@
                     </svg>
                     <span class="ps-2" style="color:#353597">MENU</span>
                 </button>
-                <a class="navbar-brand m-0" href="index.php"><img src="<?php bloginfo('template_url'); ?>/assets/images/logo-mitsui.png" alt="logo mitsui"></a>
+                <a class="navbar-brand m-0" href="<?php echo home_url('home'); ?>"><img src="<?php bloginfo('template_url'); ?>/assets/images/logo-mitsui.png" alt="logo mitsui"></a>
 
                 <div class="offcanvas offcanvas-top justify-content-center" data-bs-hideresize="true" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenu">
 

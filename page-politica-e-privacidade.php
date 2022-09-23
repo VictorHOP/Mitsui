@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="position-relative banner-pagina mt-5 container-fluid p-0">
+<div class="position-relative banner-pagina mt-5 container-fluid p-0" id="topo">
     <img class="banner-produtos" src="<?php bloginfo('template_url'); ?>/assets/images/banner-politica.png" alt="banner trem">
     <div class="h-100 efeito-banner"></div>
     <h1 class="text-uppercase text-white position-h1"><?php the_title(); ?></h1>

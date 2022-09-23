@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="position-relative banner-pagina mt-5 container-fluid p-0">
+<div class="position-relative banner-pagina mt-5 container-fluid p-0" id="topo">
     <?php the_post_thumbnail('', array('class' => 'banner-produtos')); ?>
     <div class="h-100 efeito-banner"></div>
     <h1 class="text-uppercase text-white position-h1"><?php the_title(); ?></h1>

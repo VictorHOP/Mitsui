@@ -8,6 +8,9 @@
     font-family: 'Poppins', sans-serif;
     font-style: normal;
 }
+html{
+    scroll-behavior: smooth;
+}
 a{
     text-decoration: none;
 }
@@ -144,6 +147,23 @@ header{
         display: none;
     }
 }
+.position-conheca-locomotiva{
+    position: absolute;
+    bottom: 90px;
+    right: 90px;
+    z-index: 4;
+    max-width: 540px;
+    @media (max-width:685px) {
+        right: 20px;
+    }
+    @media (max-width:575px) {
+        top: 0;
+        left: auto;
+        right: auto;
+        position: relative;
+        padding-bottom: 25px;
+    }
+}
 .section-quemsomos-home{
     img{
         position: relative;
@@ -174,7 +194,7 @@ header{
     @media (max-width:575px) {
         background-color: $azul-roxo;
         padding-top: 20px;
-        padding-bottom: 40px;
+        padding-bottom: 0px;
     }
     img{
         position: relative;
@@ -765,6 +785,11 @@ hr{
 .lista-politica li:last-of-type{
     border: none;
 }
+.politica{
+    &:hover{
+        color: $laranja !important;
+    }
+}
 .conteudo-politica{
     p{
         color: $cinza;
@@ -1034,4 +1059,3 @@ footer {
 .html-m0 {
     margin: 0 !important;
 }
-

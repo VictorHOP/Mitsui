@@ -67,7 +67,7 @@ add_filter('comment_form_defaults', 'o2_comment_form_text', 100); ?>
 
                 <?php if (comments_open()) { ?>
                     <div class="comentario-form mt-5">
-                        <h3 class="title"><?php _e('Deixe seu comentário', 'mitsui'); ?></h3>
+                        <h3 class="title azul-escuro fw400"><?php _e('Deixe seu comentário', 'mitsui'); ?></h3>
                         <?php comment_form(); ?>
                     </div>
                 <?php } ?>
@@ -79,15 +79,15 @@ add_filter('comment_form_defaults', 'o2_comment_form_text', 100); ?>
                 if ($comentarios) {
                 ?>
                     <div class="comentarios mt-5">
-                        <h3 class="title"><?php _e('Comentários', 'mitsui'); ?></h3>
+                        <h3 class="title azul-escuro fw400 pb-4"><?php _e('Comentários', 'mitsui'); ?></h3>
                         <div class="comentarios-list">
                             <?php
                             foreach ($comentarios as $comentario) {
                             ?>
-                                <div class="comentario media mb-5">
+                                <div class="comentario d-flex align-items-center media mb-4">
                                     <?php echo get_avatar($comentario->comment_author_email, 78, '', '', array('class' => 'mr-3 rounded-circle')); ?>
-                                    <div class="media-body">
-                                        <div class="autor"><?php echo $comentario->comment_author; ?></div>
+                                    <div class="media-body ps-3 cinza">
+                                        <div class="autor fs-24"><?php echo $comentario->comment_author; ?></div>
                                         <div class="texto"><?php echo $comentario->comment_content; ?></div>
                                     </div>
                                 </div>

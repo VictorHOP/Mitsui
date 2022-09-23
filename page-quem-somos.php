@@ -8,12 +8,13 @@ $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
 ?>
 
 
-<div class="position-relative banner-pagina mt-5 container-fluid p-0">
+<div class="position-relative banner-pagina mt-5 container-fluid p-0" id="topo">
     <?php the_post_thumbnail('', array('class' => 'banner-produtos')); ?>
     <div class="h-100 efeito-banner"></div>
     <h1 class="text-uppercase text-white position-h1"><?php the_title(); ?></h1>
 </div>
 
+<?php if($sobre_mrcla){ ?>
 <section class="section-sobre-mrcla row d-flex container-fluid justify-content-center mx-0 my-3">
     <div class="position-relative">
 
@@ -35,6 +36,9 @@ $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
         </p>
     </div>
 </section>
+<?php } ?>
+
+<?php if($missao and $visao and $valores){ ?>
 <section class="section-mmv azul-escuro container py-10">
     <div class="d-flex flex-column align-items-center justify-content-center">
         <h2 class="fw300 pb-5 text-center">MISSÃO, VISÃO E <fw900>VALORES</fw900>
@@ -60,6 +64,9 @@ $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
         </div>
     </div>
 </section>
+<?php } ?>
+
+<?php if($equipe){ ?>
 <section class="section-nossa-equipe container">
     <h2 class="fw300 pb-4 azul-escuro text-center">NOSSA <fw900>EQUIPE</fw900>
     </h2>
@@ -88,9 +95,10 @@ $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
         } ?>
     </div>
 </section>
+<?php } ?>
 
-
-<section class="container-fluid section-grupo-mitsui">
+<?php if($grupo_mitsui){ ?>
+<section class="container-fluid section-grupo-mitsui pb-3">
     <div class="position-relative row justify-content-center">
         <img class="img-grupo-mitsui" src="<?php echo $grupo_mitsui[1]; ?>" alt="fundo grupo mitsui">
         <div class="efeito-secao"></div>
@@ -108,5 +116,6 @@ $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
     </div>
     </div>
 </section>
+<?php } ?>
 
 <?php get_footer(); ?>

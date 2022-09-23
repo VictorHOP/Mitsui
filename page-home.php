@@ -6,7 +6,7 @@ $produtos_home = get_post_meta($post->ID, 'produtos_home', true);
 $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
 // dd(get_page_by_path('segmentos-e-setores')->ID)
 ?>
-<section class="banner-home">
+<section class="banner-home" id="topo">
     <div class="position-relative banner-home mt-5 container-fluid p-0">
         <div class="swiper swiperBanner">
             <div class="swiper-wrapper">
@@ -48,13 +48,14 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
     </div>
 </section>
 
+<?php if($quem_somos){ ?>
 <section class="section-quemsomos-home container-fluid container-xxl mb-5">
     <div class="position-relative row justify-content-center">
         <div class="position-relative mt-sm-3">
             <img class="d-none d-sm-block" src="<?php bloginfo('template_url'); ?>/assets/images/trem-laranja.png" alt="">
             <div class="efeito-secao"></div>
         </div>
-        <div class="position-conteudo col-md-8 col-sm-10 col-12">
+        <div class="position-conteudo col-md-8 col-sm-10 col-12" data-anime="left">
             <h2 class="fw300 text-white pt-4 pt-sm-0 m-">QUEM <fw900> SOMOS </fw900>
             </h2>
             <p class="text-white text-start fw400" style="white-space: pre-line;">
@@ -70,8 +71,10 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
         </div>
     </div>
 </section>
+<?php } ?>
 
-<section class="section-produtos-home container">
+<?php if($produtos_home){ ?>
+<section class="section-produtos-home container pt-5">
     <div class="row flex-column flex-lg-row">
         <div class="col-lg-4 pb-4">
             <h2 class="fw300 fs-40 azul-escuro pt-4 pt-sm-0">PRODUTOS E <fw900> SERVIÇOS </fw900>
@@ -116,7 +119,11 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
             </div>
         </div>
 </section>
+<?php } ?>
+
 <div class="py-sm-5"></div>
+
+<?php if($segmentos_swiper){ ?>
 <section class="container section-segmentos py-sm-8">
     <h2 class="fw300 fs-40 azul-escuro pt-4 pt-sm-0 pb-2">SEGMENTOS E <fw900> SETORES </fw900>
     </h2>
@@ -145,11 +152,13 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
 
     </div>
 </section>
+<?php } ?>
+
 <section class="container-fluid section-conheca-locomotica">
     <div class="position-relative row justify-content-center">
         <img src="<?php bloginfo('template_url'); ?>/assets/images/conheca-locomotiva.png" alt="trem">
         <div class="efeito-secao"></div>
-            <div class="position-conteudo text-white col-12 text-sm-end ">
+            <div class="position-conheca-locomotiva text-white col-12 text-sm-end ">
                 <p class="fs-20 text-wrap pt-4 pt-sm-0">Conheça a locomotiva diesel-elétrica produzida pela GE, modelo de sustentabilidade com participação da MRCLA!</p>
                 <a href="" class="text-white bg-laranja d-flex align-items-center justify-content-center py-3 px-5 botao"><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
@@ -161,6 +170,7 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
         </div>
     </div>
 </section>
+
 <section class="container py-6">
     <h2 class="azul-roxo fs-sm-35 fs-44 pb-4">NOVIDADES DO <fw900>BLOG</fw900>
     </h2>
@@ -202,4 +212,4 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
         </div>
     </div>
 </section>
-<?php get_footer(); ?>
+<?php get_footer();?>

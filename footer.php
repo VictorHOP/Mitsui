@@ -78,11 +78,11 @@
 				<a href=""><img src="<?php bloginfo('template_url'); ?>/assets/images/icone-facebook-svg.svg" alt="icone facebook"></a>
 				<a href=""><img src="<?php bloginfo('template_url'); ?>/assets/images/icone-instagram-svg.svg" alt="icone instagram"></a>
 			</div>
-			<img src="<?php bloginfo('template_url'); ?>/assets/images/logo-mitsui.png" alt="logo mitsui">
+			<a href="#topo"><img src="<?php bloginfo('template_url'); ?>/assets/images/logo-mitsui.png" alt="logo mitsui"></a>
 		</div>
 		<div class="w-100 borda-azul"></div>
 		<div class="d-flex flex-column flex-md-row justify-content-between container pt-4">
-			<a href="<?php echo home_url('politica-e-privacidade'); ?>" class="text-white fs-15 m-0 pb-3 pb-md-0">Politica de cookies | Politica de privacidade</a>
+			<a href="<?php echo home_url('politica-e-privacidade'); ?>" class="text-white fs-15 m-0 pb-3 pb-md-0 politica">Politica de cookies | Politica de privacidade</a>
 			<p class="text-white fs-15 m-0">Todos os direitos reservados &#xA9; 2021 - MITSUI RAIL CAPITAL</p>
 		</div>
 	</section>
@@ -141,6 +141,51 @@
 		});
 	});
 </script>
+
+<!-- CONFIG. MINIMIZAR HEADER SCROLL -->
+<script>
+	jQuery(function() {
+		var anterior = 0;
+
+		jQuery(window).scroll(function() {
+			if (window.innerWidth <= 768) {
+				atual = jQuery(window).scrollTop();
+				if (anterior < atual) {
+					jQuery('.header, .header .menu-bottom').css('bottom', '-81px');
+					jQuery('header .menu-header .navbar-collapse').css('max-height', 'calc(100vh - 56px)');
+					jQuery('.admin-bar header .menu-header .navbar-collapse').css('max-height', 'calc(100vh - 102px)');
+				}
+
+				if (atual < 10 || anterior > atual) {
+					jQuery('.header, .header .menu-bottom').css('bottom', '0');
+					jQuery('header .menu-header .navbar-collapse').css('max-height', 'calc(100vh - 137px)');
+					jQuery('.admin-bar header .menu-header .navbar-collapse').css('max-height', 'calc(100vh - 183px)');
+				}
+
+				anterior = atual;
+			} else {
+				jQuery('.header, .header .menu-bottom').css('bottom', 'auto');
+			}
+		}).resize(function() {
+			if (window.innerWidth > 768) {
+				jQuery('.header, .header .menu-bottom').css('bottom', 'auto');
+			} else {
+				jQuery('.header, .header .menu-bottom').css('bottom', '0');
+			}
+		});
+
+		jQuery('.navbar-toggler').on('click', function() {
+			if (window.innerWidth <= 768) {
+				if (jQuery(this).hasClass('collapsed')) {
+					jQuery('body').removeClass('menu').css('overflow-y', 'auto');
+				} else {
+					jQuery('body').addClass('menu').css('overflow-y', 'hidden');
+				}
+			}
+		})
+	});
+</script>
+
 
 <!-- VVVVV SWIPPER VVVVV -->
 <script>
