@@ -17,7 +17,7 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
                         <div class="swiper-slide">
                             <img class="banner-produtos" src="<?php echo wp_get_attachment_url($banner[$i][0]); ?>" alt="banner home">
                             <div class="position-conteudo-banner col-12">
-                                <div class="container d-flex flex-column align-items-center align-items-md-start margin-banner">
+                                <div class="container d-flex flex-column align-items-center align-items-md-start margin-banner d-flex">
                                     <h2 class="text-uppercase text-white fonte-titulo-banner fundo-h2 w-fit text-center p-2"><?php echo $banner[$i][1] ?> </h2>
                                     <h2 class="text-uppercase text-white fundo-h2 w-fit p-2">
                                         <fw900><?php echo $banner[$i][2] ?></fw900>
@@ -55,19 +55,19 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
             <img class="d-none d-sm-block" src="<?php bloginfo('template_url'); ?>/assets/images/trem-laranja.png" alt="">
             <div class="efeito-secao"></div>
         </div>
-        <div class="position-conteudo col-md-8 col-sm-10 col-12" data-anime="left">
+        <div class="position-conteudo col-md-8 col-sm-10 col-12 init-hidden">
             <h2 class="fw300 text-white pt-4 pt-sm-0 m-">QUEM <fw900> SOMOS </fw900>
             </h2>
             <p class="text-white text-start fw400" style="white-space: pre-line;">
             <?php echo $quem_somos ;?>
             </p>
-            <a href="" class="text-white bg-laranja d-flex align-items-center justify-content-center py-3 px-5 botao col-sm-10 col-lg-8 col-12"><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a href="" class="text-white bg-laranja d-flex align-items-center  justify-content-center py-3 px-5 botao col-sm-10 col-lg-8 col-12"><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
                     <path d="M56 1L64 9L56 17" stroke="white" stroke-linecap="square" stroke-linejoin="round" />
                 </svg>
                 <p class="m-0 d-none d-sm-block">Conheça a história da MRCLA</p>
                 <p class="m-0 d-block d-sm-none"> Saiba Mais</p>
-            </a>
+            </a> 
         </div>
     </div>
 </section>
@@ -76,7 +76,7 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
 <?php if($produtos_home){ ?>
 <section class="section-produtos-home container pt-5">
     <div class="row flex-column flex-lg-row">
-        <div class="col-lg-4 pb-4">
+        <div class="col-lg-4 pb-4 ">
             <h2 class="fw300 fs-40 azul-escuro pt-4 pt-sm-0">PRODUTOS E <fw900> SERVIÇOS </fw900>
             </h2>
             <p class="cinza fw400" style="white-space: pre-line;"><?php echo $produtos_conteudo ;?></p>
@@ -158,7 +158,7 @@ $produtos_conteudo = get_post_meta($post->ID, 'produtos_conteudo', true);
     <div class="position-relative row justify-content-center">
         <img src="<?php bloginfo('template_url'); ?>/assets/images/conheca-locomotiva.png" alt="trem">
         <div class="efeito-secao"></div>
-            <div class="position-conheca-locomotiva text-white col-12 text-sm-end ">
+            <div class="position-conheca-locomotiva text-white col-12 text-sm-end init-hidden">
                 <p class="fs-20 text-wrap pt-4 pt-sm-0">Conheça a locomotiva diesel-elétrica produzida pela GE, modelo de sustentabilidade com participação da MRCLA!</p>
                 <a href="" class="text-white bg-laranja d-flex align-items-center justify-content-center py-3 px-5 botao"><svg width="65" class="pe-3 d-none d-sm-block" height="18" viewBox="0 0 65 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M63 9H1" stroke="white" stroke-linecap="square" stroke-linejoin="round" />

@@ -1059,3 +1059,11 @@ footer {
 .html-m0 {
     margin: 0 !important;
 }
+
+.init-hidden{
+    opacity: 0;
+    transition: opacity 1s linear;
+}
+.init-hidden-off{
+    opacity: 1;
+}

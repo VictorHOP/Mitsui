@@ -92,19 +92,19 @@ $sustentabilidade = get_post_meta($post->ID, 'sustentabilidade', true);
     <h2 class="fw300 pb-4 text-white container text-center">MODELO DE <fw900> SUSTENTABILIDADE </fw900>
     </h2>
     <div class="container d-flex flex-column">
-        <div class="d-flex align-items-center py-5 flex-column flex-md-row">
+        <div class="d-flex align-items-center py-5 flex-column flex-md-row init-hidden">
             <img class="pe-md-5" src="<?php echo ($sustentabilidade[1]); ?>" alt="">
             <p class="text-white pt-4 pt-md-0"><?php echo $sustentabilidade[0]; ?>
             </p>
         </div>
 
-        <div class="d-flex align-items-center py-5 flex-column flex-md-row-reverse">
+        <div class="d-flex align-items-center py-5 flex-column flex-md-row-reverse init-hidden">
             <img class="ps-md-5" src="<?php echo ($sustentabilidade[3]); ?>" alt="">
             <p class="text-white pt-4 pt-md-0"><?php echo $sustentabilidade[2]; ?>
             </p>
         </div>
 
-        <div class="d-flex align-items-center py-5 flex-column flex-md-row">
+        <div class="d-flex align-items-center py-5 flex-column flex-md-row init-hidden">
             <img class="pe-md-5" src="<?php echo ($sustentabilidade[5]); ?>" alt="">
             <p class="text-white pt-4 pt-md-0"><?php echo $sustentabilidade[4]; ?>
             </p>

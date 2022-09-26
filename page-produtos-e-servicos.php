@@ -20,13 +20,13 @@
         <div class="d-flex flex-column col-12 col-md-6 pb-4 pb-md-0">
             <h2 class="fw300 pb-4 azul-escuro">O QUE <fw900> FAZEMOS </fw900>
             </h2>
-            <p class="cinza fw400" style="white-space: pre-wrap;"><?php echo $oque_fazemos[0]; ?></p>
+            <p class="cinza fw400 init-hidden" style="white-space: pre-wrap;"><?php echo $oque_fazemos[0]; ?></p>
             <img src="<?php echo wp_get_attachment_url($oque_fazemos[2]); ?>" alt="">
         </div>
         <div class="d-flex flex-md-column flex-column-reverse col-12 col-md-6">
             <img src="<?php echo wp_get_attachment_url($oque_fazemos[3]); ?>" alt="">
 
-            <p class="cinza fw400 pt-4" style="white-space: pre-wrap;"><?php echo $oque_fazemos[1]; ?></p>
+            <p class="cinza fw400 pt-4 init-hidden" style="white-space: pre-wrap;"><?php echo $oque_fazemos[1]; ?></p>
         </div>
     </div>
 </section>
@@ -103,7 +103,7 @@
         <img src="<?php echo $servicos_diferenciados[1]; ?>" alt="trem">
         <div class="efeito-secao"></div>
         <div class="position-servicos-diferenciados text-white col-12 text-sm-end ">
-            <div class="text-white text-center text-md-start ">
+            <div class="text-white text-center text-md-start init-hidden">
                 <h2 class="fw300 pb-4 fw900">
                     SERVIÇOS DIFERENCIADOS
                 </h2>
@@ -167,7 +167,7 @@
     </div>
 </section>
 
-<h2 class="fw300 pb-4 azul-escuro container">NOSSOS <fw900> PRODUTOS </fw900>
+<h2 class="fw300 pb-1 pt-5 azul-escuro container">NOSSOS <fw900> PRODUTOS </fw900>
 </h2>
 <section class="section-nossos-produtos py-4">
     <div class="d-flex flex-column align-items-center position-relative">
@@ -175,7 +175,7 @@
         <img class="container-fluid" src="<?php echo $locomotiva[1] ?>" alt=" fundo secao locomotiva">
         <div class="flex-column text-white mx-3">
             <div class="h-100 efeito-banner start-0 d-none d-md-block"></div>
-            <div class="d-flex justify-content-center flex-column col-lg-7 col-md-8 position-locomotiva h-100 p-xxl-0 ps-8">
+            <div class="d-flex justify-content-center flex-column col-lg-7 col-md-8 position-locomotiva h-100 p-xxl-0 ps-8 init-hidden">
                 <h2 class="fw900">LOCOMOTIVA</h2>
                 <p class="fw400" style="white-space: pre-line;">
                     <?php echo $locomotiva[0] ?>
@@ -221,7 +221,7 @@
         <img class="container-fluid p-0" src="<?php bloginfo('template_url'); ?>/assets/images/terminal-de-cargas.png" alt="">
         <div class="flex-column text-white mx-3">
             <div class="h-100 efeito-banner start-0 d-none d-md-block"></div>
-            <div class="d-flex justify-content-center flex-column col-lg-7 col-md-8 position-locomotiva h-100 p-xxl-0 ps-8">
+            <div class="d-flex justify-content-center flex-column col-lg-7 col-md-8 position-locomotiva h-100 p-xxl-0 ps-8 init-hidden">
                 <h2 class="fw900">TERMINAL DE CARGAS</h2>
                 <p>Está situado na cidade de Paranaguá, no Paraná e faz parte da malha ferroviária Norte-Sul e Centro-Atlântica. <br><br>
 

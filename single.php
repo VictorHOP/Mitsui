@@ -44,6 +44,8 @@ add_filter('comment_form_defaults', 'o2_comment_form_text', 100); ?>
     <h1 class="text-uppercase text-white position-h1-single fw300 h1-single col-md-9"><?php the_title(); ?></h1>
 </div>
 
+
+
 <section class="container">
 
     <div class="row justify-content-center">

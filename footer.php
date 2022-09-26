@@ -186,6 +186,21 @@
 	});
 </script>
 
+<!-- Efeito Javascript aparecer seção -->
+<script>
+	const observer = new IntersectionObserver(entries => {
+		console.log(entries)
+		if(entries[0].intersectionRatio >= 1){
+			entries[0].target.classList.add('init-hidden-off')
+		}
+	}, {
+		threshold: 1
+	})
+
+	Array.from(document.querySelectorAll('.init-hidden')).forEach(element => {
+		observer.observe(element)
+	})
+</script>
 
 <!-- VVVVV SWIPPER VVVVV -->
 <script>

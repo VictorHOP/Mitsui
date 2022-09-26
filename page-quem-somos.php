@@ -19,7 +19,7 @@ $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
     <div class="position-relative">
 
         <img src="<?php echo $sobre_mrcla[1]; ?> " alt="">
-        <div class="sobre-mrcla azul-escuro d-none d-sm-flex flex-column justify-content-center p-5">
+        <div class="sobre-mrcla azul-escuro d-none d-sm-flex flex-column justify-content-center p-5 init-hidden">
             <h2 class="fw300 pb-4">SOBRE A <fw900> MRCLA E NEGÓCIOS </fw900>
             </h2>
 
@@ -76,7 +76,7 @@ $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
             foreach ($equipe as $row) {
         ?>
                 <div class="d-flex flex-column align-items-center col-12 col-sm-11 col-lg-6">
-                    <div class="bg-azul-escuro w-100 rad-100 d-flex justify-content-center justify-content-sm-start align-items-center  py-2 mb-3">
+                    <div class="bg-azul-escuro w-100 rad-100 d-flex justify-content-center justify-content-sm-start align-items-center py-2 mb-3">
                         <img src="<?php echo wp_get_attachment_url($equipe[$i][2]); ?>" alt="foto colaborador">
                         <div class="d-none d-sm-flex flex-column ps-4">
                             <p class="fw600 fs-25 m-0"><?php echo $equipe[$i][0] ?></p>
@@ -102,7 +102,7 @@ $valores = get_post_meta($post->ID, 'quemsomos_valores', true);
     <div class="position-relative row justify-content-center">
         <img class="img-grupo-mitsui" src="<?php echo $grupo_mitsui[1]; ?>" alt="fundo grupo mitsui">
         <div class="efeito-secao"></div>
-        <div class="position-conteudo text-white col-12 text-sm-end ">
+        <div class="position-conteudo text-white col-12 text-sm-end init-hidden">
             <h2 class="fw300 pb-4 pt-4">GRUPO <fw900> MITSUI </fw900>
             </h2>
             <p class="fs-16 fw-400" style="white-space: pre-line;"><?php echo $grupo_mitsui[0]; ?></p>
