@@ -15,7 +15,7 @@
 
 <body <?php body_class(); ?>>
 
-    <header class="fixed-top header">
+    <header class="fixed-top">
 
         <nav class="navbar navbar-expand-xl py-0" id="navbar">
             <div class="d-flex flex-row container-fluid container-xxl align-items-center justify-content-between">

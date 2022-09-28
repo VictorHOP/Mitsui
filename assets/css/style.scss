@@ -8,6 +8,9 @@
     font-family: 'Poppins', sans-serif;
     font-style: normal;
 }
+body{
+    --scrollbar-width: calc(100vw - 100%);
+}
 html{
     scroll-behavior: smooth;
 }
@@ -743,33 +746,39 @@ hr{
 }
 
 // VVVVVVV POLITICA DE PRIVACIDADE VVVVVVV
-
+.nav-link:focus{
+    color: white;
+}
+.sticky{
+    position: sticky;
+    top: calc(135px);
+}
 .lista-politica{
     background-color: $azul-escuro;
     padding-left: 0;
     border-radius: 5px;
-    li{
+    a{
         position: relative;
         color: white;
         font-size: 15px;
         font-weight: 500;
         list-style: none;
-        border-bottom: 1px solid #4848C6;
+        text-decoration: none;
+        padding: 28px;
+        display: block;
         &:hover{
             background-color: $laranja;
             cursor: pointer;
+            color: white;
         }
         &.active{
             background-color: $laranja;
         }
-        a{
-            text-decoration: none;
-            color: #fff;
-            padding: 28px;
-            display: block;
-        }
     }
-    li::after{
+    .nav-link.active{
+        background-color: $laranja;
+    }
+    a::after{
         content: "";
         width: 12px;
         height: 12px;
@@ -782,17 +791,29 @@ hr{
         top: 44%;
     }
 }
-.lista-politica li:last-of-type{
+.lista-politica a:last-of-type{
     border: none;
+}
+.lista-politica-accordion{
+    h4{
+        background-color: $azul-escuro;
+        padding-left: 0;
+        border-radius: 5px;
+        color: white;
+    }
 }
 .politica{
     &:hover{
         color: $laranja !important;
     }
 }
+.titulo-politica{
+    cursor: pointer;
+}
 .conteudo-politica{
-    p{
-        color: $cinza;
+    @media (max-width:767px) {
+        display: none;
+        padding-left: 10px;
     }
 }
 .sub-politica{
@@ -802,7 +823,30 @@ hr{
         color: #161616;
     }
 }
-
+.scrollspy-example-2{
+    // height: 1000px;
+    // overflow: auto;
+    @media (max-width:767px) {
+        overflow: hidden;
+        height: auto;
+    }
+    h4{
+        color: #161616;
+        font-weight: 700;
+        font-size: 18px;
+        @media (max-width:767px) {
+            background-color: $azul-escuro;
+            padding:10px;
+            border-radius: 5px;
+            color: white;
+        }
+    }
+    p{
+        font-weight: 400;
+        color: $cinza;
+        font-size: 16px;
+    }
+}
 
 // VVVVVVV BUSCA VVVVVVVV
 

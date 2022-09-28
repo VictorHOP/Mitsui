@@ -124,6 +124,20 @@
 
 <!-- CONFG. ACCORDION FALE CONOSCO -->
 <script>
+	jQuery(document).ready(function() {
+		jQuery(function() {
+			jQuery('.titulo-politica').on('click', function() {
+				if (window.innerWidth <= 767) {
+					jQuery(this).parent().find('.conteudo-politica').stop().slideToggle();
+					jQuery(this).toggleClass('active');
+				}
+			});
+		});
+	});
+</script>
+
+<!-- CONFG. ACCORDION FALE CONOSCO -->
+<script>
 	jQuery(function() {
 		jQuery('.accordion-perguntas').on('click', function() {
 			jQuery(this).find('.resposta').stop().slideToggle();
